@@ -1770,7 +1770,7 @@ def handle_quick_load_sample(sample_type: str) -> Tuple[str, str, Any, Any]:
 """
     return audit, text, gr.update(interactive=True), gr.update(interactive=True)
 
-def handle_analyze_and_score_case(raw_text: str, theme_choice: str) -> Tuple[str, str, Any, Any, str, Any]:
+def handle_analyze_and_score_case(raw_text: str, theme_choice: str, custom_filename: str = "") -> Tuple[str, str, Any, Any, str, Any, str]:
     """
     Core user feature: Evaluates case report, identifies what the report is about,
     generates the interactive visual scorecard, produces the multi-agent forensic summary,
@@ -1783,7 +1783,7 @@ def handle_analyze_and_score_case(raw_text: str, theme_choice: str) -> Tuple[str
             ⚠️ INSUFFICIENT CASE TEXT: Please upload a PDF/report file, click a quick-load button, or paste at least 30 characters of incident text.
         </div>
         """
-        return empty_card, "⚠️ No case text provided to analyze.", gr.update(interactive=False), None, "", None
+        return empty_card, "⚠️ No case text provided to analyze.", gr.update(interactive=False), None, "", None, "FORENSIC_DOSSIER_Case_Investigation.md"
 
     is_dark = "Night" in theme_choice
     log_event("SCORECARD", f"Evaluating case solvability metrics and forensic dimensions ({len(raw_text)} chars)...")
@@ -1808,7 +1808,7 @@ def handle_analyze_and_score_case(raw_text: str, theme_choice: str) -> Tuple[str
     officer_name = profile.get("officer_name", "Forensic Field Investigator") if profile else "Forensic Field Investigator"
     badge_id = profile.get("badge_id", "BADGE-4892") if profile else "BADGE-4892"
 
-    # 5. Export formal downloadable forensic dossier
+    # 5. Export formal downloadable forensic dossier with clean professional filename
     export_file_path = DossierExporter.export_case_dossier(
         case_title=classification["subject"],
         category=classification["category"],
@@ -1816,7 +1816,8 @@ def handle_analyze_and_score_case(raw_text: str, theme_choice: str) -> Tuple[str
         scorecard=scorecard_data,
         agent_analysis=agent_report,
         officer_name=officer_name,
-        badge_id=badge_id
+        badge_id=badge_id,
+        custom_filename=custom_filename
     )
     PIPELINE_CACHE["last_dossier_path"] = export_file_path
 
@@ -1942,16 +1943,23 @@ def handle_analyze_and_score_case(raw_text: str, theme_choice: str) -> Tuple[str
 
     log_event("SCORECARD", f"Scorecard complete: Solvability {scorecard_data['overall_score']}/100 [{scorecard_data['grade']}]")
 
-    return scorecard_html, agent_report, gr.update(interactive=True), audio_path, classification_html, export_file_path
-
-def handle_download_last_dossier(raw_text: str) -> Any:
-    """Returns the generated dossier file path for download, generating it on the fly if needed."""
     from pathlib import Path
-    if PIPELINE_CACHE.get("last_dossier_path") and Path(PIPELINE_CACHE["last_dossier_path"]).exists():
-        return PIPELINE_CACHE["last_dossier_path"]
+    file_name = Path(export_file_path).name if export_file_path else "FORENSIC_DOSSIER_Case_Investigation.md"
+    return scorecard_html, agent_report, gr.update(interactive=True), audio_path, classification_html, export_file_path, file_name
+
+def handle_download_last_dossier(raw_text: str, custom_filename: str = "") -> Tuple[Any, str]:
+    """Returns the generated dossier file path for download, respecting user custom professional filename."""
+    from pathlib import Path
+    current = PIPELINE_CACHE.get("last_dossier_path")
+    if current and Path(current).exists():
+        if custom_filename and custom_filename.strip():
+            renamed = DossierExporter.rename_existing_dossier(current, custom_filename)
+            PIPELINE_CACHE["last_dossier_path"] = renamed
+            return renamed, Path(renamed).name
+        return current, Path(current).name
     
     if not raw_text or len(raw_text.strip()) < 30:
-        return None
+        return None, ""
     
     classification = ReportClassifier.classify_report(raw_text)
     scorecard_data = ForensicScorecardEngine.evaluate_case_report(raw_text)
@@ -1968,10 +1976,22 @@ def handle_download_last_dossier(raw_text: str) -> Any:
         scorecard=scorecard_data,
         agent_analysis=agent_report,
         officer_name=officer_name,
-        badge_id=badge_id
+        badge_id=badge_id,
+        custom_filename=custom_filename
     )
     PIPELINE_CACHE["last_dossier_path"] = path
-    return path
+    return path, Path(path).name
+
+def handle_rename_dossier_file(custom_name: str, raw_text: str = "") -> Tuple[Any, str]:
+    """Explicitly renames the current dossier file on disk to a user-provided professional name."""
+    from pathlib import Path
+    current = PIPELINE_CACHE.get("last_dossier_path")
+    if current and Path(current).exists() and custom_name and custom_name.strip():
+        renamed = DossierExporter.rename_existing_dossier(current, custom_name)
+        PIPELINE_CACHE["last_dossier_path"] = renamed
+        log_event("DOSSIER", f"Dossier file renamed to professional name: {Path(renamed).name}")
+        return renamed, Path(renamed).name
+    return handle_download_last_dossier(raw_text, custom_filename=custom_name)
 
 def handle_speak_case_report(raw_text: str) -> Any:
     """Explicitly synthesizes and speaks out the voice debrief for the current narrative."""
@@ -2294,11 +2314,22 @@ def build_detective_nexus_app() -> gr.Blocks:
                         """
                     )
 
-                # Downloadable Forensic Dossier Section
+                # Downloadable Forensic Dossier Section with Custom/Professional Filename Editor
+                with gr.Row():
+                    with gr.Column(scale=3):
+                        dossier_filename_input = gr.Textbox(
+                            label="✏️ Professional Dossier File Name (Editable / Customizable)",
+                            value="FORENSIC_DOSSIER_Case_Investigation.md",
+                            interactive=True,
+                            placeholder="e.g. FORENSIC_DOSSIER_The_Vanishing_Aurora_Diamond_20260911.md"
+                        )
+                    with gr.Column(scale=1):
+                        rename_dossier_btn = gr.Button("✏️ Rename / Update File Name", variant="secondary")
+
                 with gr.Row():
                     with gr.Column(scale=3):
                         download_dossier_file = gr.File(
-                            label="📥 Official Forensic Case Dossier (.md / .txt) [Ready for Download]",
+                            label="📥 Official Forensic Case Dossier (.md) [Ready for Download]",
                             interactive=False
                         )
                     with gr.Column(scale=1):
@@ -2334,14 +2365,20 @@ def build_detective_nexus_app() -> gr.Blocks:
 
                 score_case_btn.click(
                     fn=handle_analyze_and_score_case,
-                    inputs=[doc_text_preview, theme_radio],
-                    outputs=[scorecard_display_html, agent_analysis_output_md, ingest_case_btn, case_voice_audio, report_classification_html, download_dossier_file]
+                    inputs=[doc_text_preview, theme_radio, dossier_filename_input],
+                    outputs=[scorecard_display_html, agent_analysis_output_md, ingest_case_btn, case_voice_audio, report_classification_html, download_dossier_file, dossier_filename_input]
+                )
+
+                rename_dossier_btn.click(
+                    fn=handle_rename_dossier_file,
+                    inputs=[dossier_filename_input, doc_text_preview],
+                    outputs=[download_dossier_file, dossier_filename_input]
                 )
 
                 download_dossier_btn.click(
                     fn=handle_download_last_dossier,
-                    inputs=[doc_text_preview],
-                    outputs=[download_dossier_file]
+                    inputs=[doc_text_preview, dossier_filename_input],
+                    outputs=[download_dossier_file, dossier_filename_input]
                 )
 
                 speak_voice_btn.click(
