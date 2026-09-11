@@ -4,4 +4,4 @@ python-dotenv
 pypdf
 python-docx
 gtts
-pywin32
+pywin32; sys_platform == 'win32'

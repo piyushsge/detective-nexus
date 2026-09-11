@@ -39,8 +39,11 @@ def main():
 
     theme = get_forensic_theme()
     demo = build_detective_nexus_app()
+    server_port = int(os.getenv("PORT", os.getenv("GRADIO_SERVER_PORT", str(config.SERVER_PORT))))
+    server_name = os.getenv("GRADIO_SERVER_NAME", "0.0.0.0")
     demo.launch(
-        server_port=config.SERVER_PORT,
+        server_name=server_name,
+        server_port=server_port,
         inbrowser=False,
         theme=theme,
         css=FORENSIC_CSS,

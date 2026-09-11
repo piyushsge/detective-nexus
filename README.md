@@ -2,7 +2,19 @@
 
 A multi-agent forensic mystery investigation platform built completely with **Python, Gradio Blocks, and Google Gemini API**.
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/piyushsge/detective-nexus)
+
 Instead of treating mystery solving as a single chatbot guessing prompt, **Detective Nexus** orchestrates an elite team of 5 specialized forensic AI agents that analyze, stress-test, and synthesize evidence using strict epistemological standards.
+
+---
+
+## 🚀 1-Click Deployment on Render
+
+1. Click the **Deploy to Render** button above (or create a new **Web Service** on [dashboard.render.com](https://dashboard.render.com) and link your GitHub repository `piyushsge/detective-nexus`).
+2. Set the following environment variable in Render's **Environment** tab:
+   - `GEMINI_API_KEY`: Your Google Gemini API Key ([Get a free key here](https://aistudio.google.com/app/apikey)).
+   - `GEMINI_MODEL`: `gemini-2.5-flash` (or `gemini-1.5-flash`).
+3. Render will automatically build the service using `pip install -r requirements.txt` and launch with `python app.py`. Your live link will be available at `https://detective-nexus.onrender.com`.
 
 ---
 
