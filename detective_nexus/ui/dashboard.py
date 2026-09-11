@@ -622,6 +622,84 @@ def get_theme_style_css(is_dark_mode: bool = True) -> str:
             font-weight: 800 !important;
         }
 
+        /* Chatbot styling in Day Mode */
+        [class*="gradio-container"] [data-testid="chatbot"],
+        [class*="gradio-container"] .chatbot,
+        [class*="gradio-container"] .gradio-chatbot {
+            background-color: #ffffff !important;
+            border: 1px solid #cbd5e1 !important;
+            border-radius: 8px !important;
+        }
+        [class*="gradio-container"] .message-row.user-row .message,
+        [class*="gradio-container"] .message.user,
+        [class*="gradio-container"] [data-testid="user"] {
+            background: #e0f2fe !important;
+            background-color: #e0f2fe !important;
+            color: #0f172a !important;
+            border: 1px solid #bae6fd !important;
+            border-radius: 8px !important;
+            font-weight: 500 !important;
+        }
+        [class*="gradio-container"] .message-row.bot-row .message,
+        [class*="gradio-container"] .message.bot,
+        [class*="gradio-container"] [data-testid="bot"] {
+            background: #f8fafc !important;
+            background-color: #f8fafc !important;
+            color: #0f172a !important;
+            border: 1px solid #cbd5e1 !important;
+            border-radius: 8px !important;
+        }
+        [class*="gradio-container"] .message p,
+        [class*="gradio-container"] .message span,
+        [class*="gradio-container"] .message li {
+            color: #0f172a !important;
+        }
+
+        /* Buttons in Day Mode */
+        [class*="gradio-container"] button.primary,
+        [class*="gradio-container"] .gr-button-primary,
+        button.primary {
+            background: #0284c7 !important;
+            background-color: #0284c7 !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            border: 1px solid #0369a1 !important;
+            box-shadow: 0 1px 3px rgba(2,132,199,0.2) !important;
+        }
+        [class*="gradio-container"] button.primary:hover,
+        button.primary:hover {
+            background: #0369a1 !important;
+        }
+        [class*="gradio-container"] button.secondary,
+        [class*="gradio-container"] .gr-button-secondary,
+        button.secondary {
+            background: #ffffff !important;
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+            font-weight: 600 !important;
+            border: 1px solid #cbd5e1 !important;
+        }
+        [class*="gradio-container"] button.secondary:hover,
+        button.secondary:hover {
+            background: #f1f5f9 !important;
+            border-color: #94a3b8 !important;
+        }
+
+        /* Radios and Dropdowns in Day Mode */
+        [class*="gradio-container"] .gr-radio label,
+        [class*="gradio-container"] .gr-checkbox label,
+        [class*="gradio-container"] span.form-radio-label {
+            color: #0f172a !important;
+            font-weight: 600 !important;
+        }
+        [class*="gradio-container"] select,
+        [class*="gradio-container"] .choices__inner,
+        [class*="gradio-container"] .choices__list--dropdown {
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+            border-color: #cbd5e1 !important;
+        }
+
         /* Cards & Metric Banners */
         .evidence-card, .nexus-metric-box {
             background-color: #ffffff !important;
@@ -656,6 +734,46 @@ def get_theme_style_css(is_dark_mode: bool = True) -> str:
         .critical-window-time {
             color: #dc2626 !important;
             font-weight: 800 !important;
+        }
+
+        /* Custom Forensic Panels & Cards */
+        .nexus-constraints-banner {
+            background: #f1f5f9 !important;
+            border-color: #cbd5e1 !important;
+            color: #0f172a !important;
+        }
+        .nexus-dossier-card {
+            background: #ffffff !important;
+            border-color: #cbd5e1 !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+        }
+        .timeline-clock-card {
+            background: #ffffff !important;
+            border-color: #cbd5e1 !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
+        }
+        .voice-debrief-banner {
+            background: #ffffff !important;
+            border-color: #cbd5e1 !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
+        }
+        .interrogation-telemetry-box {
+            background: #ffffff !important;
+            border-color: #cbd5e1 !important;
+            color: #0f172a !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+        }
+        .forensic-cert-box {
+            background: #ffffff !important;
+            border-color: #cbd5e1 !important;
+            color: #0f172a !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06) !important;
+        }
+        .courtroom-verdict-box {
+            background: #ffffff !important;
+            border-color: #cbd5e1 !important;
+            color: #0f172a !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important;
         }
 
         /* Agent Status in Day Mode */
@@ -723,6 +841,72 @@ def get_theme_style_css(is_dark_mode: bool = True) -> str:
             background: #ecfdf5 !important;
             border: 1px solid #a7f3d0 !important;
             color: #047857 !important;
+        }
+
+        /* Visual SVG Graph in Day Mode */
+        svg {
+            background-color: transparent !important;
+        }
+        svg text {
+            fill: #0f172a !important;
+            font-weight: 600 !important;
+        }
+
+        /* Aggressive Fallback Overrides for rogue inline dark styles */
+        html body [style*="background: #111"],
+        html body [style*="background:#111"],
+        html body [style*="background: #0D0"],
+        html body [style*="background:#0D0"],
+        html body [style*="background: #070"],
+        html body [style*="background:#070"],
+        html body [style*="background: #080"],
+        html body [style*="background:#080"],
+        html body [style*="background: #0b1"],
+        html body [style*="background:#0b1"],
+        html body [style*="background: #1a1"],
+        html body [style*="background:#1a1"],
+        html body [style*="background: #161"],
+        html body [style*="background:#161"],
+        html body [style*="background: #121"],
+        html body [style*="background:#121"],
+        html body [style*="background: #181"],
+        html body [style*="background:#181"],
+        html body [style*="background: #141"],
+        html body [style*="background:#141"],
+        html body [style*="background: #0A0"],
+        html body [style*="background:#0A0"],
+        html body [style*="background: #1e293b"],
+        html body [style*="background:#1e293b"],
+        html body [style*="background: #0f172a"],
+        html body [style*="background:#0f172a"],
+        html body [style*="background: #000"],
+        html body [style*="background:#000"] {
+            background: #ffffff !important;
+            background-color: #ffffff !important;
+            border-color: #cbd5e1 !important;
+            color: #0f172a !important;
+        }
+
+        /* Ensure light text styles become dark text on light backgrounds */
+        html body [style*="color: #F2F2F2"],
+        html body [style*="color:#F2F2F2"],
+        html body [style*="color: #f8fafc"],
+        html body [style*="color:#f8fafc"],
+        html body [style*="color: #ffffff"],
+        html body [style*="color:#ffffff"],
+        html body [style*="color: #D1D5DB"],
+        html body [style*="color:#D1D5DB"],
+        html body [style*="color: #9CA3AF"],
+        html body [style*="color:#9CA3AF"],
+        html body [style*="color: #cbd5e1"],
+        html body [style*="color:#cbd5e1"] {
+            color: #0f172a !important;
+        }
+
+        /* Subdued labels */
+        html body [style*="color: #8B8B8B"],
+        html body [style*="color:#8B8B8B"] {
+            color: #475569 !important;
         }
         </style>
         """
@@ -825,18 +1009,18 @@ def build_case_room_html() -> str:
         </div>
 
         <!-- Case Constraints Banner (Master Prompt Section 12) -->
-        <div style="display: flex; justify-content: space-around; background: #0D0D0D; border: 1px solid #292929; border-left: 4px solid #d97706; border-radius: 4px; padding: 10px 16px; margin-bottom: 18px; font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; font-weight: bold;">
-            <span style="color: #fbbf24;">⚖️ MOTIVE &ne; PROOF</span>
-            <span style="color: #555555;">&bull;</span>
-            <span style="color: #38bdf8;">💳 CARD ACCESS &ne; PERSON</span>
-            <span style="color: #555555;">&bull;</span>
-            <span style="color: #f87171;">🔎 INFERENCE &ne; FACT</span>
+        <div class="nexus-constraints-banner" style="display: flex; justify-content: space-around; background: var(--nexus-bg-subcard); border: 1px solid var(--nexus-border); border-left: 4px solid var(--nexus-accent-amber); border-radius: 4px; padding: 10px 16px; margin-bottom: 18px; font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; font-weight: bold;">
+            <span style="color: var(--nexus-accent-amber);">⚖️ MOTIVE &ne; PROOF</span>
+            <span style="color: var(--nexus-border);">&bull;</span>
+            <span style="color: #0284c7;">💳 CARD ACCESS &ne; PERSON</span>
+            <span style="color: var(--nexus-border);">&bull;</span>
+            <span style="color: #ef4444;">🔎 INFERENCE &ne; FACT</span>
         </div>
 
         <!-- Narrative & Objective -->
         <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px; margin-bottom: 18px;">
-            <div style="background: #111111; border: 1px solid #292929; border-radius: 4px; padding: 14px;">
-                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: #8B8B8B; margin-bottom: 6px; font-weight: bold; text-transform: uppercase;">
+            <div class="nexus-dossier-card" style="background: var(--nexus-bg-card); border: 1px solid var(--nexus-border); border-radius: 4px; padding: 14px;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--nexus-text-dim); margin-bottom: 6px; font-weight: bold; text-transform: uppercase;">
                     INCIDENT BRIEFING & SUMMARY
                 </div>
                 <div style="font-size: 0.88rem; line-height: 1.6; color: var(--nexus-text-main);">
@@ -844,11 +1028,11 @@ def build_case_room_html() -> str:
                 </div>
             </div>
 
-            <div style="background: #111111; border: 1px solid #292929; border-radius: 4px; padding: 14px;">
-                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: #8B8B8B; margin-bottom: 6px; font-weight: bold; text-transform: uppercase;">
+            <div class="nexus-dossier-card" style="background: var(--nexus-bg-card); border: 1px solid var(--nexus-border); border-radius: 4px; padding: 14px;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--nexus-text-dim); margin-bottom: 6px; font-weight: bold; text-transform: uppercase;">
                     INVESTIGATION OBJECTIVE
                 </div>
-                <div style="font-size: 0.88rem; line-height: 1.6; color: #10b981;">
+                <div style="font-size: 0.88rem; line-height: 1.6; color: var(--nexus-accent-emerald); font-weight: 500;">
                     Establish beyond reasonable doubt the physical actor responsible for vitrine entry during the 08:20-08:24 PM power surge, determine if Keycard B was cloned or proxy-wielded, and corroborate velvet fiber transfer scientifically.
                 </div>
             </div>
@@ -856,8 +1040,8 @@ def build_case_room_html() -> str:
 
         <!-- Confirmed Facts vs Open Questions -->
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
-            <div style="background: #111111; border: 1px solid #292929; border-radius: 4px; padding: 14px;">
-                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: #10b981; margin-bottom: 8px; font-weight: bold;">
+            <div class="nexus-dossier-card" style="background: var(--nexus-bg-card); border: 1px solid var(--nexus-border); border-radius: 4px; padding: 14px;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--nexus-accent-emerald); margin-bottom: 8px; font-weight: bold;">
                     &check; CONFIRMED FORENSIC FACTS
                 </div>
                 <ul style="font-size: 0.85rem; line-height: 1.5; color: var(--nexus-text-main); margin: 0; padding-left: 18px;">
@@ -869,8 +1053,8 @@ def build_case_room_html() -> str:
                 </ul>
             </div>
 
-            <div style="background: #111111; border: 1px solid #292929; border-radius: 4px; padding: 14px;">
-                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: #fbbf24; margin-bottom: 8px; font-weight: bold;">
+            <div class="nexus-dossier-card" style="background: var(--nexus-bg-card); border: 1px solid var(--nexus-border); border-radius: 4px; padding: 14px;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--nexus-accent-amber); margin-bottom: 8px; font-weight: bold;">
                     ❓ OPEN INVESTIGATIVE QUESTIONS
                 </div>
                 <ul style="font-size: 0.85rem; line-height: 1.5; color: var(--nexus-text-main); margin: 0; padding-left: 18px;">
@@ -891,46 +1075,46 @@ def build_timeline_clock_html() -> str:
             CASE CLOCK // HORIZONTAL INVESTIGATION TIMELINE
         </div>
         <div style="display: flex; align-items: stretch; justify-content: space-between; overflow-x: auto; gap: 8px; padding-bottom: 8px;">
-            <div style="flex: 1; min-width: 120px; background: #111111; border: 1px solid #292929; border-top: 3px solid #64748b; border-radius: 4px; padding: 10px; text-align: center;">
+            <div class="timeline-clock-card" style="flex: 1; min-width: 120px; background: var(--nexus-bg-card); border: 1px solid var(--nexus-border); border-top: 3px solid #64748b; border-radius: 4px; padding: 10px; text-align: center;">
                 <div style="color: #64748b; font-weight: bold; font-size: 0.85rem;">08:00 PM</div>
-                <div style="font-size: 0.75rem; color: #F2F2F2; margin-top: 4px;">Vault Locked</div>
-                <div style="font-size: 0.7rem; color: #8B8B8B;">Daily close audit</div>
+                <div style="font-size: 0.75rem; color: var(--nexus-text-main); font-weight: 600; margin-top: 4px;">Vault Locked</div>
+                <div style="font-size: 0.7rem; color: var(--nexus-text-dim);">Daily close audit</div>
             </div>
-            <div style="color: #555555; align-self: center;">&mdash;</div>
-            <div style="flex: 1; min-width: 120px; background: #111111; border: 1px solid #292929; border-top: 3px solid #64748b; border-radius: 4px; padding: 10px; text-align: center;">
+            <div style="color: var(--nexus-border); align-self: center;">&mdash;</div>
+            <div class="timeline-clock-card" style="flex: 1; min-width: 120px; background: var(--nexus-bg-card); border: 1px solid var(--nexus-border); border-top: 3px solid #64748b; border-radius: 4px; padding: 10px; text-align: center;">
                 <div style="color: #64748b; font-weight: bold; font-size: 0.85rem;">08:12 PM</div>
-                <div style="font-size: 0.75rem; color: #F2F2F2; margin-top: 4px;">Arjun Badge</div>
-                <div style="font-size: 0.7rem; color: #8B8B8B;">Archive entry</div>
+                <div style="font-size: 0.75rem; color: var(--nexus-text-main); font-weight: 600; margin-top: 4px;">Arjun Badge</div>
+                <div style="font-size: 0.7rem; color: var(--nexus-text-dim);">Archive entry</div>
             </div>
-            <div style="color: #555555; align-self: center;">&mdash;</div>
-            <div style="flex: 1; min-width: 120px; background: #111111; border: 1px solid #292929; border-top: 3px solid #64748b; border-radius: 4px; padding: 10px; text-align: center;">
+            <div style="color: var(--nexus-border); align-self: center;">&mdash;</div>
+            <div class="timeline-clock-card" style="flex: 1; min-width: 120px; background: var(--nexus-bg-card); border: 1px solid var(--nexus-border); border-top: 3px solid #64748b; border-radius: 4px; padding: 10px; text-align: center;">
                 <div style="color: #64748b; font-weight: bold; font-size: 0.85rem;">08:15 PM</div>
-                <div style="font-size: 0.75rem; color: #F2F2F2; margin-top: 4px;">Theo Camera</div>
-                <div style="font-size: 0.7rem; color: #8B8B8B;">Security console</div>
+                <div style="font-size: 0.75rem; color: var(--nexus-text-main); font-weight: 600; margin-top: 4px;">Theo Camera</div>
+                <div style="font-size: 0.7rem; color: var(--nexus-text-dim);">Security console</div>
             </div>
             <div style="color: #dc2626; align-self: center; font-weight: bold;">&DoubleRightArrow;</div>
-            <div style="flex: 1.2; min-width: 140px; background: #161616; border: 1px solid #dc2626; border-top: 4px solid #dc2626; border-radius: 4px; padding: 10px; text-align: center;">
+            <div class="timeline-clock-card" style="flex: 1.2; min-width: 140px; background: var(--nexus-bg-subcard); border: 1px solid #dc2626; border-top: 4px solid #dc2626; border-radius: 4px; padding: 10px; text-align: center;">
                 <div style="color: #ef4444; font-weight: bold; font-size: 0.85rem;">08:20 - 08:24 PM</div>
                 <div style="font-size: 0.75rem; color: #ef4444; font-weight: bold; margin-top: 4px;">POWER BLACKOUT</div>
-                <div style="font-size: 0.7rem; color: #fbbf24;">CRITICAL WINDOW</div>
+                <div style="font-size: 0.7rem; color: var(--nexus-accent-amber); font-weight: bold;">CRITICAL WINDOW</div>
             </div>
             <div style="color: #dc2626; align-self: center; font-weight: bold;">&DoubleRightArrow;</div>
-            <div style="flex: 1.2; min-width: 140px; background: #161616; border: 1px solid #fbbf24; border-top: 4px solid #fbbf24; border-radius: 4px; padding: 10px; text-align: center;">
-                <div style="color: #fbbf24; font-weight: bold; font-size: 0.85rem;">08:23:14 PM</div>
-                <div style="font-size: 0.75rem; color: #fbbf24; font-weight: bold; margin-top: 4px;">CARD SWIPE E-B</div>
-                <div style="font-size: 0.7rem; color: #8B8B8B;">Case unlocked</div>
+            <div class="timeline-clock-card" style="flex: 1.2; min-width: 140px; background: var(--nexus-bg-subcard); border: 1px solid var(--nexus-accent-amber); border-top: 4px solid var(--nexus-accent-amber); border-radius: 4px; padding: 10px; text-align: center;">
+                <div style="color: var(--nexus-accent-amber); font-weight: bold; font-size: 0.85rem;">08:23:14 PM</div>
+                <div style="font-size: 0.75rem; color: var(--nexus-accent-amber); font-weight: bold; margin-top: 4px;">CARD SWIPE E-B</div>
+                <div style="font-size: 0.7rem; color: var(--nexus-text-dim);">Case unlocked</div>
             </div>
-            <div style="color: #555555; align-self: center;">&mdash;</div>
-            <div style="flex: 1; min-width: 120px; background: #111111; border: 1px solid #292929; border-top: 3px solid #64748b; border-radius: 4px; padding: 10px; text-align: center;">
+            <div style="color: var(--nexus-border); align-self: center;">&mdash;</div>
+            <div class="timeline-clock-card" style="flex: 1; min-width: 120px; background: var(--nexus-bg-card); border: 1px solid var(--nexus-border); border-top: 3px solid #64748b; border-radius: 4px; padding: 10px; text-align: center;">
                 <div style="color: #64748b; font-weight: bold; font-size: 0.85rem;">08:25 PM</div>
-                <div style="font-size: 0.75rem; color: #F2F2F2; margin-top: 4px;">Folder Egress</div>
-                <div style="font-size: 0.7rem; color: #8B8B8B;">Arjun departs</div>
+                <div style="font-size: 0.75rem; color: var(--nexus-text-main); font-weight: 600; margin-top: 4px;">Folder Egress</div>
+                <div style="font-size: 0.7rem; color: var(--nexus-text-dim);">Arjun departs</div>
             </div>
-            <div style="color: #555555; align-self: center;">&mdash;</div>
-            <div style="flex: 1; min-width: 120px; background: #111111; border: 1px solid #292929; border-top: 3px solid #10b981; border-radius: 4px; padding: 10px; text-align: center;">
+            <div style="color: var(--nexus-border); align-self: center;">&mdash;</div>
+            <div class="timeline-clock-card" style="flex: 1; min-width: 120px; background: var(--nexus-bg-card); border: 1px solid var(--nexus-border); border-top: 3px solid #10b981; border-radius: 4px; padding: 10px; text-align: center;">
                 <div style="color: #10b981; font-weight: bold; font-size: 0.85rem;">08:30 PM</div>
-                <div style="font-size: 0.75rem; color: #10b981; margin-top: 4px;">Loss Discovered</div>
-                <div style="font-size: 0.7rem; color: #8B8B8B;">Curator alert</div>
+                <div style="font-size: 0.75rem; color: #10b981; font-weight: 600; margin-top: 4px;">Loss Discovered</div>
+                <div style="font-size: 0.7rem; color: var(--nexus-text-dim);">Curator alert</div>
             </div>
         </div>
     </div>
@@ -1192,17 +1376,23 @@ def render_officer_card_html(username: str, is_dark: bool = True) -> str:
     history = profile.get("case_history", [])
     total_cases = len(history)
 
-    bg = "#111111" if is_dark else "#F8FAFC"
+    bg = "#111111" if is_dark else "#FFFFFF"
     border = "#292929" if is_dark else "#CBD5E1"
-    gold = "#D4AF37"
+    gold = "#D4AF37" if is_dark else "#B45309"
     text = "#F2F2F2" if is_dark else "#0F172A"
-    muted = "#8B8B8B" if is_dark else "#64748B"
+    muted = "#8B8B8B" if is_dark else "#475569"
+    avatar_bg = "#1a1a1a" if is_dark else "#F1F5F9"
+    verified_pill = (
+        'background: #0f2e1b; border: 1px solid #22c55e; color: #4ade80;'
+        if is_dark else
+        'background: #f0fdf4; border: 1px solid #22c55e; color: #15803d;'
+    )
 
     return f"""
     <div style="background: {bg}; border: 1px solid {border}; border-top: 4px solid {gold}; border-radius: 6px; padding: 18px 22px; margin-bottom: 16px; font-family: 'Inter', sans-serif;">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">
             <div style="display: flex; align-items: center; gap: 14px;">
-                <div style="width: 50px; height: 50px; border-radius: 50%; background: #1a1a1a; border: 2px solid {gold}; display: flex; align-items: center; justify-content: center; font-size: 1.6rem;">
+                <div style="width: 50px; height: 50px; border-radius: 50%; background: {avatar_bg}; border: 2px solid {gold}; display: flex; align-items: center; justify-content: center; font-size: 1.6rem;">
                     👮
                 </div>
                 <div>
@@ -1215,7 +1405,7 @@ def render_officer_card_html(username: str, is_dark: bool = True) -> str:
                 </div>
             </div>
             <div style="text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: {muted};">
-                <span style="background: #0f2e1b; border: 1px solid #22c55e; color: #4ade80; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 0.76rem;">● VERIFIED OFFICER SESSION</span>
+                <span style="{verified_pill} padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 0.76rem;">● VERIFIED OFFICER SESSION</span>
                 <div style="margin-top: 6px;">INVESTIGATIONS LOGGED: <strong style="color: {gold}; font-size: 0.95rem;">{total_cases}</strong></div>
             </div>
         </div>
@@ -2061,16 +2251,16 @@ def build_detective_nexus_app() -> gr.Blocks:
                     with gr.Column():
                         gr.HTML(
                             """
-                            <div style="margin-top: 14px; margin-bottom: 8px; padding: 10px 14px; background: #111111; border: 1px solid #292929; border-left: 4px solid #D4AF37; border-radius: 6px; display: flex; align-items: center; justify-content: space-between;">
+                            <div class="voice-debrief-banner" style="margin-top: 14px; margin-bottom: 8px; padding: 10px 14px; background: var(--nexus-bg-card); border: 1px solid var(--nexus-border); border-left: 4px solid var(--nexus-accent-amber); border-radius: 6px; display: flex; align-items: center; justify-content: space-between;">
                                 <div>
-                                    <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; font-weight: 700; color: #D4AF37; letter-spacing: 0.05em;">
+                                    <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; font-weight: 700; color: var(--nexus-accent-amber); letter-spacing: 0.05em;">
                                         🎙️ AI SPOKEN FORENSIC VOICE DEBRIEF // REPORT SUMMARY & SCORE
                                     </span>
-                                    <div style="font-size: 0.78rem; color: #8B8B8B; margin-top: 3px;">
+                                    <div style="font-size: 0.78rem; color: var(--nexus-text-dim); margin-top: 3px;">
                                         Synthesized speech audio summary of uploaded case narrative, Solvability Index, and critical gaps.
                                     </div>
                                 </div>
-                                <div style="font-size: 0.75rem; color: #8B8B8B; font-family: monospace;">
+                                <div style="font-size: 0.75rem; color: var(--nexus-text-dim); font-family: monospace;">
                                     [FREQUENCY: SECURE DISPATCH // SAPI+TTS]
                                 </div>
                             </div>

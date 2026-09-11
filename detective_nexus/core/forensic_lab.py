@@ -85,54 +85,54 @@ class ForensicLabEngine:
         summary = f"Forensic Lab Test Completed: {test_name} on {specimen}. Result: {match_rate}. Admissibility: {admissibility}."
 
         cert_html = f"""
-<div class="forensic-cert" style="
-    background: #0d1322;
-    border: 2px solid #1e293b;
+<div class="forensic-cert-box" style="
+    background: var(--nexus-bg-panel, #0b1120);
+    border: 1px solid var(--nexus-border, #1e293b);
     border-top: 5px solid {status_color};
-    border-radius: 10px;
-    padding: 24px;
-    margin: 16px 0;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 18px 0;
     font-family: 'JetBrains Mono', monospace;
-    color: #f8fafc;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+    color: var(--nexus-text-main, #f8fafc);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 ">
     <!-- Header -->
-    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; padding-bottom: 14px; margin-bottom: 18px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--nexus-border, #1e293b); padding-bottom: 14px; margin-bottom: 18px;">
         <div>
-            <div style="font-size: 0.75rem; letter-spacing: 0.15em; color: #94a3b8; text-transform: uppercase;">
+            <div style="font-size: 0.75rem; letter-spacing: 0.15em; color: var(--nexus-text-dim, #94a3b8); text-transform: uppercase;">
                 METROPOLITAN FORENSIC SCIENCE DIVISION // LAB RECORD
             </div>
-            <div style="font-size: 1.35rem; font-weight: 800; color: #f8fafc; margin-top: 4px;">
+            <div style="font-size: 1.35rem; font-weight: 800; color: var(--nexus-text-main, #f8fafc); margin-top: 4px;">
                 OFFICIAL FORENSIC LABORATORY CERTIFICATE
             </div>
         </div>
         <div style="text-align: right;">
-            <div style="background: #111a2e; border: 1px solid {status_color}; color: {status_color}; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">
+            <div style="background: var(--nexus-bg-subcard, #111a2e); border: 1px solid {status_color}; color: {status_color}; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">
                 CERTIFIED EXHIBIT
             </div>
         </div>
     </div>
 
     <!-- Metadata Grid -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; font-size: 0.85rem; margin-bottom: 18px;">
-        <div><strong>CASE IDENTIFIER:</strong> <span style="color: #fbbf24;">{case_id}</span></div>
-        <div><strong>TEST TIMESTAMP:</strong> <span style="color: #cbd5e1;">{timestamp}</span></div>
-        <div><strong>TESTING METHODOLOGY:</strong> <span style="color: #38bdf8;">{test_name}</span></div>
-        <div><strong>LABORATORY UNIT:</strong> <span style="color: #cbd5e1;">{lab_division}</span></div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; font-size: 0.85rem; margin-bottom: 18px; color: var(--nexus-text-main, #f8fafc);">
+        <div><strong>CASE IDENTIFIER:</strong> <span style="color: var(--nexus-accent-amber, #fbbf24); font-weight: bold;">{case_id}</span></div>
+        <div><strong>TEST TIMESTAMP:</strong> <span style="color: var(--nexus-text-muted, #cbd5e1);">{timestamp}</span></div>
+        <div><strong>TESTING METHODOLOGY:</strong> <span style="color: var(--nexus-accent-blue, #38bdf8); font-weight: bold;">{test_name}</span></div>
+        <div><strong>LABORATORY UNIT:</strong> <span style="color: var(--nexus-text-muted, #cbd5e1);">{lab_division}</span></div>
     </div>
 
     <!-- Specimen & Findings Box -->
-    <div style="background: #080c16; border: 1px solid #1e293b; border-radius: 6px; padding: 16px; margin-bottom: 18px; line-height: 1.5; font-size: 0.88rem;">
-        <div style="color: #94a3b8; margin-bottom: 4px;"><strong>ANALYTICAL SPECIMEN:</strong> {specimen}</div>
-        <div style="color: #94a3b8; margin-bottom: 8px;"><strong>METHODOLOGY:</strong> {method}</div>
-        <div style="color: #f8fafc; margin-bottom: 8px;"><strong>LABORATORY FINDINGS:</strong><br>{findings}</div>
+    <div style="background: var(--nexus-bg-subcard, #080c16); border: 1px solid var(--nexus-border, #1e293b); border-radius: 6px; padding: 16px; margin-bottom: 18px; line-height: 1.5; font-size: 0.88rem; color: var(--nexus-text-main, #f8fafc);">
+        <div style="color: var(--nexus-text-dim, #94a3b8); margin-bottom: 4px;"><strong>ANALYTICAL SPECIMEN:</strong> <span style="color: var(--nexus-text-main, #f8fafc);">{specimen}</span></div>
+        <div style="color: var(--nexus-text-dim, #94a3b8); margin-bottom: 8px;"><strong>METHODOLOGY:</strong> <span style="color: var(--nexus-text-main, #f8fafc);">{method}</span></div>
+        <div style="color: var(--nexus-text-main, #f8fafc); margin-bottom: 8px;"><strong>LABORATORY FINDINGS:</strong><br><span style="color: var(--nexus-text-main, #f8fafc);">{findings}</span></div>
         <div style="color: {status_color}; font-size: 1.05rem; font-weight: 800; margin-top: 10px;">
             VERIFICATION RESULT: {match_rate}
         </div>
     </div>
 
     <!-- Legal Certification Footer -->
-    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: #94a3b8;">
+    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--nexus-text-dim, #94a3b8);">
         <div><strong>LEGAL ADMISSIBILITY:</strong> <span style="color: {status_color}; font-weight: bold;">{admissibility}</span></div>
         <div><em>Signed: Chief Forensic Toxicologist & Criminalist</em></div>
     </div>

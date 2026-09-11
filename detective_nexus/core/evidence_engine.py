@@ -57,17 +57,17 @@ def format_evidence_card_html(evidence_item: Dict[str, Any]) -> str:
     badge_color = "#10b981" if "VERY STRONG" in strength or "STRONG" in strength else "#f59e0b" if "MODERATE" in strength else "#ef4444"
 
     return f"""
-    <div style="background: #111827; border: 1px solid #374151; border-left: 4px solid {badge_color}; border-radius: 6px; padding: 14px; margin-bottom: 12px; font-family: 'Segoe UI', Tahoma, sans-serif;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-            <span style="font-family: monospace; font-size: 0.9rem; font-weight: bold; color: #fbbf24;">[{eid}] {title.upper()}</span>
-            <span style="background: #1f2937; border: 1px solid #4b5563; color: {badge_color}; font-size: 0.72rem; font-weight: bold; padding: 2px 8px; border-radius: 4px; font-family: monospace;">{classification} // {strength}</span>
+    <div class="evidence-card" style="background: var(--nexus-bg-card); border: 1px solid var(--nexus-border); border-left: 5px solid {badge_color}; border-radius: 6px; padding: 14px; margin-bottom: 12px; font-family: 'Segoe UI', Tahoma, sans-serif;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 8px;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; font-weight: 800; color: var(--nexus-accent-amber);">[{eid}] {title.upper()}</span>
+            <span style="background: var(--nexus-bg-subcard); border: 1px solid var(--nexus-border); color: {badge_color}; font-size: 0.72rem; font-weight: 800; padding: 3px 9px; border-radius: 4px; font-family: 'JetBrains Mono', monospace;">{classification} // {strength}</span>
         </div>
-        <div style="font-size: 0.85rem; color: #9ca3af; margin-bottom: 8px;"><strong>Category:</strong> {cat} | <strong>Source:</strong> {evidence_item.get('source', 'Unknown')}</div>
-        <div style="background: #0b0f19; border-radius: 4px; padding: 8px; font-size: 0.82rem; color: #e5e7eb; margin-bottom: 6px;">
-            <span style="color: #34d399; font-weight: bold;">✔ ESTABLISHES:</span> {establishes}
+        <div style="font-size: 0.85rem; color: var(--nexus-text-muted); margin-bottom: 8px;"><strong>Category:</strong> {cat} | <strong>Source:</strong> {evidence_item.get('source', 'Case Archive')}</div>
+        <div style="background: var(--nexus-bg-subcard); border: 1px solid var(--nexus-border); border-radius: 4px; padding: 8px 10px; font-size: 0.84rem; color: var(--nexus-text-main); margin-bottom: 6px;">
+            <span style="color: #10b981; font-weight: 800;">✔ ESTABLISHES:</span> {establishes}
         </div>
-        <div style="background: #0b0f19; border-radius: 4px; padding: 8px; font-size: 0.82rem; color: #f87171;">
-            <span style="color: #ef4444; font-weight: bold;">✖ DOES NOT ESTABLISH:</span> {does_not}
+        <div style="background: var(--nexus-bg-subcard); border: 1px solid var(--nexus-border); border-radius: 4px; padding: 8px 10px; font-size: 0.84rem; color: #ef4444;">
+            <span style="color: #ef4444; font-weight: 800;">✖ DOES NOT ESTABLISH:</span> {does_not}
         </div>
     </div>
     """

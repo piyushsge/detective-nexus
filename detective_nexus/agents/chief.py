@@ -65,11 +65,11 @@ SKEPTIC REPORT:
         next_steps = self._extract_list_items(markdown, "Prioritized Next Investigative Steps")
 
         # Parse confidence
-        conf_match = re.search(r"Confidence Level:\s*\*?\*?([A-Z\s]+)\*?\*?", markdown, re.IGNORECASE)
-        conf_level = conf_match.group(1).strip().upper() if conf_match else "MODERATE"
-        if "HIGH" in conf_level and "VERY" not in conf_level:
+        conf_match = re.search(r"Confidence Level:\s*[`*]*([A-Za-z\s\(\)]+)[`*]*", markdown, re.IGNORECASE)
+        conf_raw = conf_match.group(1).strip().upper() if (conf_match and conf_match.group(1).strip()) else "MODERATE"
+        if "HIGH" in conf_raw and "VERY" not in conf_raw:
             conf_level = "HIGH (PROVISIONAL)"
-        elif "VERY HIGH" in conf_level:
+        else:
             conf_level = "MODERATE"
 
         suspects = case_data.get("suspects", []) if case_data else []

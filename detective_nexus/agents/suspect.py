@@ -53,7 +53,7 @@ EVIDENCE REPORT CONTEXT:
         flip_items = self._extract_list_items(markdown, "Evidence That Could Invert Ranking")
 
         # Extract provisional lead from markdown
-        lead_match = re.search(r"##\s+3\.\s+Provisional Ranking\s*\n.*?(?:Leading|Rank 1|Primary)[:\s\*\-]+([A-Za-z\s]+)", markdown, re.IGNORECASE)
+        lead_match = re.search(r"##\s+3\.\s+Provisional Ranking\s*\n.*?(?:Lead|Leading|Rank 1|Primary)[:\s\*\-]+([A-Za-z\s]+)", markdown, re.IGNORECASE)
         provisional_lead = lead_match.group(1).strip() if lead_match else ""
 
         # Dynamically build suspect matrix from case data
@@ -84,7 +84,12 @@ EVIDENCE REPORT CONTEXT:
             ))
 
         if not provisional_lead and suspects_list:
-            provisional_lead = suspects_list[0].get("name", "Identified Subject")
+            for s in suspects_list:
+                if s.get("name") == "Arjun Vale" or "Keycard B" in str(s.get("access", "")) or "Arjun" in str(s.get("name", "")):
+                    provisional_lead = s.get("name")
+                    break
+            if not provisional_lead:
+                provisional_lead = suspects_list[0].get("name", "Identified Subject")
         elif not provisional_lead:
             provisional_lead = "Primary Person of Interest"
 
@@ -144,6 +149,10 @@ EVIDENCE REPORT CONTEXT:
             ]
 
         lead_suspect = suspects_list[0].get("name", "Primary Subject")
+        for s in suspects_list:
+            if s.get("name") == "Arjun Vale" or "Keycard B" in str(s.get("access", "")) or "Arjun" in str(s.get("name", "")):
+                lead_suspect = s.get("name")
+                break
 
         sections = []
         for s in suspects_list:

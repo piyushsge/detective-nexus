@@ -90,35 +90,35 @@ class CourtroomTrialEngine:
         ])
 
         html_verdict = f"""
-<div style="
-    background: #0b1120;
-    border: 2px solid #1e293b;
+<div class="courtroom-verdict-box" style="
+    background: var(--nexus-bg-panel, #0b1120);
+    border: 2px solid var(--nexus-border, #1e293b);
     border-top: 5px solid {verdict_color};
     border-radius: 10px;
     padding: 24px;
     margin: 18px 0;
     font-family: 'JetBrains Mono', monospace;
-    color: #f8fafc;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    color: var(--nexus-text-main, #f8fafc);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 ">
-    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; padding-bottom: 12px; margin-bottom: 16px;">
-        <div style="font-size: 0.8rem; letter-spacing: 0.15em; color: #94a3b8; text-transform: uppercase;">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--nexus-border, #1e293b); padding-bottom: 12px; margin-bottom: 16px;">
+        <div style="font-size: 0.8rem; letter-spacing: 0.15em; color: var(--nexus-text-dim, #94a3b8); text-transform: uppercase;">
             12-PERSON JURY DELIBERATION RECORD
         </div>
-        <div style="background: #111a2e; border: 1px solid {verdict_color}; color: {verdict_color}; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 0.85rem;">
+        <div style="background: var(--nexus-bg-subcard, #111a2e); border: 1px solid {verdict_color}; color: {verdict_color}; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 0.85rem;">
             {verdict}
         </div>
     </div>
 
-    <div style="font-size: 1.25rem; font-weight: 800; color: #f8fafc; margin-bottom: 12px;">
+    <div style="font-size: 1.25rem; font-weight: 800; color: var(--nexus-text-main, #f8fafc); margin-bottom: 12px;">
         FINAL JUDICIAL VERDICT: <span style="color: {verdict_color};">{verdict.split('//')[0].strip()}</span>
     </div>
 
-    <div style="background: #080c16; border: 1px solid #1e293b; border-radius: 6px; padding: 14px; margin-bottom: 18px; font-size: 0.9rem; line-height: 1.5;">
+    <div style="background: var(--nexus-bg-subcard, #080c16); border: 1px solid var(--nexus-border, #1e293b); border-radius: 6px; padding: 14px; margin-bottom: 18px; font-size: 0.9rem; line-height: 1.5; color: var(--nexus-text-main, #f8fafc);">
         {verdict_summary}
     </div>
 
-    <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 8px; font-weight: bold;">
+    <div style="font-size: 0.8rem; color: var(--nexus-text-dim, #94a3b8); margin-bottom: 8px; font-weight: bold;">
         JUROR VOTE TALLY ({guilty_votes} GUILTY vs {not_guilty_votes} NOT GUILTY):
     </div>
     <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;">

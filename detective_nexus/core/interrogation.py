@@ -147,12 +147,12 @@ Keep responses under 4 sentences to maintain conversational tension."""
         tells_html = "".join([f"<li style='color: {color};'>• {t}</li>" for t in tells])
 
         return f"""
-<div style="background: #0b1120; border: 1px solid #1e293b; border-left: 5px solid {color}; border-radius: 8px; padding: 16px; font-family: 'JetBrains Mono', monospace;">
+<div class="interrogation-telemetry-box" style="background: var(--nexus-bg-card, #0b1120); border: 1px solid var(--nexus-border, #1e293b); border-left: 5px solid {color}; border-radius: 8px; padding: 16px; font-family: 'JetBrains Mono', monospace;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-        <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8;">
-            SUBJECT: <strong style="color: #f8fafc;">{suspect}</strong> // BIOMETRIC STRESS MONITOR
+        <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--nexus-text-dim, #94a3b8);">
+            SUBJECT: <strong style="color: var(--nexus-text-main, #f8fafc);">{suspect}</strong> // BIOMETRIC STRESS MONITOR
         </div>
-        <div style="background: #111a2e; border: 1px solid {color}; color: {color}; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold;">
+        <div style="background: var(--nexus-bg-subcard, #111a2e); border: 1px solid {color}; color: {color}; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold;">
             {level}
         </div>
     </div>
@@ -162,14 +162,14 @@ Keep responses under 4 sentences to maintain conversational tension."""
         <div style="font-size: 1.8rem; font-weight: 900; color: {color}; width: 65px;">
             {score}%
         </div>
-        <div style="flex-grow: 1; background: #1e293b; height: 12px; border-radius: 6px; overflow: hidden;">
+        <div style="flex-grow: 1; background: var(--nexus-bg-subcard, #1e293b); height: 12px; border-radius: 6px; overflow: hidden; border: 1px solid var(--nexus-border, #334155);">
             <div style="background: linear-gradient(90deg, #10b981 0%, #f59e0b 50%, #ef4444 100%); width: {score}%; height: 100%; transition: width 0.4s ease;"></div>
         </div>
     </div>
 
     <!-- Detected Tells -->
-    <div style="font-size: 0.75rem; color: #cbd5e1;">
-        <strong>DETECTED BEHAVIORAL INDICATORS:</strong>
+    <div style="font-size: 0.75rem; color: var(--nexus-text-main, #cbd5e1);">
+        <strong style="color: var(--nexus-text-main, #ffffff);">DETECTED BEHAVIORAL INDICATORS:</strong>
         <ul style="margin: 4px 0 0 0; padding-left: 18px; line-height: 1.4;">
             {tells_html}
         </ul>

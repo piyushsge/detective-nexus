@@ -256,6 +256,32 @@ Return ONLY valid JSON matching this schema:
                     "strength": "MODERATE",
                     "related_suspects": ["Vivian Ross"],
                     "reliability_notes": "Automated log"
+                },
+                {
+                    "evidence_id": "E-D",
+                    "title": "Encrypted Communication Transceiver",
+                    "description": "Short-range frequency hop transceiver recovered from air duct.",
+                    "category": "Digital",
+                    "source": "Physical Sweeping",
+                    "establishes": "Coordinated jamming transmission during breach window.",
+                    "does_not_establish": "Does not pinpoint operator without cryptographic key match.",
+                    "classification": "FACT",
+                    "strength": "STRONG",
+                    "related_suspects": ["Julian Mercer"],
+                    "reliability_notes": "Hardware serial number logged"
+                },
+                {
+                    "evidence_id": "E-E",
+                    "title": "Micro-Trace Specimen Swab",
+                    "description": "Industrial solvent residue matching vault lock mechanism.",
+                    "category": "Physical",
+                    "source": "Forensic Lab Swab",
+                    "establishes": "Chemical trace consistent with bypassing secondary safety catch.",
+                    "does_not_establish": "Substance commercially obtainable.",
+                    "classification": "CORROBORATIVE",
+                    "strength": "MODERATE",
+                    "related_suspects": ["Dr. Ronald Hayes", "Julian Mercer"],
+                    "reliability_notes": "Spectroscopic match confirmed"
                 }
             ],
             "evidence_relationships": [
