@@ -1,0 +1,291 @@
+{
+  "caseId": "CASE-002",
+  "title": "The Locked Room Manuscript",
+  "category": "Rare Manuscript Theft",
+  "difficulty": "Hard",
+  "setting": "St. Jude University Special Collections Vault",
+  "incident": "A 14th-century illuminated manuscript, the 'Codex Aureus', vanished from the university vault during a 17-minute security system outage between 11:15 PM and 11:32 PM. The climate-controlled vault has biometric and keycard locks with no forced entry.",
+  "centralQuestions": [
+    "How was the vault opened without triggering the physical fail-safe bolts?",
+    "Did the keycard swipe belong to the person who actually entered?",
+    "What role did the emergency ventilation maintenance request play?",
+    "Who had the specialist knowledge to extract the codex without causing humidity alarms?"
+  ],
+  "timeline": [
+    {
+      "id": "T01",
+      "time": "10:45 PM",
+      "event": "Visiting Professor Dr. Alistair Vance checks out research notes adjacent to the vault.",
+      "source": "Log sheet",
+      "certainty": "High"
+    },
+    {
+      "id": "T02",
+      "time": "11:00 PM",
+      "event": "Archivist Clara Bell conducts final preservation inspection and locks vault door.",
+      "source": "Digital access log",
+      "certainty": "High"
+    },
+    {
+      "id": "T03",
+      "time": "11:10 PM",
+      "event": "A maintenance request for HVAC calibration is logged from an internal terminal.",
+      "source": "Facilities server",
+      "certainty": "High"
+    },
+    {
+      "id": "T04",
+      "time": "11:15 PM",
+      "event": "Security camera system enters diagnostic reboot lasting 17 minutes.",
+      "source": "Security network log",
+      "certainty": "High"
+    },
+    {
+      "id": "T05",
+      "time": "11:22 PM",
+      "event": "Vault electronic door sensor registers an opening using Senior Technician Card #12.",
+      "source": "Vault offline buffer",
+      "certainty": "High"
+    },
+    {
+      "id": "T06",
+      "time": "11:32 PM",
+      "event": "Camera system comes back online. Vault hallway is empty.",
+      "source": "CCTV feed",
+      "certainty": "High"
+    },
+    {
+      "id": "T07",
+      "time": "11:50 PM",
+      "event": "Graduate researcher Liam Chen reports the manuscript display box is empty.",
+      "source": "Security call log",
+      "certainty": "High"
+    }
+  ],
+  "suspects": [
+    {
+      "suspect_id": "S01",
+      "name": "Clara Bell",
+      "role": "Chief Archivist",
+      "motive": "Facing professional audit over missing rare book budget funds.",
+      "statement": "She claims she left the building at 11:05 PM and drove straight home.",
+      "relevant_evidence": [
+        "She possesses master vault emergency codes.",
+        "Toll booth photo shows her car passing at 11:40 PM."
+      ],
+      "supporting_evidence": [
+        "Toll booth photo timestamp.",
+        "Security desk sign-out at 11:05 PM."
+      ],
+      "suspicious_evidence": [
+        "Her sign-out time was manually handwritten rather than scanned."
+      ],
+      "uncertainty": "Sign-out discrepancy leaves an 8-minute gap in her departure.",
+      "open_questions": [
+        "Did she leave at 11:05 PM or remain inside?"
+      ]
+    },
+    {
+      "suspect_id": "S02",
+      "name": "Derek Morales",
+      "role": "Security Systems Technician",
+      "motive": "Heavy off-track gambling losses; threatened by collectors.",
+      "statement": "He says his Card #12 was left on his workshop pegboard during his shift.",
+      "relevant_evidence": [
+        "Card #12 was used to open vault at 11:22 PM.",
+        "HVAC reboot initiated from his assigned terminal."
+      ],
+      "supporting_evidence": [
+        "Two colleagues state Derek was in the staff cafeteria playing cards at 11:20 PM."
+      ],
+      "suspicious_evidence": [
+        "His card opened the vault during the blackout."
+      ],
+      "uncertainty": "Card usage does not prove physical presence; workshop door was unlocked.",
+      "open_questions": [
+        "Who had physical access to the technician workshop pegboard?"
+      ]
+    },
+    {
+      "suspect_id": "S03",
+      "name": "Dr. Alistair Vance",
+      "role": "Visiting Professor",
+      "motive": "Obsessed with manuscript provenance; previously bid on illicit private antiquities.",
+      "statement": "He says he was working in the reading room until security told him to leave at 11:00 PM.",
+      "relevant_evidence": [
+        "Leather gloves found in his briefcase matching vault velvet case texture.",
+        "Purchased one-way flight to Zurich."
+      ],
+      "supporting_evidence": [
+        "Librarian saw him packing papers in reading room at 11:00 PM."
+      ],
+      "suspicious_evidence": [
+        "His briefcase contained high-grade archival handling tweezers."
+      ],
+      "uncertainty": "Archival tools are normal equipment for a paleography professor.",
+      "open_questions": [
+        "Where was he between 11:00 PM and 11:45 PM?"
+      ]
+    },
+    {
+      "suspect_id": "S04",
+      "name": "Liam Chen",
+      "role": "Graduate Researcher",
+      "motive": "Denied doctoral fellowship extension; desperate for publishing leverage.",
+      "statement": "He says he arrived at 11:45 PM to complete late-night scans and found the vault breached.",
+      "relevant_evidence": [
+        "First to report the crime.",
+        "Possessed digital camera with macro zoom."
+      ],
+      "supporting_evidence": [
+        "Turnstile log records his arrival at 11:43 PM."
+      ],
+      "suspicious_evidence": [
+        "Turnstile badge swipe could be faked or tailgated."
+      ],
+      "uncertainty": "Turnstile time is 11 minutes after the camera reboot ended.",
+      "open_questions": [
+        "Did he have an accomplice inside?"
+      ]
+    },
+    {
+      "suspect_id": "S05",
+      "name": "Elena Rostova",
+      "role": "Restoration Specialist",
+      "motive": "Disputed ownership claim over historical European religious documents.",
+      "statement": "She claims she was in the restoration chemical lab on floor 3 all evening.",
+      "relevant_evidence": [
+        "Chemical solvent traces matching vault seal adhesive found on her apron."
+      ],
+      "supporting_evidence": [
+        "Fume hood exhaust logs confirm chemical lab activity."
+      ],
+      "suspicious_evidence": [
+        "Adhesive solvent is identical to the compound used to detach the manuscript casing."
+      ],
+      "uncertainty": "Solvents are common across all university restoration projects.",
+      "open_questions": [
+        "Was the vault casing chemically dissolved or mechanically unlocked?"
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "witness_id": "W01",
+      "name": "Marcus Todd",
+      "role": "Night Guard",
+      "statement": "The camera reboot was scheduled for maintenance, but happened 2 hours early.",
+      "supporting_information": [
+        "Maintenance schedule printed on clipboard."
+      ],
+      "limitations": "Did not investigate the floor during reboot."
+    },
+    {
+      "witness_id": "W02",
+      "name": "Sarah Jenkins",
+      "role": "Cafeteria Worker",
+      "statement": "Derek Morales was in the cafeteria around 11:20 PM talking about football.",
+      "supporting_information": [
+        "Receipt for hot coffee at 11:18 PM."
+      ],
+      "limitations": "Did not watch Derek continuously."
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E-A",
+      "title": "Vault Access Log Buffer",
+      "description": "Offline buffer records Card #12 swiped at 11:22 PM with valid PIN.",
+      "category": "Electronic Log",
+      "source": "Vault door controller",
+      "establishes": "Vault was unlocked electronically at 11:22 PM.",
+      "does_not_establish": "Identity of person holding Card #12.",
+      "related_suspects": [
+        "Derek Morales"
+      ],
+      "reliability_notes": "Internal cryptographic memory."
+    },
+    {
+      "evidence_id": "E-B",
+      "title": "HVAC Terminal Request",
+      "description": "A scheduled maintenance command was triggered at 11:10 PM from Maintenance Desk Terminal 4.",
+      "category": "Network Log",
+      "source": "Facilities server",
+      "establishes": "Camera reboot was caused by HVAC diagnostic command.",
+      "does_not_establish": "Who sat at Terminal 4.",
+      "related_suspects": [
+        "Derek Morales",
+        "Clara Bell"
+      ],
+      "reliability_notes": "Terminal was left unlocked in common area."
+    },
+    {
+      "evidence_id": "E-C",
+      "title": "Latex Glove Fragment",
+      "description": "A torn blue nitrile glove tip found caught on the vault display latch.",
+      "category": "Physical Trace",
+      "source": "Vault display case",
+      "establishes": "Perpetrator wore disposable blue nitrile gloves.",
+      "does_not_establish": "Fingerprint or DNA match.",
+      "related_suspects": [
+        "Elena Rostova",
+        "Liam Chen"
+      ],
+      "reliability_notes": "Standard laboratory supply box."
+    },
+    {
+      "evidence_id": "E-D",
+      "title": "Zurich Flight Booking",
+      "description": "Flight itinerary found in Dr. Vance's coat pocket departing at 6:00 AM.",
+      "category": "Documentary",
+      "source": "Coat pocket",
+      "establishes": "Dr. Vance planned immediate international travel.",
+      "does_not_establish": "That the travel was flight from prosecution.",
+      "related_suspects": [
+        "Dr. Alistair Vance"
+      ],
+      "reliability_notes": "Printed e-ticket."
+    },
+    {
+      "evidence_id": "E-E",
+      "title": "Adhesive Residue Swab",
+      "description": "Chemical residue on vault frame matches specialized cellulose ester solvent.",
+      "category": "Chemical",
+      "source": "Forensic swab",
+      "establishes": "Solvent was used near the display.",
+      "does_not_establish": "When the solvent was applied.",
+      "related_suspects": [
+        "Elena Rostova"
+      ],
+      "reliability_notes": "Matches university lab stock."
+    }
+  ],
+  "redHerrings": [
+    "Derek's Card #12 was used, but cafeteria witnesses and coffee receipts establish he was playing cards during the swipe.",
+    "Dr. Vance's flight ticket appears like an escape, but he was scheduled to give a keynote lecture in Zurich."
+  ],
+  "hiddenSolution": {
+    "culprit": "Clara Bell",
+    "explanation": "Facing an imminent financial audit, Clara took Derek's unattended Card #12 from the technician pegboard, triggered the maintenance reboot from the shared terminal at 11:10 PM, manually faked her 11:05 PM sign-out, entered the vault at 11:22 PM, and concealed the manuscript in her car trunk before driving through the toll at 11:40 PM.",
+    "decisiveEvidence": [
+      "E-A (Card #12 swipe timing)",
+      "E-B (Terminal request before camera reboot)",
+      "Handwritten sign-out discrepancy"
+    ],
+    "uncertainties": [
+      "Whether someone helped her transport the manuscript",
+      "Exact location of the manuscript currently"
+    ],
+    "alternativeExplanation": "Elena Rostova utilized the solvent to breach the case while Derek's card was borrowed by a third party."
+  },
+  "missingEvidence": [
+    "Camera footage of the technician pegboard",
+    "Toll booth vehicle trunk inspection"
+  ],
+  "rules": [
+    "Card owner != card user.",
+    "A ticket booking is not proof of flight.",
+    "Alibi timing must be matched to electronic log buffers."
+  ],
+  "estimatedTimeMinutes": 20
+}

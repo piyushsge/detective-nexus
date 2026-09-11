@@ -1,0 +1,269 @@
+{
+  "caseId": "CASE-004",
+  "title": "The Missing Blueprint",
+  "category": "Corporate Mystery",
+  "difficulty": "Medium",
+  "setting": "Apex Dynamics Aeronautics Research Lab",
+  "incident": "A classified hypersonic propulsion blueprint (Project Chimera) disappeared from the CAD design terminal between 6:30 PM and 7:15 PM, hours before a Department of Defense contract presentation. The local file was deleted and an unauthorized USB flash drive transfer was detected on the network.",
+  "centralQuestions": [
+    "Whose user credentials executed the unauthorized export command?",
+    "Was the physical terminal occupied by the person whose badge opened the laboratory door?",
+    "Did the network transfer originate from an internal workstation or remote VPN tunnel?",
+    "Why was the project printer queued for 40 blank pages at 6:45 PM?"
+  ],
+  "timeline": [
+    {
+      "id": "T01",
+      "time": "6:00 PM",
+      "event": "Lead Engineer Dr. Marcus Brody locks his terminal and attends all-hands briefing.",
+      "source": "Briefing room video",
+      "certainty": "High"
+    },
+    {
+      "id": "T02",
+      "time": "6:32 PM",
+      "event": "Lab security door registers keycard swipe of Project Manager Rachel Cole.",
+      "source": "Card access log",
+      "certainty": "High"
+    },
+    {
+      "id": "T03",
+      "time": "6:42 PM",
+      "event": "CAD terminal logs user login under Marcus Brody's administrative credentials.",
+      "source": "Active Directory audit log",
+      "certainty": "High"
+    },
+    {
+      "id": "T04",
+      "time": "6:48 PM",
+      "event": "A high-speed USB 3.1 storage device is mounted on the CAD terminal.",
+      "source": "Windows Event Log 20001",
+      "certainty": "High"
+    },
+    {
+      "id": "T05",
+      "time": "6:52 PM",
+      "event": "Export of 'Chimera_Core_Rev4.cad' completed; original file permanently purged.",
+      "source": "File system journal",
+      "certainty": "High"
+    },
+    {
+      "id": "T06",
+      "time": "7:00 PM",
+      "event": "Rachel Cole swipes out of the engineering lab.",
+      "source": "Card access log",
+      "certainty": "High"
+    },
+    {
+      "id": "T07",
+      "time": "7:15 PM",
+      "event": "Dr. Brody returns to the lab and discovers the design directory empty.",
+      "source": "Incident report",
+      "certainty": "High"
+    }
+  ],
+  "suspects": [
+    {
+      "suspect_id": "S01",
+      "name": "Dr. Marcus Brody",
+      "role": "Lead Propulsion Engineer",
+      "motive": "Bitter dispute over intellectual property royalties; secretly in talks with competitor.",
+      "statement": "He says his password was sticky-noted inside his locked desk drawer.",
+      "relevant_evidence": [
+        "His credentials were used for the export.",
+        "Desk drawer lock shows no scratch marks."
+      ],
+      "supporting_evidence": [
+        "Continuous video shows him in the executive briefing from 6:00 PM to 7:10 PM."
+      ],
+      "suspicious_evidence": [
+        "Had administrative authority to delete the file permanently."
+      ],
+      "uncertainty": "Being in the briefing proves he did not physically type at the CAD terminal.",
+      "open_questions": [
+        "Did someone steal his password or use a remote macro?"
+      ]
+    },
+    {
+      "suspect_id": "S02",
+      "name": "Rachel Cole",
+      "role": "Project Manager",
+      "motive": "Performance bonus tied directly to budget cuts; threatened by engineers.",
+      "statement": "She says she entered the lab only to retrieve her reading glasses from her desk.",
+      "relevant_evidence": [
+        "Her badge opened the door at 6:32 PM and exited at 7:00 PM.",
+        "Was inside the lab during the USB mount."
+      ],
+      "supporting_evidence": [
+        "CCTV shows her holding glasses case when leaving."
+      ],
+      "suspicious_evidence": [
+        "Was the only person badge-authorized inside the room during the export."
+      ],
+      "uncertainty": "She does not have technical CAD administrative knowledge.",
+      "open_questions": [
+        "Could she execute an automated script on Brody's terminal?"
+      ]
+    },
+    {
+      "suspect_id": "S03",
+      "name": "Devon Miller",
+      "role": "Contract Systems Administrator",
+      "motive": "Contract expiring next month with no renewal offer; heavy consumer loans.",
+      "statement": "He says he was in the server closet configuring firewall patches.",
+      "relevant_evidence": [
+        "Possesses root access across network.",
+        "Server closet shares maintenance duct into CAD lab."
+      ],
+      "supporting_evidence": [
+        "Firewall change tickets match the timeframe."
+      ],
+      "suspicious_evidence": [
+        "A custom Bash automation script was uploaded to the local subnet at 6:35 PM."
+      ],
+      "uncertainty": "Admin activity is standard during scheduled maintenance windows.",
+      "open_questions": [
+        "Did the export happen via physical USB or network redirection?"
+      ]
+    },
+    {
+      "suspect_id": "S04",
+      "name": "Maya Lin",
+      "role": "Engineering Intern",
+      "motive": "Rejected for full-time sponsorship; academic thesis dependent on hypersonic data.",
+      "statement": "She says she was in the library compiling bibliography references.",
+      "relevant_evidence": [
+        "Library turnstile records her entry at 6:15 PM.",
+        "A SanDisk USB drive was found in her backpack."
+      ],
+      "supporting_evidence": [
+        "Library desktop logged into her university portal."
+      ],
+      "suspicious_evidence": [
+        "USB drive serial number matches the manufacturer vendor code of the mounted drive."
+      ],
+      "uncertainty": "SanDisk drives are extremely common consumer items.",
+      "open_questions": [
+        "Does the drive serial number match the specific OS mount log?"
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "witness_id": "W01",
+      "name": "Security Guard Henderson",
+      "role": "Lobby Security",
+      "statement": "No outside visitors entered the R&D wing all evening.",
+      "supporting_information": [
+        "Visitor sign-in log blank."
+      ],
+      "limitations": "Does not monitor internal lab doors directly."
+    },
+    {
+      "witness_id": "W02",
+      "name": "Dr. Aris Thorne",
+      "role": "VP of Engineering",
+      "statement": "Brody was sitting right beside me in the briefing until 7:10 PM.",
+      "supporting_information": [
+        "Meeting minutes signed."
+      ],
+      "limitations": "Could not see Brody's phone or smart watch under the table."
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E-A",
+      "title": "Lab Ingress Access Log",
+      "description": "Door reader registered Rachel Cole's badge at 6:32 PM and 7:00 PM.",
+      "category": "Access Log",
+      "source": "Door access database",
+      "establishes": "Rachel Cole's badge entered and exited during the theft.",
+      "does_not_establish": "That Cole operated Brody's CAD terminal.",
+      "related_suspects": [
+        "Rachel Cole"
+      ],
+      "reliability_notes": "Hardwired cryptographic badge reader."
+    },
+    {
+      "evidence_id": "E-B",
+      "title": "USB Hardware Mount ID",
+      "description": "Registry event shows USB device 'VEN_SANDISK_PRO_SN88392' mounted at 6:48 PM.",
+      "category": "Digital Forensic",
+      "source": "Windows System Hive",
+      "establishes": "A specific serial-numbered USB drive was physically plugged into the terminal.",
+      "does_not_establish": "Whose hand inserted the drive.",
+      "related_suspects": [
+        "Maya Lin",
+        "Rachel Cole"
+      ],
+      "reliability_notes": "Immutable registry write timestamp."
+    },
+    {
+      "evidence_id": "E-C",
+      "title": "Desk Drawer Key Copy",
+      "description": "A brass desk key matching Brody's locked drawer was discovered under the water cooler in the lab.",
+      "category": "Physical Trace",
+      "source": "Floor sweep",
+      "establishes": "Someone duplicated or relocated Brody's desk key.",
+      "does_not_establish": "When the key was dropped.",
+      "related_suspects": [
+        "Rachel Cole",
+        "Devon Miller"
+      ],
+      "reliability_notes": "Tested in Brody's lock cylinder."
+    },
+    {
+      "evidence_id": "E-D",
+      "title": "CAD Export Audit Record",
+      "description": "Export utility launched via batch file 'auto_extract.bat' executed from the USB root directory.",
+      "category": "Digital Forensic",
+      "source": "CAD Application log",
+      "establishes": "The export required zero manual CAD skill; it was fully pre-programmed.",
+      "does_not_establish": "Who authored the batch file.",
+      "related_suspects": [
+        "Devon Miller",
+        "Rachel Cole"
+      ],
+      "reliability_notes": "Software event trace."
+    },
+    {
+      "evidence_id": "E-E",
+      "title": "Printer Buffer Queue",
+      "description": "40 blank pages queued to the lab network printer at 6:45 PM.",
+      "category": "Network",
+      "source": "Print spooler",
+      "establishes": "A distraction or network test was executed.",
+      "does_not_establish": "Direct link to the blueprint.",
+      "related_suspects": [],
+      "reliability_notes": "Network spooler dump."
+    }
+  ],
+  "redHerrings": [
+    "Brody's credentials were used, making him look like an insider saboteur, but his executive meeting alibi is 100% verified.",
+    "Intern Maya Lin possessed a SanDisk drive, but forensic serial comparison proves her drive has serial #11429, not #88392."
+  ],
+  "hiddenSolution": {
+    "culprit": "Rachel Cole",
+    "explanation": "Rachel partnered with competitor representatives for an executive payoff. She acquired a duplicate key to Brody's desk, retrieved his password note, entered the lab at 6:32 PM, plugged in a pre-configured auto-extraction USB drive provided by the competitor, purged the master file, and left at 7:00 PM with the drive hidden in her glasses case.",
+    "decisiveEvidence": [
+      "E-A (Physical presence during mount)",
+      "E-B (Serial-specific USB mount)",
+      "E-D (Pre-programmed batch file requiring no CAD skill)"
+    ],
+    "uncertainties": [
+      "Identity of the outside buyer",
+      "Where the USB drive was hidden after 7:00 PM"
+    ],
+    "alternativeExplanation": "Devon Miller executed the extraction remotely through a hijacked local loopback while Rachel was merely retrieving her glasses."
+  },
+  "missingEvidence": [
+    "Camera footage inside the private CAD lab room",
+    "Search warrant on Rachel Cole's personal vehicle"
+  ],
+  "rules": [
+    "Account credentials != account holder.",
+    "Badge swipe establishes presence in the room, not operation of keyboard.",
+    "Pre-configured scripts allow non-technical suspects to perform advanced digital theft."
+  ],
+  "estimatedTimeMinutes": 15
+}

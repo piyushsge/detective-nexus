@@ -1,0 +1,221 @@
+{
+  "default_investigator": {
+    "username": "default_investigator",
+    "password_hash": "ff0a5f39b703f6d02441f3b42aa02af28bc400cd8193ffd8fb1f4c4d245444c5",
+    "officer_name": "Senior Inspector Vikram Rathore",
+    "badge_id": "BADGE-4892",
+    "rank_clearance": "Lead Forensic Investigator // Grade IV",
+    "department": "Special Forensic & Incident Reconstruction Division",
+    "created_at": "2026-09-01 08:00:00",
+    "case_history": [
+      {
+        "record_id": "REC-1789141938-4",
+        "timestamp": "2026-09-11 21:22:18",
+        "case_title": "Topic Approval Form for Academic Assignments and Projects",
+        "report_category": "Academic Administration",
+        "overall_score": 15,
+        "grade": "GRADE D // INSUFFICIENT EVIDENCE",
+        "summary_snippet": "The provided document is a blank academic administrative form ('Topic Approval Form') containing no factual data, criminal allegations, investigative findings, or evidentiary records. There is no case, crime, or actionable offense established within ...",
+        "export_file_path": "C:/Users/Piyus/OneDrive/Desktop/Niet Workshop/AI_Mystery_Detective_Team/data/exports/FORENSIC_DOSSIER_TopicApprovalFormforAcademicAssignmentsandProjects_20260911_212218.md"
+      },
+      {
+        "record_id": "REC-1789141878-3",
+        "timestamp": "2026-09-11 21:21:18",
+        "case_title": "System for Lodging of FIR for Train Theft, Robbery, and Dacoity",
+        "report_category": "Train Passenger Theft",
+        "overall_score": 15,
+        "grade": "GRADE D // INSUFFICIENT EVIDENCE",
+        "summary_snippet": "The provided dossier contains merely procedural instructions for lodging an FIR for theft, robbery, or dacoity on running trains and completely lacks any specific incident facts, victim details, suspect profiles, or material evidence. Without a compl...",
+        "export_file_path": "C:/Users/Piyus/OneDrive/Desktop/Niet Workshop/AI_Mystery_Detective_Team/data/exports/FORENSIC_DOSSIER_SystemforLodgingofFIRforTrainTheftRobberyandDacoity_20260911_212118.md"
+      },
+      {
+        "record_id": "REC-1789139810-2",
+        "timestamp": "2026-09-11 20:46:50",
+        "case_title": "Official Railway Standard Operating Procedure for Lodging FIR on Running Trains",
+        "report_category": "Transit Crime SOP & Railway FIR Protocol",
+        "overall_score": 69,
+        "grade": "GRADE C // CIRCUMSTANTIAL ONLY (DEFENSE VULNERABLE)",
+        "summary_snippet": "Presents strong opportunity patterns, but defense can easily exploit uncorroborated third-party theft or proxy card usage.",
+        "export_file_path": "C:/Users/Piyus/OneDrive/Desktop/Niet Workshop/AI_Mystery_Detective_Team/data/exports/FORENSIC_DOSSIER_OfficialRailwayStandardOperatingProcedureforLodgingFIRonRunningTrains_20260911_204650.md"
+      },
+      {
+        "record_id": "REC-1789139740-1",
+        "timestamp": "2026-09-11 20:45:40",
+        "case_title": "Official Railway Standard Operating Procedure for Lodging FIR on Running Trains",
+        "report_category": "Transit Crime SOP & Railway FIR Protocol",
+        "overall_score": 47,
+        "grade": "GRADE D // INSUFFICIENT EVIDENCE (LEGAL DEADLOCK)",
+        "summary_snippet": "High evidentiary ambiguity. Missing critical opportunity windows and physical exhibits. Immediate field re-investigation required.",
+        "export_file_path": "C:/Users/Piyus/OneDrive/Desktop/Niet Workshop/AI_Mystery_Detective_Team/data/exports/FORENSIC_DOSSIER_OfficialRailwayStandardOperatingProcedureforLodgingFIRonRunningTrains_20260911_204540.md"
+      }
+    ]
+  },
+  "test_officer": {
+    "username": "test_officer",
+    "password_hash": "67dafc9ecaa7d08d35bc0ab67dde6ac29aec6faf70c17266be868f097d262dc1",
+    "officer_name": "Inspector Test",
+    "badge_id": "BADGE-TEST-01",
+    "rank_clearance": "Forensic Field Investigator // Grade II",
+    "department": "Metropolitan Crimes & Document Analysis Unit",
+    "created_at": "2026-09-11 18:49:40",
+    "case_history": [
+      {
+        "record_id": "REC-1789132780-1",
+        "timestamp": "2026-09-11 18:49:40",
+        "case_title": "Vault Break-in",
+        "report_category": "High-Security Asset Theft",
+        "overall_score": 82,
+        "grade": "GRADE B+",
+        "summary_snippet": "Keycard log correlates with window.",
+        "export_file_path": ""
+      }
+    ]
+  },
+  "test_officer_1789133121546": {
+    "username": "test_officer_1789133121546",
+    "password_hash": "67dafc9ecaa7d08d35bc0ab67dde6ac29aec6faf70c17266be868f097d262dc1",
+    "officer_name": "Inspector Test",
+    "badge_id": "BADGE-TEST-01",
+    "rank_clearance": "Forensic Field Investigator // Grade II",
+    "department": "Metropolitan Crimes & Document Analysis Unit",
+    "created_at": "2026-09-11 18:55:21",
+    "case_history": [
+      {
+        "record_id": "REC-1789133121-1",
+        "timestamp": "2026-09-11 18:55:21",
+        "case_title": "Vault Break-in",
+        "report_category": "High-Security Asset Theft",
+        "overall_score": 82,
+        "grade": "GRADE B+",
+        "summary_snippet": "Keycard log correlates with window.",
+        "export_file_path": ""
+      }
+    ]
+  },
+  "test_officer_1789133201684": {
+    "username": "test_officer_1789133201684",
+    "password_hash": "67dafc9ecaa7d08d35bc0ab67dde6ac29aec6faf70c17266be868f097d262dc1",
+    "officer_name": "Inspector Test",
+    "badge_id": "BADGE-TEST-01",
+    "rank_clearance": "Forensic Field Investigator // Grade II",
+    "department": "Metropolitan Crimes & Document Analysis Unit",
+    "created_at": "2026-09-11 18:56:41",
+    "case_history": [
+      {
+        "record_id": "REC-1789133201-1",
+        "timestamp": "2026-09-11 18:56:41",
+        "case_title": "Vault Break-in",
+        "report_category": "High-Security Asset Theft",
+        "overall_score": 82,
+        "grade": "GRADE B+",
+        "summary_snippet": "Keycard log correlates with window.",
+        "export_file_path": ""
+      }
+    ]
+  },
+  "test_officer_1789133748899": {
+    "username": "test_officer_1789133748899",
+    "password_hash": "67dafc9ecaa7d08d35bc0ab67dde6ac29aec6faf70c17266be868f097d262dc1",
+    "officer_name": "Inspector Test",
+    "badge_id": "BADGE-TEST-01",
+    "rank_clearance": "Forensic Field Investigator // Grade II",
+    "department": "Metropolitan Crimes & Document Analysis Unit",
+    "created_at": "2026-09-11 19:05:48",
+    "case_history": [
+      {
+        "record_id": "REC-1789133748-1",
+        "timestamp": "2026-09-11 19:05:48",
+        "case_title": "Vault Break-in",
+        "report_category": "High-Security Asset Theft",
+        "overall_score": 82,
+        "grade": "GRADE B+",
+        "summary_snippet": "Keycard log correlates with window.",
+        "export_file_path": ""
+      }
+    ]
+  },
+  "test_officer_1789138273909": {
+    "username": "test_officer_1789138273909",
+    "password_hash": "67dafc9ecaa7d08d35bc0ab67dde6ac29aec6faf70c17266be868f097d262dc1",
+    "officer_name": "Inspector Test",
+    "badge_id": "BADGE-TEST-01",
+    "rank_clearance": "Forensic Field Investigator // Grade II",
+    "department": "Metropolitan Crimes & Document Analysis Unit",
+    "created_at": "2026-09-11 20:21:13",
+    "case_history": [
+      {
+        "record_id": "REC-1789138273-1",
+        "timestamp": "2026-09-11 20:21:13",
+        "case_title": "Vault Break-in",
+        "report_category": "High-Security Asset Theft",
+        "overall_score": 82,
+        "grade": "GRADE B+",
+        "summary_snippet": "Keycard log correlates with window.",
+        "export_file_path": ""
+      }
+    ]
+  },
+  "test_officer_1789139564043": {
+    "username": "test_officer_1789139564043",
+    "password_hash": "67dafc9ecaa7d08d35bc0ab67dde6ac29aec6faf70c17266be868f097d262dc1",
+    "officer_name": "Inspector Test",
+    "badge_id": "BADGE-TEST-01",
+    "rank_clearance": "Forensic Field Investigator // Grade II",
+    "department": "Metropolitan Crimes & Document Analysis Unit",
+    "created_at": "2026-09-11 20:42:44",
+    "case_history": [
+      {
+        "record_id": "REC-1789139564-1",
+        "timestamp": "2026-09-11 20:42:44",
+        "case_title": "Vault Break-in",
+        "report_category": "High-Security Asset Theft",
+        "overall_score": 82,
+        "grade": "GRADE B+",
+        "summary_snippet": "Keycard log correlates with window.",
+        "export_file_path": ""
+      }
+    ]
+  },
+  "test_officer_1789140419450": {
+    "username": "test_officer_1789140419450",
+    "password_hash": "67dafc9ecaa7d08d35bc0ab67dde6ac29aec6faf70c17266be868f097d262dc1",
+    "officer_name": "Inspector Test",
+    "badge_id": "BADGE-TEST-01",
+    "rank_clearance": "Forensic Field Investigator // Grade II",
+    "department": "Metropolitan Crimes & Document Analysis Unit",
+    "created_at": "2026-09-11 20:56:59",
+    "case_history": [
+      {
+        "record_id": "REC-1789140419-1",
+        "timestamp": "2026-09-11 20:56:59",
+        "case_title": "Vault Break-in",
+        "report_category": "High-Security Asset Theft",
+        "overall_score": 82,
+        "grade": "GRADE B+",
+        "summary_snippet": "Keycard log correlates with window.",
+        "export_file_path": ""
+      }
+    ]
+  },
+  "test_officer_1789141555536": {
+    "username": "test_officer_1789141555536",
+    "password_hash": "67dafc9ecaa7d08d35bc0ab67dde6ac29aec6faf70c17266be868f097d262dc1",
+    "officer_name": "Inspector Test",
+    "badge_id": "BADGE-TEST-01",
+    "rank_clearance": "Forensic Field Investigator // Grade II",
+    "department": "Metropolitan Crimes & Document Analysis Unit",
+    "created_at": "2026-09-11 21:15:55",
+    "case_history": [
+      {
+        "record_id": "REC-1789141555-1",
+        "timestamp": "2026-09-11 21:15:55",
+        "case_title": "Vault Break-in",
+        "report_category": "High-Security Asset Theft",
+        "overall_score": 82,
+        "grade": "GRADE B+",
+        "summary_snippet": "Keycard log correlates with window.",
+        "export_file_path": ""
+      }
+    ]
+  }
+}

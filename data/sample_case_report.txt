@@ -1,0 +1,25 @@
+METROPOLITAN FORENSIC INVESTIGATION DIVISION
+INCIDENT CASE FILE: #CR-2026-9042
+SUBJECT: THE THEFT OF THE MEDICI COIN & CIPHER SCROLL
+
+1. INCIDENT OVERVIEW:
+At 22:45 hours on October 14, 2026, security alarms were triggered at the Grand St. Jude Numismatic Archive. The priceless 15th-century Medici Golden Double Florin and its encrypted parchment cipher were discovered missing from the inner climate-controlled vault.
+
+2. CRITICAL OPPORTUNITY WINDOW:
+Between 22:30 and 22:42 hours, an intentional electrical surge knocked out secondary CCTV feeds in Corridor B. Vault entry occurred during this exact 12-minute window.
+
+3. PERSONS OF INTEREST / SUSPECTS:
+- Suspect 1: Dr. Marcus Vance (Head Curator). Held master keycard #004. Claims he was in the research library cataloguing manuscripts until 23:00. Library door sensor showed badge scan at 22:15, but side egress fire door was unmonitored.
+- Suspect 2: Elena Rostova (Senior Conservator). Specialist in Renaissance cipher restoration. Resigned unexpectedly two days prior to the theft citing personal leave. Was spotted on exterior perimeter camera entering the building at 22:10.
+- Suspect 3: Arthur Pendelton (Night Security Supervisor). On duty during the surge. Claims the surge was an external power grid failure, but substation records show local breaker #4 in the basement panel was manually tripped.
+
+4. FORENSIC EVIDENCE LOGGED:
+- Evidence E-01 (Digital Log): Vault biometric terminal logged keycard #004 (assigned to Dr. Vance) at 22:34. No forced entry detected on the titanium vault door.
+- Evidence E-02 (Physical Trace): Microscopic traces of graphite lubricant and copper filings recovered from breaker box #4 in the basement.
+- Evidence E-03 (Chemical Analysis): Nitrile glove residue containing traces of Renaissance iron-gall ink solvent recovered from Elena Rostova's laboratory waste bin.
+- Evidence E-04 (Surveillance Exhibit): Exterior perimeter camera footage confirms a hooded individual carrying a cylindrical waterproof tube leaving via the west courtyard gate at 22:41.
+
+5. INVESTIGATIVE INCONSISTENCIES & RED FLAGS:
+- Dr. Vance denies ever leaving the library, yet his master keycard was swiped at the inner vault at 22:34. He claims the card might have been cloned or stolen from his desk drawer while he stepped away.
+- Arthur Pendelton logged the blackout as "Grid Fluctuation", directly contradicting electrical telemetry showing localized breaker tampering.
+- Touch DNA has not yet been processed on breaker #4 switch toggle.

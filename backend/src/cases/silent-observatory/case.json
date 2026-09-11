@@ -1,0 +1,251 @@
+{
+  "caseId": "CASE-006",
+  "title": "The Silent Observatory",
+  "category": "Science Mystery",
+  "difficulty": "Expert",
+  "setting": "Atacama High-Altitude Observatory (Chile)",
+  "incident": "A ground-breaking exoplanet atmosphere dataset ('Proxima-d-Spectra') was permanently deleted from the offline RAID storage array hours before global announcement. The facility had no external internet connectivity due to a storm. The deletion was executed locally with root privileges.",
+  "centralQuestions": [
+    "Whose cryptographic USB dongle authorized the terminal deletion?",
+    "Why was the server clock offset by 4 hours?",
+    "Did the deleted files exist on any offline backup tape?"
+  ],
+  "timeline": [
+    {
+      "id": "T01",
+      "time": "01:00 AM",
+      "event": "Dr. Helena Cruz completes 8-hour telescope observation sequence.",
+      "source": "Dome log",
+      "certainty": "High"
+    },
+    {
+      "id": "T02",
+      "time": "02:15 AM",
+      "event": "Severe blizzard cuts satellite uplink to the mountain summit.",
+      "source": "Network telemetry",
+      "certainty": "High"
+    },
+    {
+      "id": "T03",
+      "time": "03:30 AM",
+      "event": "Server logs record local console login with Director's cryptographic token.",
+      "source": "PAM Auth log",
+      "certainty": "High"
+    },
+    {
+      "id": "T04",
+      "time": "03:42 AM",
+      "event": "Low-level zero-wipe utility executed on primary and secondary storage volumes.",
+      "source": "Disk controller log",
+      "certainty": "High"
+    },
+    {
+      "id": "T05",
+      "time": "06:00 AM",
+      "event": "Day technician discovers all scientific data partitions unformatted.",
+      "source": "System alert",
+      "certainty": "High"
+    }
+  ],
+  "suspects": [
+    {
+      "suspect_id": "S01",
+      "name": "Dr. Helena Cruz",
+      "role": "Lead Astrophysicist",
+      "motive": "Discovered data had calculation flaws that would destroy her academic reputation.",
+      "statement": "She claims she went to sleep in the staff dormitory at 1:30 AM.",
+      "relevant_evidence": [
+        "Dormitory electronic latch logged her entry at 1:32 AM.",
+        "Her lab notebook had pages torn out."
+      ],
+      "supporting_evidence": [
+        "Colleague saw her drinking chamomile tea in dorm kitchen at 1:40 AM."
+      ],
+      "suspicious_evidence": [
+        "Her dormitory door sensor did not register an exit, but dorm ground-floor windows open."
+      ],
+      "uncertainty": "Torn pages contained failed calibration equations, not fraud proof.",
+      "open_questions": [
+        "Did she leave through the dormitory window?"
+      ]
+    },
+    {
+      "suspect_id": "S02",
+      "name": "Dr. Kenneth Shaw",
+      "role": "Observatory Director",
+      "motive": "Co-author who was about to be removed from publication due to ethical inquiry.",
+      "statement": "He says his cryptographic token was in his locked office desk drawer.",
+      "relevant_evidence": [
+        "His physical token was used to execute the wipe at 3:30 AM.",
+        "Desk lock was intact."
+      ],
+      "supporting_evidence": [
+        "Security camera shows him walking toward the library at 3:15 AM."
+      ],
+      "suspicious_evidence": [
+        "Only he and his deputy had keys to the office."
+      ],
+      "uncertainty": "A physical token can be removed and returned without leaving damage.",
+      "open_questions": [
+        "Who had duplicate keys to Shaw's desk?"
+      ]
+    },
+    {
+      "suspect_id": "S03",
+      "name": "Mateo Silva",
+      "role": "Chief Network Engineer",
+      "motive": "Bribed by private satellite corporation wanting exclusive commercial patent rights.",
+      "statement": "He says he was fixing the auxiliary diesel generator in the blizzard.",
+      "relevant_evidence": [
+        "Snow boots wet and covered in rock salt.",
+        "Possesses Linux low-level storage expertise."
+      ],
+      "supporting_evidence": [
+        "Generator maintenance log shows voltage stabilization at 3:20 AM."
+      ],
+      "suspicious_evidence": [
+        "The zero-wipe script used advanced disk geometry parameters only an engineer would know."
+      ],
+      "uncertainty": "High-altitude technicians are all proficient in terminal administration.",
+      "open_questions": [
+        "Could he clone the physical security dongle?"
+      ]
+    },
+    {
+      "suspect_id": "S04",
+      "name": "Dr. Nadia Patel",
+      "role": "Visiting Postdoc Fellow",
+      "motive": "Passed over for primary authorship despite writing the analysis software.",
+      "statement": "She says she was in the spectroscopy darkroom processing calibration plates.",
+      "relevant_evidence": [
+        "Darkroom door locked from inside with warning light on all night.",
+        "USB drive found in her boot."
+      ],
+      "supporting_evidence": [
+        "Darkroom chemical developer smells fresh."
+      ],
+      "suspicious_evidence": [
+        "Darkroom shares a ventilation corridor with the server vault."
+      ],
+      "uncertainty": "USB drive contained raw calibration curves, not the wiped dataset.",
+      "open_questions": [
+        "Did she pass through the server vault duct?"
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "witness_id": "W01",
+      "name": "Night Operator Lucas",
+      "role": "Telescope Operator",
+      "statement": "I smelled wet wool and saw a flashlight beam near the server door around 3:25 AM.",
+      "supporting_information": [
+        "Flashlight log on floor."
+      ],
+      "limitations": "Could not identify the person due to heavy snow parka."
+    },
+    {
+      "witness_id": "W02",
+      "name": "Facility Cook Rosa",
+      "role": "Cook",
+      "statement": "Dr. Helena was asleep when I checked the dorm hall at 4:00 AM.",
+      "supporting_information": [
+        "Dorm kitchen night light."
+      ],
+      "limitations": "Did not look inside Helena's bedroom."
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E-A",
+      "title": "Token Cryptographic Signature",
+      "description": "PAM system logs confirm physical insertion of Director Shaw's USB Token #01 at 3:30 AM.",
+      "category": "Digital",
+      "source": "Auth log",
+      "establishes": "The Director's hardware key was inserted.",
+      "does_not_establish": "That Shaw operated the keyboard.",
+      "related_suspects": [
+        "Dr. Kenneth Shaw"
+      ],
+      "reliability_notes": "Cryptographic timestamp."
+    },
+    {
+      "evidence_id": "E-B",
+      "title": "Parka Salt Stain Trace",
+      "description": "High-concentration calcium chloride salt residue found on the server room keyboard spacebar.",
+      "category": "Physical Trace",
+      "source": "Keyboard swab",
+      "establishes": "Operator entered directly from the salted outdoor walkway without removing gloves.",
+      "does_not_establish": "Whose parka carried the salt.",
+      "related_suspects": [
+        "Mateo Silva"
+      ],
+      "reliability_notes": "Matches outdoor courtyard ice melt."
+    },
+    {
+      "evidence_id": "E-C",
+      "title": "Telescope Calibration Anomaly",
+      "description": "The target exoplanet light curves showed instrumental sensor noise rather than atmospheric methane.",
+      "category": "Scientific",
+      "source": "Raw sensor cache",
+      "establishes": "The breakthrough discovery was scientifically invalid due to sensor malfunction.",
+      "does_not_establish": "Deliberate fraud.",
+      "related_suspects": [
+        "Dr. Helena Cruz"
+      ],
+      "reliability_notes": "Independently recalculated."
+    },
+    {
+      "evidence_id": "E-D",
+      "title": "Director's Spare Key Location",
+      "description": "Spare key to Shaw's desk was kept inside the first-aid kit in the common corridor.",
+      "category": "Physical",
+      "source": "Corridor audit",
+      "establishes": "Any staff member could access Shaw's desk and token.",
+      "does_not_establish": "Who took the key.",
+      "related_suspects": [
+        "Dr. Helena Cruz",
+        "Mateo Silva",
+        "Dr. Nadia Patel"
+      ],
+      "reliability_notes": "Disclosed by staff nurse."
+    },
+    {
+      "evidence_id": "E-E",
+      "title": "Backup Tape Destruction",
+      "description": "Physical magnetic tape LTO-8 was unspooled and crumpled inside the recycling bin behind the server.",
+      "category": "Physical",
+      "source": "Recycle bin",
+      "establishes": "Intentional sabotage of offline archives.",
+      "does_not_establish": "Time of unspooling.",
+      "related_suspects": [],
+      "reliability_notes": "Physical tape recovered."
+    }
+  ],
+  "redHerrings": [
+    "Director Shaw's token was used, making him look like the saboteur, but the spare key in the first-aid kit made his token accessible to all staff.",
+    "Dr. Nadia's hidden USB drive was suspicious, but contained only thesis calibration models."
+  ],
+  "hiddenSolution": {
+    "culprit": "Dr. Helena Cruz",
+    "explanation": "At 1:00 AM, Helena realized her exoplanet 'discovery' was a devastating sensor glitch that would destroy her international career. Desperate to prevent scientific humiliation, she exited her dorm window at 3:15 AM (leaving wet salt traces from the courtyard), retrieved Shaw's spare key from the first-aid kit, unlocked his token, executed the wipe, unspooled the backup tape, and returned through the window.",
+    "decisiveEvidence": [
+      "E-C (Calculated motive: flawed data)",
+      "E-B (Outdoor salt on keyboard spacebar)",
+      "E-D (Access to spare key in first-aid kit)"
+    ],
+    "uncertainties": [
+      "Whether the raw data can ever be recovered from magnetic remnants"
+    ],
+    "alternativeExplanation": "Mateo Silva wiped the servers on behalf of a commercial satellite company to prevent public domain release."
+  },
+  "missingEvidence": [
+    "Footprints in the snow outside Helena's dorm window (melted by blizzard)",
+    "Fingerprints on the unspooled tape cassette"
+  ],
+  "rules": [
+    "A cryptographic token proves hardware presence, not owner identity.",
+    "Scientific error can provide as powerful a motive as financial gain."
+  ],
+  "estimatedTimeMinutes": 25
+}

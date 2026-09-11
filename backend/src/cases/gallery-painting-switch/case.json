@@ -1,0 +1,250 @@
+{
+  "caseId": "CASE-005",
+  "title": "The Gallery Painting Switch",
+  "category": "Art Mystery",
+  "difficulty": "Expert",
+  "setting": "Verona Municipal Art Gallery",
+  "incident": "A masterwork by Caravaggio ('The Penitent Saint') valued at $35M was discovered to be an acrylic replica. The switch took place sometime during the previous 24 hours. The frame humidity sensor recorded an anomalous spike at 3:15 AM, yet security sensors showed no perimeter breach.",
+  "centralQuestions": [
+    "When was the canvas detached from the antique stretcher?",
+    "How did an acrylic replica bypass the UV inspection lamp?",
+    "Who had access to the master restorers' elevator during the overnight lockup?"
+  ],
+  "timeline": [
+    {
+      "id": "T01",
+      "time": "Yesterday 6:00 PM",
+      "event": "Gallery closes to public; curator performs routine evening walk.",
+      "source": "Curator log",
+      "certainty": "High"
+    },
+    {
+      "id": "T02",
+      "time": "Yesterday 11:00 PM",
+      "event": "Restoration team completes varnish drying cycle on adjacent room.",
+      "source": "Restoration log",
+      "certainty": "High"
+    },
+    {
+      "id": "T03",
+      "time": "3:15 AM",
+      "event": "Microclimate humidity sensor behind painting spikes from 48% to 62%.",
+      "source": "Climate sensor DB",
+      "certainty": "High"
+    },
+    {
+      "id": "T04",
+      "time": "4:00 AM",
+      "event": "Night guard shifts rotate; master keycard handed to relief guard.",
+      "source": "Shift ledger",
+      "certainty": "High"
+    },
+    {
+      "id": "T05",
+      "time": "9:30 AM",
+      "event": "Visiting art appraiser tests canvas with UV light and detects synthetic pigment.",
+      "source": "Appraisal report",
+      "certainty": "High"
+    }
+  ],
+  "suspects": [
+    {
+      "suspect_id": "S01",
+      "name": "Gianna Rossi",
+      "role": "Chief Curator",
+      "motive": "Facing bankruptcy of family gallery foundation.",
+      "statement": "She claims she left at 6:30 PM and attended an art gala.",
+      "relevant_evidence": [
+        "Gala photos confirm presence until 1:00 AM.",
+        "Had access to replica warehouse."
+      ],
+      "supporting_evidence": [
+        "Photo with city mayor at 12:45 AM."
+      ],
+      "suspicious_evidence": [
+        "Gala was only 15 minutes away from the gallery."
+      ],
+      "uncertainty": "Her whereabouts between 1:30 AM and 6:00 AM are uncorroborated.",
+      "open_questions": [
+        "Where was she at 3:15 AM?"
+      ]
+    },
+    {
+      "suspect_id": "S02",
+      "name": "Matteo Bianchi",
+      "role": "Master Restorer & Painter",
+      "motive": "Underpaid artisan with technical ability to create indistinguishable copies.",
+      "statement": "He says he stayed until 11:00 PM finishing adjacent varnish work.",
+      "relevant_evidence": [
+        "Synthetic acrylic mediums matching the replica found in his personal kit.",
+        "Late departure at 11:00 PM."
+      ],
+      "supporting_evidence": [
+        "Security gate log confirms exit at 11:05 PM."
+      ],
+      "suspicious_evidence": [
+        "Carried a large portfolio case through the gate."
+      ],
+      "uncertainty": "Restorers routinely transport blank canvases and pigments.",
+      "open_questions": [
+        "Did he re-enter using service keys?"
+      ]
+    },
+    {
+      "suspect_id": "S03",
+      "name": "Silvio Dante",
+      "role": "Private Art Broker",
+      "motive": "Brokered acquisition for an anonymous offshore buyer.",
+      "statement": "He says he never stepped foot into the gallery after hours.",
+      "relevant_evidence": [
+        "Wire transfer of $2M deposited in his Swiss holding company yesterday."
+      ],
+      "supporting_evidence": [
+        "Hotel room keycard shows continuous occupancy from 10 PM."
+      ],
+      "suspicious_evidence": [
+        "Was seen arguing with Gianna Rossi yesterday morning."
+      ],
+      "uncertainty": "Financial transactions do not prove physical commission of burglary.",
+      "open_questions": [
+        "Did he hire an inside operative?"
+      ]
+    },
+    {
+      "suspect_id": "S04",
+      "name": "Paolo Ricci",
+      "role": "Senior Night Guard",
+      "motive": "Severe gambling debts with local syndicate.",
+      "statement": "He says he was monitoring CCTV screens in the control booth.",
+      "relevant_evidence": [
+        "CCTV log shows 3:00-3:30 AM footage of gallery room 4 was a frozen looped tape."
+      ],
+      "supporting_evidence": [
+        "Signed shift book at 4:00 AM."
+      ],
+      "suspicious_evidence": [
+        "Control console shows the camera freeze command originated from his terminal."
+      ],
+      "uncertainty": "He lacks the delicate technical skill to slice an antique canvas from its stretcher.",
+      "open_questions": [
+        "Was he acting as an accomplice for someone else?"
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "witness_id": "W01",
+      "name": "Appraiser Dr. Fontana",
+      "role": "Independent Appraiser",
+      "statement": "The replica is extraordinarily high quality\u2014painted within the last 30 days using aged varnish.",
+      "supporting_information": [
+        "Chemical swab of topcoat."
+      ],
+      "limitations": "Cannot date the wooden frame swap."
+    },
+    {
+      "witness_id": "W02",
+      "name": "Relief Guard Bruno",
+      "role": "Guard",
+      "statement": "When I arrived at 4:00 AM, Paolo looked nervous and spilled his espresso on the desk.",
+      "supporting_information": [
+        "Log book has coffee stain."
+      ],
+      "limitations": "Did not enter room 4 until morning."
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E-A",
+      "title": "Microclimate Humidity Log",
+      "description": "Display sensor recorded humidity jump at 3:15 AM consistent with warm human breath and open casement.",
+      "category": "Environmental",
+      "source": "Building automation",
+      "establishes": "The case was breached at precisely 3:15 AM.",
+      "does_not_establish": "Who opened the case.",
+      "related_suspects": [],
+      "reliability_notes": "Calibrated digital sensor."
+    },
+    {
+      "evidence_id": "E-B",
+      "title": "CCTV Loop Injection Log",
+      "description": "Room 4 camera video stream was manually overridden with an 8-minute still loop from 3:12 AM to 3:20 AM.",
+      "category": "Digital",
+      "source": "Video DVR server",
+      "establishes": "The night guard station deliberately obscured camera footage during the theft.",
+      "does_not_establish": "Who was physically inside Room 4.",
+      "related_suspects": [
+        "Paolo Ricci"
+      ],
+      "reliability_notes": "Direct DVR audit log."
+    },
+    {
+      "evidence_id": "E-C",
+      "title": "Synthetic Pigment Residue",
+      "description": "Phthalo green acrylic residue found on cutting scalpel in restoration lab.",
+      "category": "Chemical",
+      "source": "Floor 2 lab",
+      "establishes": "Replica was trimmed with this scalpel.",
+      "does_not_establish": "Whose fingerprints were on the handle.",
+      "related_suspects": [
+        "Matteo Bianchi"
+      ],
+      "reliability_notes": "Forensic lab match."
+    },
+    {
+      "evidence_id": "E-D",
+      "title": "Curator Parking Toll Record",
+      "description": "Gianna Rossi's vehicle entered the municipal garage adjacent to gallery at 2:50 AM.",
+      "category": "Log",
+      "source": "Municipal parking",
+      "establishes": "Gianna Rossi was physically adjacent to the gallery at 3:15 AM.",
+      "does_not_establish": "That she entered the building.",
+      "related_suspects": [
+        "Gianna Rossi"
+      ],
+      "reliability_notes": "Automated License Plate Reader."
+    },
+    {
+      "evidence_id": "E-E",
+      "title": "Encrypted WhatsApp Transcript",
+      "description": "Text message on Paolo's phone: 'Tape loops at 3:10. Bring the tube.'",
+      "category": "Digital",
+      "source": "Seized phone",
+      "establishes": "Conspiracy between Paolo and an outside actor.",
+      "does_not_establish": "Identity of sender 'Unknown'.",
+      "related_suspects": [
+        "Paolo Ricci",
+        "Gianna Rossi"
+      ],
+      "reliability_notes": "Extracted by police cyber unit."
+    }
+  ],
+  "redHerrings": [
+    "Matteo's late departure with the portfolio case was suspicious, but security footage at 11:05 AM shows his portfolio contained architectural sketches for the next hall.",
+    "Silvio Dante's wire transfer was legitimate proceeds from an auction in Florence."
+  ],
+  "hiddenSolution": {
+    "culprit": "Gianna Rossi & Paolo Ricci (Conspiracy)",
+    "explanation": "Gianna Rossi, facing bankruptcy, contracted an illicit buyer through Silvio's contacts. She commissioned a replica weeks in advance, paid guard Paolo Ricci to freeze the camera loop at 3:12 AM, parked at 2:50 AM, entered via curator key, swapped the canvas, and rolled the original into a carrying tube.",
+    "decisiveEvidence": [
+      "E-A (3:15 AM breach timing)",
+      "E-B (Camera loop by Paolo)",
+      "E-D (Gianna's car parked next door at 2:50 AM)",
+      "E-E (Text message timing)"
+    ],
+    "uncertainties": [
+      "Exact current location of the original canvas",
+      "Identity of the ultimate black-market purchaser"
+    ],
+    "alternativeExplanation": "Matteo Bianchi hid inside the building past 11:00 PM and executed the switch while Paolo was asleep."
+  },
+  "missingEvidence": [
+    "Traffic cameras along the boulevard between 3:30 and 4:00 AM",
+    "Fingerprints on the canvas stretcher"
+  ],
+  "rules": [
+    "A frozen camera tape proves insider tampering, not the identity of the physical thief.",
+    "Circumstantial presence near a building requires corroboration with internal access events."
+  ],
+  "estimatedTimeMinutes": 25
+}

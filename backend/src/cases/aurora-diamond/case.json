@@ -1,0 +1,306 @@
+{
+  "caseId": "CASE-001",
+  "title": "The Vanishing Aurora Diamond",
+  "category": "Museum Theft",
+  "difficulty": "Medium",
+  "setting": "Northbridge Museum",
+  "incident": "At 8:00 PM, curator Dr. Mira Sen displayed the Aurora Diamond in a locked glass display case at Northbridge Museum. At 8:20 PM, the museum experienced a power failure lasting until 8:24 PM. At 8:30 PM, the diamond was discovered missing. The glass case remained intact with no forced entry. The electronic lock has battery backup and recorded valid authorized-card access at 8:23 PM.",
+  "centralQuestions": [
+    "Who removed the Aurora Diamond?",
+    "How was the display case opened during the blackout?",
+    "Did the person whose access card was used actually use the card?",
+    "What alternative explanations remain possible?"
+  ],
+  "timeline": [
+    {
+      "id": "T01",
+      "time": "8:00 PM",
+      "event": "Dr. Mira Sen displays the Aurora Diamond in the locked case.",
+      "source": "Curator statement & CCTV",
+      "certainty": "High"
+    },
+    {
+      "id": "T02",
+      "time": "8:12 PM",
+      "event": "Arjun Vale enters the private archive area.",
+      "source": "Keycard access log & corridor CCTV",
+      "certainty": "High"
+    },
+    {
+      "id": "T03",
+      "time": "8:15 PM",
+      "event": "Guest speaker Theo Park begins keynote address in main auditorium.",
+      "source": "Continuous stage CCTV",
+      "certainty": "High"
+    },
+    {
+      "id": "T04",
+      "time": "8:18 PM",
+      "event": "Lena Ortiz is seen descending toward the basement power control room.",
+      "source": "Basement stairway CCTV",
+      "certainty": "High"
+    },
+    {
+      "id": "T05",
+      "time": "8:20 PM",
+      "event": "Main power fails across the museum. Emergency lighting activates partially.",
+      "source": "Automated building management log",
+      "certainty": "High"
+    },
+    {
+      "id": "T06",
+      "time": "8:23 PM",
+      "event": "The display case electronic lock records an authorized card swipe registered to Arjun Vale.",
+      "source": "Lock onboard memory log",
+      "certainty": "High"
+    },
+    {
+      "id": "T07",
+      "time": "8:24 PM",
+      "event": "Power is restored by the emergency backup generator.",
+      "source": "Building management log",
+      "certainty": "High"
+    },
+    {
+      "id": "T08",
+      "time": "8:25 PM",
+      "event": "Arjun Vale is recorded leaving the archive carrying a flat catalogue folder.",
+      "source": "Corridor CCTV",
+      "certainty": "High"
+    },
+    {
+      "id": "T09",
+      "time": "8:30 PM",
+      "event": "Dr. Mira Sen discovers the display case empty. The diamond is gone.",
+      "source": "Curator discovery & alarm log",
+      "certainty": "High"
+    }
+  ],
+  "suspects": [
+    {
+      "suspect_id": "S01",
+      "name": "Lena Ortiz",
+      "role": "Chief Facilities Engineer",
+      "motive": "Denied promotion and bonus after a recent contract dispute.",
+      "statement": "She states she was in the basement resetting circuit breakers during the blackout.",
+      "relevant_evidence": [
+        "She had access to electrical controls.",
+        "Muddy bootprint (E-F) matches her standard-issue boot profile."
+      ],
+      "supporting_evidence": [
+        "Basement generator log shows manual reset attempt."
+      ],
+      "suspicious_evidence": [
+        "Basement path has unmonitored courtyard connection."
+      ],
+      "uncertainty": "Matching boot size does not prove she entered the gallery during the theft.",
+      "open_questions": [
+        "When was the muddy footprint deposited?"
+      ]
+    },
+    {
+      "suspect_id": "S02",
+      "name": "Theo Park",
+      "role": "Guest Speaker & Gem Collector",
+      "motive": "Publicity interests and desire for rare gemstone notoriety.",
+      "statement": "He says he remained on stage under spotlights for the entire presentation.",
+      "relevant_evidence": [
+        "Continuous CCTV coverage on stage from 8:15 to 8:29 PM."
+      ],
+      "supporting_evidence": [
+        "Over 100 audience witnesses saw him continuously on stage."
+      ],
+      "suspicious_evidence": [
+        "Expressed private interest in purchasing the diamond earlier."
+      ],
+      "uncertainty": "Continuous video makes direct physical theft virtually impossible.",
+      "open_questions": [
+        "Could he have coordinated with an accomplice?"
+      ]
+    },
+    {
+      "suspect_id": "S03",
+      "name": "Arjun Vale",
+      "role": "Assistant Curator & Archivist",
+      "motive": "Under severe personal debt.",
+      "statement": "He says he was working in the archive and left his keycard inside his jacket in the archive.",
+      "relevant_evidence": [
+        "Keycard registered to him opened case at 8:23 PM.",
+        "Blue velvet fibers found in catalogue folder."
+      ],
+      "supporting_evidence": [
+        "Camera confirms he entered archive at 8:12 PM and exited at 8:25 PM."
+      ],
+      "suspicious_evidence": [
+        "Keycard swipe at 8:23 PM directly contradicts statement that card remained in jacket."
+      ],
+      "uncertainty": "Keycard access does not prove who physically swiped the card.",
+      "open_questions": [
+        "Could someone have taken the card from his jacket?"
+      ]
+    },
+    {
+      "suspect_id": "S04",
+      "name": "Sofia Reed",
+      "role": "Investigative Journalist",
+      "motive": "Wanted an exclusive investigative scoop on museum security failures.",
+      "statement": "She says she was interviewing visitors in the lobby throughout the blackout.",
+      "relevant_evidence": [
+        "Three guests confirm speaking with her during the outage."
+      ],
+      "supporting_evidence": [
+        "Audio recorder timestamps corroborate lobby interviews."
+      ],
+      "suspicious_evidence": [
+        "Had published critical expos\u00e9s on museum vulnerabilities."
+      ],
+      "uncertainty": "Lacks electronic credentials or access to the display case.",
+      "open_questions": [
+        "Did she witness anyone leaving the gallery?"
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "witness_id": "W01",
+      "name": "Dr. Mira Sen",
+      "role": "Curator",
+      "statement": "The diamond was secure at 8:00 PM and missing at 8:30 PM.",
+      "supporting_information": [
+        "Display lock was intact."
+      ],
+      "limitations": "Did not check case between 8:00 and 8:30 PM."
+    },
+    {
+      "witness_id": "W02",
+      "name": "Marcus Vance",
+      "role": "Head of Security",
+      "statement": "All exterior museum doors remained sealed during the outage.",
+      "supporting_information": [
+        "Perimeter alarms operational."
+      ],
+      "limitations": "Internal corridor cameras lost feed during blackout."
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E-A",
+      "title": "Electronic Lock Specification",
+      "description": "Lock has battery backup and logs authorized-card swipes during outages.",
+      "category": "Technical",
+      "source": "Security spec",
+      "establishes": "Card swipes are recorded accurately during blackout.",
+      "does_not_establish": "Physical identity of cardholder.",
+      "related_suspects": [
+        "Arjun Vale"
+      ],
+      "reliability_notes": "Verified by engineers."
+    },
+    {
+      "evidence_id": "E-B",
+      "title": "Display Case Access Log",
+      "description": "Access log shows authorized card #4402 (registered to Arjun Vale) opened case at 8:23 PM.",
+      "category": "Access Log",
+      "source": "Lock memory",
+      "establishes": "Case opened with Arjun's card at 8:23 PM.",
+      "does_not_establish": "Arjun physically held the card.",
+      "related_suspects": [
+        "Arjun Vale"
+      ],
+      "reliability_notes": "Onboard memory log."
+    },
+    {
+      "evidence_id": "E-C",
+      "title": "Arjun's Stated Alibi",
+      "description": "Arjun stated card remained in his jacket inside the archive.",
+      "category": "Statement",
+      "source": "Police interview",
+      "establishes": "Arjun claims card was unattended in his jacket.",
+      "does_not_establish": "Whether card was actually taken or if Arjun is lying.",
+      "related_suspects": [
+        "Arjun Vale"
+      ],
+      "reliability_notes": "Subjective statement."
+    },
+    {
+      "evidence_id": "E-D",
+      "title": "Archive Exit Footage",
+      "description": "CCTV records Arjun exiting archive at 8:25 PM carrying a flat catalogue folder.",
+      "category": "Video",
+      "source": "Corridor camera",
+      "establishes": "Arjun exited archive with folder at 8:25 PM.",
+      "does_not_establish": "Whether diamond was inside folder.",
+      "related_suspects": [
+        "Arjun Vale"
+      ],
+      "reliability_notes": "Clear camera footage."
+    },
+    {
+      "evidence_id": "E-E",
+      "title": "Blue Velvet Fibers in Folder",
+      "description": "Microscopic blue fibers found inside catalogue folder matching display cushion material.",
+      "category": "Physical Trace",
+      "source": "Forensic lab",
+      "establishes": "Folder was in contact with blue velvet.",
+      "does_not_establish": "Definitive scientific match without spectrometry.",
+      "related_suspects": [
+        "Arjun Vale"
+      ],
+      "reliability_notes": "Preliminary visual microscopy."
+    },
+    {
+      "evidence_id": "E-F",
+      "title": "Muddy Bootprint",
+      "description": "Partial size 7 bootprint found near gallery rear service door.",
+      "category": "Physical Trace",
+      "source": "Crime scene sweep",
+      "establishes": "A person wearing size 7 boots walked near service door.",
+      "does_not_establish": "Timing of print or unique identity of wearer.",
+      "related_suspects": [
+        "Lena Ortiz"
+      ],
+      "reliability_notes": "Consistent with Lena's boots."
+    },
+    {
+      "evidence_id": "E-G",
+      "title": "Museum Insurance Policy",
+      "description": "High-value insurance policy pays out to museum endowment board upon theft.",
+      "category": "Documentary",
+      "source": "Museum administration",
+      "establishes": "Financial insurance exists.",
+      "does_not_establish": "Motive for individual staff members.",
+      "related_suspects": [],
+      "reliability_notes": "Official insurance contract."
+    }
+  ],
+  "redHerrings": [
+    "The museum insurance policy (E-G) appears to suggest executive fraud, but proceeds only benefit the board.",
+    "Lena Ortiz's size 7 bootprint (E-F) appears damning, but she crossed the wet courtyard earlier during normal maintenance."
+  ],
+  "hiddenSolution": {
+    "culprit": "Arjun Vale",
+    "explanation": "Pressured by mounting debt, Arjun used his authorized keycard to open the display case at 8:23 PM during the confusion of the blackout, slipped the diamond into his flat catalogue folder, and returned to the archive to stage an alibi.",
+    "decisiveEvidence": [
+      "E-B (Access log)",
+      "E-D (Exit with folder)",
+      "E-E (Velvet fibers in folder)"
+    ],
+    "uncertainties": [
+      "Exact scientific verification of fiber spectrometry",
+      "Whether card could have been stolen from his jacket"
+    ],
+    "alternativeExplanation": "An inside accomplice stole Arjun's keycard from his unattended jacket in the archive during the blackout."
+  },
+  "missingEvidence": [
+    "Spectrophotometric fiber analysis",
+    "Corridor camera footage outside archive doorway"
+  ],
+  "rules": [
+    "Card owner != card user.",
+    "Card user != thief.",
+    "Motive != guilt.",
+    "Separate fact from inference.",
+    "Preserve uncertainty."
+  ],
+  "estimatedTimeMinutes": 15
+}

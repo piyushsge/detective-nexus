@@ -1,0 +1,222 @@
+{
+  "caseId": "CASE-012",
+  "title": "The Last Message",
+  "category": "Digital Mystery",
+  "difficulty": "Expert",
+  "setting": "Aethelgard National Cyber Defense Agency",
+  "incident": "A classified intercept decrypt ('Operation Cerberus') was leaked to an encrypted paste site at 4:12 PM. The document was stored on an air-gapped terminal. Five senior intelligence analysts had legitimate clearance, and all five were seated in the SCIF during the incident.",
+  "centralQuestions": [
+    "How did an air-gapped decrypt reach the public internet?",
+    "Did the analyst whose smartcard signed the terminal session physically execute the export command?",
+    "What role did the optical air-gap bridge (acoustic or LED modulation) play?"
+  ],
+  "timeline": [
+    {
+      "id": "T01",
+      "time": "3:00 PM",
+      "event": "Operation Cerberus decrypted on air-gapped Terminal 7.",
+      "source": "SCIF server log",
+      "certainty": "High"
+    },
+    {
+      "id": "T02",
+      "time": "3:45 PM",
+      "event": "Analyst Samuel Ward inserts PIV smartcard into Terminal 7.",
+      "source": "Card reader log",
+      "certainty": "High"
+    },
+    {
+      "id": "T03",
+      "time": "4:02 PM",
+      "event": "Terminal 7 status LED blinks rapidly for 180 seconds.",
+      "source": "Optical sensor log",
+      "certainty": "High"
+    },
+    {
+      "id": "T04",
+      "time": "4:12 PM",
+      "event": "Encrypted text posted to Pastebin from an external IP address in Stockholm.",
+      "source": "Web intelligence",
+      "certainty": "High"
+    },
+    {
+      "id": "T05",
+      "time": "4:30 PM",
+      "event": "SCIF lockdown initiated; all five analysts detained.",
+      "source": "Security alarm",
+      "certainty": "High"
+    }
+  ],
+  "suspects": [
+    {
+      "suspect_id": "S01",
+      "name": "Samuel Ward",
+      "role": "Senior Cryptanalyst",
+      "motive": "Ideological whistleblower; sympathetic to public privacy advocacy.",
+      "statement": "He says he was analyzing the decrypt header and left his smartcard inserted while fetching water from the SCIF cooler.",
+      "relevant_evidence": [
+        "His smartcard authenticated the terminal session at 3:45 PM.",
+        "Left card unattended for 4 minutes."
+      ],
+      "supporting_evidence": [
+        "SCIF camera shows him at the water cooler from 4:00 PM to 4:04 PM."
+      ],
+      "suspicious_evidence": [
+        "His card was active during the 4:02 PM LED anomaly."
+      ],
+      "uncertainty": "Water cooler footage confirms he was not touching the keyboard at 4:02 PM.",
+      "open_questions": [
+        "Who touched Terminal 7 while Samuel was at the cooler?"
+      ]
+    },
+    {
+      "suspect_id": "S02",
+      "name": "Kira Vance",
+      "role": "Malware Reverse Engineer",
+      "motive": "Blackmailed by overseas intelligence over family assets.",
+      "statement": "She says she was debugging assembly code at Terminal 5 with headphones on.",
+      "relevant_evidence": [
+        "Possesses deep knowledge of optical and acoustic air-gap exfiltration.",
+        "Smartphone found in personal locker had a light sensor app installed."
+      ],
+      "supporting_evidence": [
+        "Terminal 5 debugger logs show continuous compilation."
+      ],
+      "suspicious_evidence": [
+        "A custom firmware binary was compiled on her workstation at 3:30 PM."
+      ],
+      "uncertainty": "Compiling firmware is her daily professional duty.",
+      "open_questions": [
+        "Could she exfiltrate data via LED light modulation?"
+      ]
+    },
+    {
+      "suspect_id": "S03",
+      "name": "David O'Connor",
+      "role": "Security Compliance Auditor",
+      "motive": "Disputed promotion; leaked compliance flaws in the past.",
+      "statement": "He says he was walking around the SCIF conducting random clean-desk audits.",
+      "relevant_evidence": [
+        "Walked past Terminal 7 at 4:01 PM.",
+        "Had clipboard with reflective metallic surface."
+      ],
+      "supporting_evidence": [
+        "Auditor sign-in sheet."
+      ],
+      "suspicious_evidence": [
+        "Stood behind Samuel's terminal while Samuel was at the water cooler."
+      ],
+      "uncertainty": "Walking around terminals is his explicit job duty.",
+      "open_questions": [
+        "Did he initiate a macro on Samuel's keyboard?"
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "witness_id": "W01",
+      "name": "SCIF Monitor Guard",
+      "role": "Guard",
+      "statement": "No digital media (USB, phones, or wireless transmitters) were brought into the SCIF.",
+      "supporting_information": [
+        "RF spectrum analyzer clean"
+      ],
+      "limitations": "Does not detect optical light frequencies through viewing glass."
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E-A",
+      "title": "Terminal 7 Keyboard Event Trace",
+      "description": "Keystrokes 'Ctrl+Shift+F12' (custom macro hotkey) executed at 4:01:45 PM while Ward was at the water cooler.",
+      "category": "Digital",
+      "source": "OS event log",
+      "establishes": "Someone touched Ward's keyboard while Ward was getting water.",
+      "does_not_establish": "Fingerprint identification of keypress.",
+      "related_suspects": [
+        "David O'Connor",
+        "Kira Vance"
+      ],
+      "reliability_notes": "Millisecond precision log."
+    },
+    {
+      "evidence_id": "E-B",
+      "title": "LED Optical Modulation Log",
+      "description": "High-speed camera records Terminal 7 hard-drive activity LED pulsing in Morse/Manchester encoded binary at 4:02 PM toward the exterior window glass.",
+      "category": "Optical Trace",
+      "source": "Optical surveillance",
+      "establishes": "Data was transmitted optically across the physical air gap via LED flashes.",
+      "does_not_establish": "Who received the optical pulses outside the building.",
+      "related_suspects": [
+        "Kira Vance"
+      ],
+      "reliability_notes": "Verified by optical physics analysis."
+    },
+    {
+      "evidence_id": "E-C",
+      "title": "Clipboard Angle Reflection",
+      "description": "Security video shows O'Connor angling his metallic clipboard to reflect the Terminal 7 LED toward the window sensor across the street.",
+      "category": "Video Analysis",
+      "source": "SCIF internal camera",
+      "establishes": "O'Connor physically facilitated the optical light path redirect.",
+      "does_not_establish": "Whether he wrote the optical software.",
+      "related_suspects": [
+        "David O'Connor"
+      ],
+      "reliability_notes": "Ray-tracing vector reconstruction."
+    },
+    {
+      "evidence_id": "E-D",
+      "title": "VPN Bastion Session Anomaly",
+      "description": "An encrypted SSH session originated from a jump-host inside the data center at 2:03 AM while badge records showed the engineer at home.",
+      "category": "Network Log",
+      "source": "Gateway firewall telemetry",
+      "establishes": "The privileged shell was triggered remotely via an internal proxy.",
+      "does_not_establish": "Physical location of the operator behind the jump-host.",
+      "related_suspects": [
+        "Lead Systems Architect",
+        "Security Contractor"
+      ],
+      "reliability_notes": "Cryptographically signed audit trail."
+    },
+    {
+      "evidence_id": "E-E",
+      "title": "Clipboard Synchronization Dump",
+      "description": "Shared virtual desktop clipboard cache preserved the plaintext draft of the leaked memo with timestamps matching the contractor workstation.",
+      "category": "Digital Memory Dump",
+      "source": "VDI cluster RAM image",
+      "establishes": "The memo was copied into local system clipboard buffer.",
+      "does_not_establish": "Whether automated spyware or human operator triggered the copy.",
+      "related_suspects": [
+        "Security Contractor",
+        "Product Manager"
+      ],
+      "reliability_notes": "Volatility framework memory extraction."
+    }
+  ],
+  "redHerrings": [
+    "Samuel Ward's smartcard was active, making him the obvious technical culprit, but video proves he was standing at the water cooler during the keypress.",
+    "Kira Vance compiled firmware, but her binary was an official anti-rootkit patch verified by agency checksums."
+  ],
+  "hiddenSolution": {
+    "culprit": "David O'Connor (Cooperating with external receiver)",
+    "explanation": "David O'Connor waited until Samuel Ward stepped away to the water cooler, struck the pre-loaded macro hotkey on Terminal 7 at 4:01 PM, and used his polished metallic clipboard as a mirror to bounce the pulsing optical LED signals through the SCIF window to an operative waiting with a telephoto receiver across the street in a parked van.",
+    "decisiveEvidence": [
+      "E-A (Keystrokes during Ward's water break)",
+      "E-B (Optical LED air-gap exfiltration)",
+      "E-C (Reflective clipboard geometry)"
+    ],
+    "uncertainties": [
+      "Identity of the foreign handler in the van across the street"
+    ],
+    "alternativeExplanation": "Kira Vance deployed an autonomous background daemon that triggered the LED pulse without human intervention."
+  },
+  "missingEvidence": [
+    "Forensic search of the parked surveillance van across the street"
+  ],
+  "rules": [
+    "A smartcard login does not establish who pressed the keys minutes later.",
+    "Air-gapped systems can be exfiltrated via non-radio optical or acoustic side-channels."
+  ],
+  "estimatedTimeMinutes": 25
+}

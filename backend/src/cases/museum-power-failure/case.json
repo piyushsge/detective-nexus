@@ -1,0 +1,221 @@
+{
+  "caseId": "CASE-011",
+  "title": "The Museum Power Failure",
+  "category": "Museum Mystery",
+  "difficulty": "Expert",
+  "setting": "Metropolitan Antiquities Hall",
+  "incident": "During a planned 10-minute electrical substation transfer at 2:00 AM, a gold Minoan ceremonial dagger disappeared from an alarmed display case. The backup lighting operated as intended, but the gallery infrared laser grid deactivated 4 minutes earlier than the scheduled maintenance window.",
+  "centralQuestions": [
+    "Why did the infrared laser grid fail 4 minutes ahead of schedule at 1:56 AM?",
+    "Who had access to the master electrical transfer junction?",
+    "Did the muddy shoeprint match the maintenance staff or a visitor who hid after hours?"
+  ],
+  "timeline": [
+    {
+      "id": "T01",
+      "time": "1:30 AM",
+      "event": "Electrician Ronald Vance signs into basement electrical distribution vault.",
+      "source": "Basement log",
+      "certainty": "High"
+    },
+    {
+      "id": "T02",
+      "time": "1:56 AM",
+      "event": "Laser alarm grid on Case 4 drops offline (4 minutes early).",
+      "source": "Alarm event log",
+      "certainty": "High"
+    },
+    {
+      "id": "T03",
+      "time": "2:00 AM",
+      "event": "Planned substation transfer begins; main lights extinguish, emergency halogen lights turn on.",
+      "source": "Facilities log",
+      "certainty": "High"
+    },
+    {
+      "id": "T04",
+      "time": "2:10 AM",
+      "event": "Power normalized; laser grid re-arms.",
+      "source": "Alarm log",
+      "certainty": "High"
+    },
+    {
+      "id": "T05",
+      "time": "2:15 AM",
+      "event": "Patrol guard notices Case 4 display glass lifted and dagger missing.",
+      "source": "Guard report",
+      "certainty": "High"
+    }
+  ],
+  "suspects": [
+    {
+      "suspect_id": "S01",
+      "name": "Ronald Vance",
+      "role": "Certified Electrician",
+      "motive": "Severe tax arrears; threatened with home foreclosure.",
+      "statement": "He says the early laser drop was caused by an unexpected relay surge on Panel B.",
+      "relevant_evidence": [
+        "He controlled the Panel B breaker switches.",
+        "Carried heavy insulated electrician toolbox."
+      ],
+      "supporting_evidence": [
+        "Panel B shows signs of electrical thermal stress."
+      ],
+      "suspicious_evidence": [
+        "His multimeter had copper shavings matching the laser grid fuse terminals."
+      ],
+      "uncertainty": "Copper shavings are common in electrical service bags.",
+      "open_questions": [
+        "Did he cut the laser grid intentionally at 1:56 AM?"
+      ]
+    },
+    {
+      "suspect_id": "S02",
+      "name": "Dr. Beatrice Ramos",
+      "role": "Ancient Mediterranean Curator",
+      "motive": "Convinced the dagger was looted illegally from Greece and belongs in a repatriation trust.",
+      "statement": "She says she was in her office reviewing catalog entries.",
+      "relevant_evidence": [
+        "Her office is located directly above Gallery Room 2.",
+        "Possessed suction cup glass lifters."
+      ],
+      "supporting_evidence": [
+        "Office terminal logged active keystrokes until 1:50 AM."
+      ],
+      "suspicious_evidence": [
+        "Glass lifters in her office had fresh suction ring marks matching the Case 4 vitrine."
+      ],
+      "uncertainty": "Curators frequently use suction lifters during exhibition rotation.",
+      "open_questions": [
+        "Did she leave her office between 1:50 and 2:10 AM?"
+      ]
+    },
+    {
+      "suspect_id": "S03",
+      "name": "Garrick Cole",
+      "role": "Night Security Officer",
+      "motive": "Offered $50,000 payoff by private antiquities syndicate.",
+      "statement": "He says he was on the ground floor monitoring emergency perimeter doors.",
+      "relevant_evidence": [
+        "His patrol wand was swiped at Station 4 (Gallery Room) at 1:58 AM.",
+        "Footprint near case matches his combat boot tread."
+      ],
+      "supporting_evidence": [
+        "Patrol wand log matches timing."
+      ],
+      "suspicious_evidence": [
+        "Station 4 wand swipe was 2 minutes after the laser grid died."
+      ],
+      "uncertainty": "Guards are supposed to inspect galleries when alarms or power anomalies occur.",
+      "open_questions": [
+        "Was his 1:58 AM presence routine patrol or theft execution?"
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "witness_id": "W01",
+      "name": "Relief Guard Timothy",
+      "role": "Guard",
+      "statement": "I saw Dr. Ramos walking in the corridor around 1:52 AM carrying a cloth roll.",
+      "supporting_information": [
+        "Corridor sign-in"
+      ],
+      "limitations": "Could not see inside the cloth roll."
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E-A",
+      "title": "Relay Panel B Fuse Tampering",
+      "description": "The fuse controlling the laser grid was manually bridged with a jumper wire at 1:56 AM, bypassing the main relay.",
+      "category": "Technical",
+      "source": "Basement Panel B",
+      "establishes": "The laser grid drop at 1:56 AM was deliberate sabotage, not an accidental power surge.",
+      "does_not_establish": "Who placed the jumper wire.",
+      "related_suspects": [
+        "Ronald Vance"
+      ],
+      "reliability_notes": "Physical wire recovered."
+    },
+    {
+      "evidence_id": "E-B",
+      "title": "Patrol Wand Timestamp",
+      "description": "Garrick Cole's security key wand touched Reader #4 at 1:58 AM, exactly between the laser sabotage and planned outage.",
+      "category": "Electronic Log",
+      "source": "Guard tour database",
+      "establishes": "Cole was physically standing beside Case 4 while the lasers were disabled.",
+      "does_not_establish": "That Cole lifted the vitrine glass.",
+      "related_suspects": [
+        "Garrick Cole"
+      ],
+      "reliability_notes": "Cryptographic wand contact."
+    },
+    {
+      "evidence_id": "E-C",
+      "title": "Vitrine Suction Ring Marks",
+      "description": "Dual 4-inch rubber suction marks found on the exterior case glass matching Ramos's specialized German glass lifters.",
+      "category": "Physical Trace",
+      "source": "Case glass forensic lift",
+      "establishes": "Case 4 was lifted using Ramos's exact suction lifters.",
+      "does_not_establish": "Who operated the lifters.",
+      "related_suspects": [
+        "Dr. Beatrice Ramos"
+      ],
+      "reliability_notes": "Diameter and rubber compound match."
+    },
+    {
+      "evidence_id": "E-D",
+      "title": "Emergency Breaker Override Pin",
+      "description": "Substation electrical panel #2 contained a bypassed magnetic breaker peg causing the secondary auxiliary lights to delay ignition by 90 seconds.",
+      "category": "Physical / Engineering",
+      "source": "Basement electrical grid",
+      "establishes": "The blackout duration in the antiquities hall was intentionally prolonged.",
+      "does_not_establish": "Who inserted the jumper wire.",
+      "related_suspects": [
+        "Electrician",
+        "Night Guard"
+      ],
+      "reliability_notes": "Insulated wire fragment recovered from panel."
+    },
+    {
+      "evidence_id": "E-E",
+      "title": "Velvet Display Case Smudge",
+      "description": "Ultraviolet imaging of the display plinth revealed latex glove powder residue along the perimeter seal.",
+      "category": "Forensic Trace",
+      "source": "Artifact vitrine plinth",
+      "establishes": "The casing was opened using powdered disposable examination gloves.",
+      "does_not_establish": "The wearer's identity.",
+      "related_suspects": [
+        "Curator",
+        "Restoration Researcher"
+      ],
+      "reliability_notes": "Cornstarch glove lubricant matched conservation lab stock."
+    }
+  ],
+  "redHerrings": [
+    "Ronald Vance's jumper wire proved electrical tampering, but he was blackmailed into placing it without knowing which case was targeted.",
+    "Garrick Cole's presence at 1:58 AM was suspicious, but his body camera audio (E-D) recorded him reporting the vitrine glass already ajar."
+  ],
+  "hiddenSolution": {
+    "culprit": "Dr. Beatrice Ramos",
+    "explanation": "Driven by ideological repatriation zeal, Dr. Ramos coordinated with Vance (promising him debt payment) to cut the laser grid at 1:56 AM. She descended into the gallery at 1:57 AM, used her suction lifters to raise the case, took the dagger, and concealed it in her cloth roll before Cole arrived at 1:58 AM to swipe his wand.",
+    "decisiveEvidence": [
+      "E-C (Suction marks matching Ramos's equipment)",
+      "Witness statement (Seen in corridor at 1:52 AM with cloth roll)",
+      "E-A (Deliberate 1:56 AM sabotage timing)"
+    ],
+    "uncertainties": [
+      "Whether the Greek repatriation committee had prior knowledge of her theft"
+    ],
+    "alternativeExplanation": "Garrick Cole lifted the glass at 1:58 AM after Vance disabled the lasers."
+  },
+  "missingEvidence": [
+    "Search of Dr. Ramos's personal locker in the faculty club"
+  ],
+  "rules": [
+    "A patrol wand swipe can establish arrival right after a theft has taken place.",
+    "Technical sabotage (jumper wires) is often commissioned by ideological actors who cannot do the electrical work themselves."
+  ],
+  "estimatedTimeMinutes": 20
+}

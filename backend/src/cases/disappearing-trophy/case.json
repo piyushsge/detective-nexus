@@ -1,0 +1,221 @@
+{
+  "caseId": "CASE-008",
+  "title": "The Disappearing Trophy",
+  "category": "Sports Mystery",
+  "difficulty": "Easy/Medium",
+  "setting": "Oakridge Athletic Club Showcase Room",
+  "incident": "The solid-silver 'Founders Cup' disappeared from its locked mahogany plinth between the team banquet at 9:00 PM and the morning awards ceremony at 8:00 AM. A celebratory group photo taken at 9:45 PM reveals an unexpected detail in the background reflection.",
+  "centralQuestions": [
+    "What does the glass reflection in the 9:45 PM photo reveal?",
+    "Who had access to the plinth key in the head coach's office?",
+    "How was the heavy trophy transported past the front gate?"
+  ],
+  "timeline": [
+    {
+      "id": "T01",
+      "time": "8:30 PM",
+      "event": "Team banquet concludes; trophy placed in center showcase.",
+      "source": "Banquet schedule",
+      "certainty": "High"
+    },
+    {
+      "id": "T02",
+      "time": "9:15 PM",
+      "event": "Head Coach Arthur Miller locks the display case with brass key.",
+      "source": "Coach statement",
+      "certainty": "High"
+    },
+    {
+      "id": "T03",
+      "time": "9:45 PM",
+      "event": "Team captain and players take selfie photograph in front of glass case.",
+      "source": "Instagram timestamp",
+      "certainty": "High"
+    },
+    {
+      "id": "T04",
+      "time": "10:30 PM",
+      "event": "Equipment Manager Toby Ross loads team laundry bags into maintenance van.",
+      "source": "Gate CCTV",
+      "certainty": "High"
+    },
+    {
+      "id": "T05",
+      "time": "8:00 AM",
+      "event": "Showcase opened for awards; plinth holds a weighted replica sandbag.",
+      "source": "Club President discovery",
+      "certainty": "High"
+    }
+  ],
+  "suspects": [
+    {
+      "suspect_id": "S01",
+      "name": "Arthur Miller",
+      "role": "Head Coach",
+      "motive": "Fired effective end of season; resentful of club board leadership.",
+      "statement": "He says he locked the case and went straight home at 9:20 PM.",
+      "relevant_evidence": [
+        "Held only physical key to case.",
+        "His car logged leaving gate at 9:22 PM."
+      ],
+      "supporting_evidence": [
+        "Gate camera records his departure at 9:22 PM."
+      ],
+      "suspicious_evidence": [
+        "Spare key was missing from his desk drawer in the morning."
+      ],
+      "uncertainty": "Departure at 9:22 PM makes physical theft at 10:00 PM impossible unless he returned on foot.",
+      "open_questions": [
+        "Did he give the key to someone?"
+      ]
+    },
+    {
+      "suspect_id": "S02",
+      "name": "Toby Ross",
+      "role": "Equipment Manager",
+      "motive": "Struggling with pay garnishment; collects silver bullion.",
+      "statement": "He states he was packing jerseys and loading the laundry van all evening.",
+      "relevant_evidence": [
+        "Van left gate at 10:30 PM carrying oversized canvas laundry bags.",
+        "Canvas fiber found on plinth."
+      ],
+      "supporting_evidence": [
+        "Laundry receipts match uniform counts."
+      ],
+      "suspicious_evidence": [
+        "One laundry bag was weighed down heavily on the van suspension."
+      ],
+      "uncertainty": "Wet football jerseys and pads weigh over 70 pounds.",
+      "open_questions": [
+        "Was the trophy inside one of the laundry hampers?"
+      ]
+    },
+    {
+      "suspect_id": "S03",
+      "name": "Julian Thorne",
+      "role": "Team Captain",
+      "motive": "Anger over trophy being awarded to school rather than individual MVP.",
+      "statement": "He says he left with his teammates after taking the selfie at 9:45 PM.",
+      "relevant_evidence": [
+        "Took the 9:45 PM group photo.",
+        "Keys to gym equipment shed in his pocket."
+      ],
+      "supporting_evidence": [
+        "Seen at diner with 4 teammates at 10:15 PM."
+      ],
+      "suspicious_evidence": [
+        "His gym bag was found hidden in the shower stall."
+      ],
+      "uncertainty": "Diner alibi at 10:15 PM corroborated by waitstaff.",
+      "open_questions": [
+        "What is visible in the reflection of his 9:45 PM photo?"
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "witness_id": "W01",
+      "name": "Club President Sterling",
+      "role": "President",
+      "statement": "The trophy weighs 28 pounds\u2014it cannot be pocketed; it requires two hands or a bag.",
+      "supporting_information": [
+        "Trophy specifications"
+      ],
+      "limitations": "Was at banquet until 9:00 PM only."
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E-A",
+      "title": "Instagram Photo (9:45 PM)",
+      "description": "High-resolution selfie photo. In the glass reflection behind the team, a figure in a green equipment staff jacket is visible opening the rear access latch.",
+      "category": "Photographic",
+      "source": "Social media EXIF",
+      "establishes": "The case was being breached during the photo at 9:45 PM by someone in staff attire.",
+      "does_not_establish": "Clear face of the figure.",
+      "related_suspects": [
+        "Toby Ross"
+      ],
+      "reliability_notes": "Unmodified original JPEG."
+    },
+    {
+      "evidence_id": "E-B",
+      "title": "Canvas Bag Fibers",
+      "description": "Heavy green canvas fibers snagged on showcase lock pin matching club laundry bags.",
+      "category": "Physical Trace",
+      "source": "Lock pin",
+      "establishes": "A green club equipment bag was used to cushion or open the lock.",
+      "does_not_establish": "Individual ownership.",
+      "related_suspects": [
+        "Toby Ross"
+      ],
+      "reliability_notes": "Microscopic thread match."
+    },
+    {
+      "evidence_id": "E-C",
+      "title": "Security Gate Weight Telemetry",
+      "description": "Automatic tire sensor at front gate logged Toby's laundry van at 320 lbs over empty curb weight at 10:30 PM.",
+      "category": "Sensor",
+      "source": "Gate system",
+      "establishes": "Van carried substantial cargo.",
+      "does_not_establish": "Exact cargo contents.",
+      "related_suspects": [
+        "Toby Ross"
+      ],
+      "reliability_notes": "Calibrated pressure plate."
+    },
+    {
+      "evidence_id": "E-D",
+      "title": "Team Photo Shadow Anomaly",
+      "description": "High-resolution victory photograph taken at 4:30 PM shows the trophy cabinet reflection displaying an unlatched padlock.",
+      "category": "Photographic",
+      "source": "Official photographer flash drive",
+      "establishes": "The display lock was disengaged 45 minutes earlier than staff reported.",
+      "does_not_establish": "Who unlocked the cabinet.",
+      "related_suspects": [
+        "Sponsor representative",
+        "Equipment manager"
+      ],
+      "reliability_notes": "Verified raw EXIF timestamp."
+    },
+    {
+      "evidence_id": "E-E",
+      "title": "Equipment Bag Weight Discrepancy",
+      "description": "Logistics scale registered duffel bag #4 as 14.2 kg departing the locker room instead of the standard 6.5 kg jersey weight.",
+      "category": "Physical Log",
+      "source": "Loading dock freight manifest",
+      "establishes": "A heavy metallic object was transported inside duffel bag #4.",
+      "does_not_establish": "The exact contents of the bag.",
+      "related_suspects": [
+        "Equipment manager"
+      ],
+      "reliability_notes": "Calibrated digital dock scale."
+    }
+  ],
+  "redHerrings": [
+    "Coach Miller's missing spare key was actually found dropped behind the file cabinet, not stolen.",
+    "Julian Thorne's hidden gym bag contained only muddy cleats from the game."
+  ],
+  "hiddenSolution": {
+    "culprit": "Toby Ross",
+    "explanation": "Toby took advantage of the team's loud group selfie session at 9:45 PM to unlock the rear plinth using the master maintenance tool, substituted a weighted sandbag from the gym shed, slipped the silver cup into an equipment laundry bag, and drove it past the security gate at 10:30 PM.",
+    "decisiveEvidence": [
+      "E-A (Reflection in 9:45 PM photo showing green staff jacket)",
+      "E-B (Green canvas fibers on lock)",
+      "E-C (Van weight telemetry)"
+    ],
+    "uncertainties": [
+      "Whether the trophy has already been melted or hidden at Toby's home"
+    ],
+    "alternativeExplanation": "Julian Thorne took the trophy before the photo and Toby was merely inspecting the display case."
+  },
+  "missingEvidence": [
+    "Search of Toby Ross's off-campus apartment",
+    "Gate camera zoom on passenger seat"
+  ],
+  "rules": [
+    "Photographic reflections often capture evidence invisible to human observers at the time.",
+    "Circumstantial weight evidence must be corroborated with physical trace fibers."
+  ],
+  "estimatedTimeMinutes": 15
+}

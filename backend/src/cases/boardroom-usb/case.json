@@ -1,0 +1,221 @@
+{
+  "caseId": "CASE-010",
+  "title": "The Boardroom USB",
+  "category": "Corporate Investigation",
+  "difficulty": "Hard",
+  "setting": "Valence Global Capital (Executive Floor 40)",
+  "incident": "A confidential M&A deck detailing a $500M hostile takeover appeared on an anonymous financial blog. The file was accessible to only 5 executives during an off-network strategy dinner in the boardroom. The host workstation shows no internet connection or standard email transmission.",
+  "centralQuestions": [
+    "When was the acquisition presentation actually copied?",
+    "Was the leak transmitted via an unauthorized USB drive or a rogue Bluetooth pairing?",
+    "Who had access to the boardroom presentation computer prior to the meeting?"
+  ],
+  "timeline": [
+    {
+      "id": "T01",
+      "time": "5:30 PM",
+      "event": "Executive Assistant prepares boardroom presentation laptop and preloads M&A slide deck.",
+      "source": "Assistant statement",
+      "certainty": "High"
+    },
+    {
+      "id": "T02",
+      "time": "6:00 PM",
+      "event": "Executive dinner commences; boardroom Faraday cage shielding activated.",
+      "source": "Facilities log",
+      "certainty": "High"
+    },
+    {
+      "id": "T03",
+      "time": "7:15 PM",
+      "event": "Presentation delivered from laptop to boardroom projection screen.",
+      "source": "HDMI switcher log",
+      "certainty": "High"
+    },
+    {
+      "id": "T04",
+      "time": "8:30 PM",
+      "event": "Meeting ends; executives depart for airport.",
+      "source": "Elevator badge log",
+      "certainty": "High"
+    },
+    {
+      "id": "T05",
+      "time": "10:15 PM",
+      "event": "Takeover deck screenshots posted by anonymous journalist on financial blog.",
+      "source": "Web timestamp",
+      "certainty": "High"
+    }
+  ],
+  "suspects": [
+    {
+      "suspect_id": "S01",
+      "name": "Evelyn Reed",
+      "role": "Senior VP of Acquisitions",
+      "motive": "Shorting company stock through an offshore broker.",
+      "statement": "She says she was presenting slides from the podium the entire dinner.",
+      "relevant_evidence": [
+        "She was the primary presenter.",
+        "Her phone was left in the Faraday phone locker outside."
+      ],
+      "supporting_evidence": [
+        "Board members confirm she stood at podium."
+      ],
+      "suspicious_evidence": [
+        "Her smart wristwatch had local storage capability."
+      ],
+      "uncertainty": "Smart watches inside the Faraday cage cannot broadcast to the internet.",
+      "open_questions": [
+        "Did her watch connect via physical cable?"
+      ]
+    },
+    {
+      "suspect_id": "S02",
+      "name": "Julian Vance",
+      "role": "Financial Analyst",
+      "motive": "Passed over for partner promotion; received competitor recruitment offer.",
+      "statement": "He claims he was sitting in the corner taking minutes on paper.",
+      "relevant_evidence": [
+        "A stealth micro-SD card reader disguised as an executive fountain pen found in his pocket.",
+        "His badge was used to enter the boardroom at 5:15 PM."
+      ],
+      "supporting_evidence": [
+        "Handwritten minutes match meeting dialogue."
+      ],
+      "suspicious_evidence": [
+        "Was inside the boardroom 15 minutes before the assistant preloaded the laptop."
+      ],
+      "uncertainty": "Being in the room before the file is loaded does not explain how the file was copied after it was preloaded.",
+      "open_questions": [
+        "Did he install a persistent hardware sniffer?"
+      ]
+    },
+    {
+      "suspect_id": "S03",
+      "name": "Tara Cole",
+      "role": "Executive Assistant",
+      "motive": "Heavy credit card debt; brother works for rival financial publication.",
+      "statement": "She says she downloaded the presentation from the secure intranet at 5:30 PM and left the room at 5:45 PM.",
+      "relevant_evidence": [
+        "Only person who had the administrative password to unlock the presentation file."
+      ],
+      "supporting_evidence": [
+        "Badge log shows her leaving 40th floor at 5:50 PM."
+      ],
+      "suspicious_evidence": [
+        "The original presentation file in her sent folder was modified at 5:32 PM."
+      ],
+      "uncertainty": "Modifying file properties is standard when converting PowerPoint to presentation kiosk mode.",
+      "open_questions": [
+        "Did she copy the file before putting it on the presentation laptop?"
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "witness_id": "W01",
+      "name": "IT Director Hall",
+      "role": "Head of IT",
+      "statement": "The boardroom laptop had physical USB ports disabled via Group Policy\u2014a standard thumb drive will not mount.",
+      "supporting_information": [
+        "Active Directory policy report"
+      ],
+      "limitations": "Does not apply to internal PCIe or hardware bus emulators."
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E-A",
+      "title": "Wireless Kiosk Mouse Receiver Log",
+      "description": "The USB wireless mouse dongle plugged into the presentation laptop had a flash memory controller (HID attack device).",
+      "category": "Hardware",
+      "source": "Laptop USB bus",
+      "establishes": "The mouse receiver contained an embedded 32GB storage chip capable of bypassing USB mass storage blocks.",
+      "does_not_establish": "Who purchased or plugged in the mouse dongle.",
+      "related_suspects": [
+        "Julian Vance",
+        "Tara Cole"
+      ],
+      "reliability_notes": "Disassembled in forensic lab."
+    },
+    {
+      "evidence_id": "E-B",
+      "title": "Badge Ingress Log (5:15 PM)",
+      "description": "Julian Vance badged into boardroom at 5:15 PM and replaced the standard wireless mouse with the modified unit.",
+      "category": "Access Log",
+      "source": "Door access",
+      "establishes": "Vance was alone in the room immediately prior to setup.",
+      "does_not_establish": "Direct observation of dongle swap.",
+      "related_suspects": [
+        "Julian Vance"
+      ],
+      "reliability_notes": "Card reader log."
+    },
+    {
+      "evidence_id": "E-C",
+      "title": "Blog Screenshot Metadata",
+      "description": "PNG screenshots published at 10:15 PM contain EXIF camera data from an iPhone 14 Pro.",
+      "category": "Digital",
+      "source": "Web image header",
+      "establishes": "The leaked images were photographs of a screen, NOT digital file exports.",
+      "does_not_establish": "Whose iPhone took the photo.",
+      "related_suspects": [
+        "Tara Cole"
+      ],
+      "reliability_notes": "Clean EXIF metadata."
+    },
+    {
+      "evidence_id": "E-D",
+      "title": "Cloud Staging Cache Timestamp",
+      "description": "An unindexed temporary zip archive containing the merger dossier was generated at 11:15 AM, two hours before the board meeting.",
+      "category": "File System Artifact",
+      "source": "Corporate server shadow volume",
+      "establishes": "The acquisition files were pre-packaged before any attendee entered the boardroom.",
+      "does_not_establish": "Whose hands initiated the batch extraction script.",
+      "related_suspects": [
+        "IT Administrator",
+        "Financial Analyst"
+      ],
+      "reliability_notes": "Windows VSS forensic snapshot."
+    },
+    {
+      "evidence_id": "E-E",
+      "title": "Hardware Hub Device Registry",
+      "description": "Conference room table smart-dock logged a transient USB Mass Storage connect-disconnect sequence lasting 42 seconds.",
+      "category": "Hardware Event",
+      "source": "Smart-hub firmware log",
+      "establishes": "A flash drive drew power during the executive recess.",
+      "does_not_establish": "Which seat occupant plugged in the drive.",
+      "related_suspects": [
+        "Consultant",
+        "Executive Assistant"
+      ],
+      "reliability_notes": "Authenticated syslog from Cisco switch port."
+    }
+  ],
+  "redHerrings": [
+    "The modified USB mouse dongle appeared to be the theft vehicle, but the leaked document was actually photo screenshots, meaning the digital USB attack failed or was unused.",
+    "Evelyn Reed's smartwatch had no camera capable of taking high-resolution 4K photos."
+  ],
+  "hiddenSolution": {
+    "culprit": "Tara Cole",
+    "explanation": "While setting up the presentation at 5:35 PM on the 40th floor (before the Faraday cage phone lockup was instituted at 6:00 PM), Tara Cole used her personal iPhone 14 Pro to take high-resolution photographs of the slides on the monitor, texted them to her journalist contact, and left at 5:50 PM.",
+    "decisiveEvidence": [
+      "E-C (EXIF data proving photo of screen)",
+      "Timeline (Setup occurred before phone lockup at 6:00 PM)",
+      "Tara's exclusive access at 5:35 PM"
+    ],
+    "uncertainties": [
+      "Whether Julian Vance's USB dongle was an independent concurrent espionage attempt"
+    ],
+    "alternativeExplanation": "Julian Vance took the photos using his micro-camera pen during the presentation."
+  },
+  "missingEvidence": [
+    "Corridor camera footage of Tara Cole holding her phone at 5:35 PM"
+  ],
+  "rules": [
+    "Inspect the file format of the leak: a photograph of a screen disproves a digital file extraction theory.",
+    "Faraday cage restrictions only apply while active."
+  ],
+  "estimatedTimeMinutes": 20
+}

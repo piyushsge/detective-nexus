@@ -1,0 +1,30 @@
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE and OS files
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Generated transient audio debriefs
+data/audio/report_voice_debrief_*.wav
+
+# User session / personal history dumps
+data/user_profiles/*.json
+!data/user_profiles/default_investigator.json

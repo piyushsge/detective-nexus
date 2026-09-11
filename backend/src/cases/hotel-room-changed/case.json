@@ -1,0 +1,229 @@
+{
+  "caseId": "CASE-007",
+  "title": "The Hotel Room That Changed",
+  "category": "Mystery",
+  "difficulty": "Medium",
+  "setting": "The Grand Sovereign Hotel (Geneva)",
+  "incident": "A diplomatic pouch containing bearer bonds worth $4M disappeared from Suite 701. The electronic door lock records no entry between 10:00 PM and 7:00 AM, the window is sealed 7 stories up, and the guest insists the pouch was on the bureau when he went to sleep.",
+  "centralQuestions": [
+    "Did someone enter the room, or was the pouch removed prior to the assumed window?",
+    "What do the elevator and service stairs access logs indicate?",
+    "Could the adjoining room door lock have been manipulated?"
+  ],
+  "timeline": [
+    {
+      "id": "T01",
+      "time": "9:30 PM",
+      "event": "Diplomat Jonathan Mercer checks into Suite 701 carrying the leather pouch.",
+      "source": "Reception CCTV",
+      "certainty": "High"
+    },
+    {
+      "id": "T02",
+      "time": "10:15 PM",
+      "event": "Mercer orders room service club sandwich.",
+      "source": "Kitchen billing",
+      "certainty": "High"
+    },
+    {
+      "id": "T03",
+      "time": "10:35 PM",
+      "event": "Room service attendant delivers tray and leaves.",
+      "source": "Lock audit log",
+      "certainty": "High"
+    },
+    {
+      "id": "T04",
+      "time": "11:00 PM",
+      "event": "Mercer states he placed pouch on bureau and took a sleeping tablet.",
+      "source": "Guest statement",
+      "certainty": "Medium"
+    },
+    {
+      "id": "T05",
+      "time": "7:00 AM",
+      "event": "Mercer wakes up; the bureau is bare and the pouch is gone.",
+      "source": "Front desk call",
+      "certainty": "High"
+    }
+  ],
+  "suspects": [
+    {
+      "suspect_id": "S01",
+      "name": "Jonathan Mercer",
+      "role": "Diplomatic Courier",
+      "motive": "Facing embezzlement charges in his home country; debt-ridden.",
+      "statement": "He claims he was asleep for 8 continuous hours.",
+      "relevant_evidence": [
+        "Blood test confirms mild sedative.",
+        "Personal offshore bank account activated yesterday."
+      ],
+      "supporting_evidence": [
+        "Doctor verified prescription for Ambien."
+      ],
+      "suspicious_evidence": [
+        "He hesitated for 40 minutes before notifying hotel security."
+      ],
+      "uncertainty": "Could the crime be an insurance fraud staged by Mercer himself?",
+      "open_questions": [
+        "Did he pass the pouch to someone before 10:00 PM?"
+      ]
+    },
+    {
+      "suspect_id": "S02",
+      "name": "Pierre Dubois",
+      "role": "Room Service Attendant",
+      "motive": "Sister requires costly medical care in Zurich.",
+      "statement": "He says he placed the tray on the dining table and left immediately.",
+      "relevant_evidence": [
+        "His service keycard opened the door at 10:35 PM.",
+        "A hotel linen napkin was found crumpled in the service elevator."
+      ],
+      "supporting_evidence": [
+        "CCTV shows him returning the service cart to the kitchen at 10:45 PM."
+      ],
+      "suspicious_evidence": [
+        "The silver domed serving tray cover was unusually large."
+      ],
+      "uncertainty": "Large serving covers are standard for multi-course meals.",
+      "open_questions": [
+        "Was the pouch hidden under the food cover when he exited?"
+      ]
+    },
+    {
+      "suspect_id": "S03",
+      "name": "Greta Van Der Berg",
+      "role": "Guest in Adjoining Suite 703",
+      "motive": "Known operative for an international financial intelligence firm.",
+      "statement": "She says she was in the hotel spa until 11:30 PM.",
+      "relevant_evidence": [
+        "Adjoining interior door between 701 and 703 was bolted from 701 side.",
+        "Spa receptionist confirms her massage ended at 11:15 PM."
+      ],
+      "supporting_evidence": [
+        "Spa sign-in sheet."
+      ],
+      "suspicious_evidence": [
+        "A flexible borescope optical camera was found in her vanity case."
+      ],
+      "uncertainty": "Interior adjoining door deadbolt was mechanically locked from Mercer's side.",
+      "open_questions": [
+        "Can the deadbolt be thrown or retracted with a magnetic or pneumatic tool?"
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "witness_id": "W01",
+      "name": "Concierge Henri",
+      "role": "Concierge",
+      "statement": "Mr. Mercer seemed agitated when checking in and repeatedly asked if Suite 701 had a safe.",
+      "supporting_information": [
+        "Bellhop confirms"
+      ],
+      "limitations": "Did not see pouch contents."
+    },
+    {
+      "witness_id": "W02",
+      "name": "Housekeeper Maria",
+      "role": "Floor Supervisor",
+      "statement": "The adjoining door between 701 and 703 was locked during afternoon cleaning.",
+      "supporting_information": [
+        "Daily checklist"
+      ],
+      "limitations": "Did not test bolt pressure."
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E-A",
+      "title": "Suite 701 VingCard Door Audit",
+      "description": "Electronic lock log records only two entries: Mercer at 9:30 PM, Room Service at 10:35 PM. Zero entries afterward.",
+      "category": "Electronic Log",
+      "source": "Lock firmware readout",
+      "establishes": "No card entered through the hallway door between 10:36 PM and 7:00 AM.",
+      "does_not_establish": "That the door was not held ajar or entered via adjoining door.",
+      "related_suspects": [],
+      "reliability_notes": "Encrypted lock log."
+    },
+    {
+      "evidence_id": "E-B",
+      "title": "Room Service Cloche Inspection",
+      "description": "Silver meal cloche in kitchen had scratches matching the sharp brass clasp of Mercer's leather pouch.",
+      "category": "Physical Trace",
+      "source": "Kitchen wash station",
+      "establishes": "The cloche came into physical contact with the pouch clasp.",
+      "does_not_establish": "Who placed the cloche over the pouch.",
+      "related_suspects": [
+        "Pierre Dubois"
+      ],
+      "reliability_notes": "Microscopic striation analysis."
+    },
+    {
+      "evidence_id": "E-C",
+      "title": "Luggage Tag Fragment",
+      "description": "Pouch security tag barcode found in hallway trash chute on 7th floor.",
+      "category": "Physical",
+      "source": "Trash compactor",
+      "establishes": "Pouch was stripped of its tracking tag on the 7th floor.",
+      "does_not_establish": "Exact time of disposal.",
+      "related_suspects": [
+        "Pierre Dubois",
+        "Jonathan Mercer"
+      ],
+      "reliability_notes": "Recovered by police search."
+    },
+    {
+      "evidence_id": "E-D",
+      "title": "Hotel Adjoining Deadbolt Scratches",
+      "description": "Interior door bolt shows fine brass powder and rare-earth neodymium magnet trace on the cylinder.",
+      "category": "Forensic",
+      "source": "Adjoining door bolt",
+      "establishes": "Deadbolt was turned using an external magnetic actuator from Suite 703.",
+      "does_not_establish": "Success of the retraction.",
+      "related_suspects": [
+        "Greta Van Der Berg"
+      ],
+      "reliability_notes": "Magnetometer reading."
+    },
+    {
+      "evidence_id": "E-E",
+      "title": "Service Cart Lower Compartment Fiber",
+      "description": "Dark leather micro-fibers matching Mercer's diplomatic pouch recovered from the underside rim of Pierre Dubois's service trolley.",
+      "category": "Forensic Trace",
+      "source": "Kitchen trolley depot",
+      "establishes": "The pouch rested directly against the metal cart chassis.",
+      "does_not_establish": "Who transported the cart after delivery.",
+      "related_suspects": [
+        "Pierre Dubois"
+      ],
+      "reliability_notes": "Spectroscopic analysis confirmed matching dyed calfskin."
+    }
+  ],
+  "redHerrings": [
+    "The magnetic scratches on the adjoining door suggest Greta picked the lock, but the bolt was jammed in the locked position by a secondary mechanical anti-drill peg.",
+    "Mercer's delayed reporting appeared like self-theft, but was caused by grogginess from his sleeping tablet."
+  ],
+  "hiddenSolution": {
+    "culprit": "Pierre Dubois",
+    "explanation": "While Mercer was signing the room service bill in the suite hallway, Pierre noticed the diplomat's pouch on the bureau. In a 10-second window, he placed the heavy silver cloche directly over the pouch, transferred it onto the lower tier of his cart under dirty napkins, and wheeled it out through the service elevator at 10:36 PM.",
+    "decisiveEvidence": [
+      "E-B (Striations on cloche interior)",
+      "E-C (Security tag in 7th floor chute)",
+      "E-A (Zero door entries after 10:35 PM)"
+    ],
+    "uncertainties": [
+      "Where Pierre stashed the pouch in the basement laundry"
+    ],
+    "alternativeExplanation": "Greta used the magnetic actuator to enter through the adjoining door while Mercer was sedated."
+  },
+  "missingEvidence": [
+    "CCTV inside the service elevator (camera broken)",
+    "Search of Pierre Dubois's employee locker"
+  ],
+  "rules": [
+    "If no door entry occurred after a meal delivery, inspect the delivery equipment itself.",
+    "Evidence of attempted entry (adjoining lock scratches) does not equal completed entry."
+  ],
+  "estimatedTimeMinutes": 15
+}

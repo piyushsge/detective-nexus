@@ -1,0 +1,66 @@
+from typing import List, Dict, Any, Optional
+from pydantic import BaseModel, Field
+
+class TimelineEvent(BaseModel):
+    id: str = Field(..., description="Unique event identifier (e.g. T01)")
+    time: str = Field(..., description="Timestamp or time interval (e.g. 8:23 PM)")
+    event: str = Field(..., description="Objective factual description of the event")
+    source: str = Field(..., description="Attribution or detection source")
+    certainty: str = Field("Established", description="Certainty rating: Established, Partially supported, Unverified")
+    notes: Optional[str] = Field(None, description="Forensic context or limitations")
+    is_critical: bool = Field(False, description="Whether this event falls in the critical window")
+
+class Suspect(BaseModel):
+    suspect_id: str = Field(..., description="Unique suspect ID (e.g. S01)")
+    name: str = Field(..., description="Full name of suspect")
+    role: str = Field(..., description="Occupation or relationship to scene")
+    motive: str = Field(..., description="Potential incentive (does NOT equal guilt)")
+    statement: str = Field(..., description="Direct testimonial claim made by the suspect")
+    means: str = Field("Unknown", description="Means assessment: Low, Medium, High, Confirmed")
+    opportunity: str = Field("Unknown", description="Opportunity window status: Low, Medium, High, Confirmed")
+    access: str = Field("Unknown", description="Physical/card access status: None, Proxy, Direct")
+    alibi: str = Field("Unknown", description="Alibi status: Supported, Partially Supported, Contradicted, Unknown")
+    relevant_evidence: List[str] = Field(default_factory=list)
+    supporting_evidence: List[str] = Field(default_factory=list)
+    suspicious_evidence: List[str] = Field(default_factory=list)
+    uncertainty: str = Field(..., description="Critical limitations against suspect guilt")
+    open_questions: List[str] = Field(default_factory=list)
+
+class Witness(BaseModel):
+    witness_id: str = Field(..., description="Unique witness ID (e.g. W01)")
+    name: str = Field(..., description="Witness name")
+    role: str = Field(..., description="Witness position or relation")
+    statement: str = Field(..., description="Testimonial observation")
+    supporting_information: List[str] = Field(default_factory=list)
+    limitations: str = Field(..., description="What the witness could not observe or verify")
+
+class EvidenceItem(BaseModel):
+    evidence_id: str = Field(..., description="Evidence tag (e.g. E-A, E-B)")
+    title: str = Field(..., description="Title of clue or record")
+    description: str = Field(..., description="Detailed physical or digital description")
+    category: str = Field(..., description="Physical, Electronic access, Camera, Forensic, Statement, Context")
+    source: str = Field(..., description="Chain of custody / recovery location")
+    establishes: str = Field(..., description="What this item FACTUALLY proves")
+    does_not_establish: Any = Field(..., description="Crucial limitations / what it does NOT prove")
+    classification: str = Field("FACT", description="FACT, INFERENCE, DISTRACTION, UNCERTAIN")
+    strength: str = Field("STRONG", description="VERY STRONG, STRONG, MODERATE, WEAK, VERY WEAK")
+    related_suspects: List[str] = Field(default_factory=list)
+    reliability_notes: str = Field(..., description="Tamper resistance / forensic certainty notes")
+
+class MysteryCase(BaseModel):
+    case_id: str = Field(..., description="Unique case code (e.g. CASE-001)")
+    title: str = Field(..., description="Case name")
+    category: str = Field("Theft", description="Case domain/category")
+    difficulty: str = Field("Medium", description="Investigation difficulty level")
+    location: str = Field(..., description="Scene of the incident")
+    incident_description: str = Field(..., description="Core incident narrative")
+    critical_window: str = Field("08:20 PM - 08:24 PM", description="Critical opportunity interval")
+    central_questions: List[str] = Field(default_factory=list)
+    investigation_rules: List[str] = Field(default_factory=list)
+    timeline: List[TimelineEvent] = Field(default_factory=list)
+    suspects: List[Suspect] = Field(default_factory=list)
+    witnesses: List[Witness] = Field(default_factory=list)
+    evidence: List[EvidenceItem] = Field(default_factory=list)
+    evidence_relationships: List[Dict[str, str]] = Field(default_factory=list)
+    hidden_solution: Optional[Dict[str, Any]] = Field(None, description="Facilitator reference solution")
+    status: str = Field("INVESTIGATION ACTIVE", description="Active investigation status")

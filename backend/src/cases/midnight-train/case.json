@@ -1,0 +1,259 @@
+{
+  "caseId": "CASE-003",
+  "title": "The Midnight Train Watch",
+  "category": "Theft",
+  "difficulty": "Hard",
+  "setting": "The Trans-Alpine Express (Overnight Luxury Train)",
+  "incident": "A $1.2 million antique Breguet pocket watch disappeared from private Compartment 4B between Bregenz and Innsbruck. The express train made no intermediate stops between 1:15 AM and 2:45 AM. The compartment door was double-locked from inside with a safety chain when the conductor opened it in the morning.",
+  "centralQuestions": [
+    "How did the thief enter and exit Compartment 4B while leaving the chain bolt engaged?",
+    "Why did the corridor clock and the dining car clock differ by 18 minutes?",
+    "Which passenger or crew member had access to the master passkey?",
+    "Could the watch have been tossed from the train or hidden in the luggage car?"
+  ],
+  "timeline": [
+    {
+      "id": "T01",
+      "time": "1:00 AM",
+      "event": "Victim Baron Von Hauer shows the Breguet watch to dining car guests.",
+      "source": "Dining car steward",
+      "certainty": "High"
+    },
+    {
+      "id": "T02",
+      "time": "1:15 AM",
+      "event": "Train departs Bregenz on uninterrupted alpine segment.",
+      "source": "Train telemetry",
+      "certainty": "High"
+    },
+    {
+      "id": "T03",
+      "time": "1:35 AM",
+      "event": "Baron retires to Compartment 4B and latches safety chain.",
+      "source": "Attendant statement",
+      "certainty": "High"
+    },
+    {
+      "id": "T04",
+      "time": "1:50 AM (Corridor Time)",
+      "event": "Corridor camera flashes offline due to momentary pantograph power drop.",
+      "source": "Camera log",
+      "certainty": "High"
+    },
+    {
+      "id": "T05",
+      "time": "2:08 AM (Dining Time)",
+      "event": "Conductor Klaus Meyer checks passenger tickets in Car 3.",
+      "source": "Ticket punch log",
+      "certainty": "High"
+    },
+    {
+      "id": "T06",
+      "time": "2:45 AM",
+      "event": "Train arrives at Innsbruck. Baron discovers watch is gone from his nightstand.",
+      "source": "Police report",
+      "certainty": "High"
+    }
+  ],
+  "suspects": [
+    {
+      "suspect_id": "S01",
+      "name": "Klaus Meyer",
+      "role": "Conductor",
+      "motive": "Facing bankruptcy over family vineyard debts.",
+      "statement": "He says he was inspecting Car 3 and dining car receipts all night.",
+      "relevant_evidence": [
+        "Possesses train master skeleton key.",
+        "Punch log has a 25-minute gap."
+      ],
+      "supporting_evidence": [
+        "Dining steward saw him checking ticket slips."
+      ],
+      "suspicious_evidence": [
+        "Carriage 4 exterior service key was found in his locker."
+      ],
+      "uncertainty": "Conductors routinely carry service keys.",
+      "open_questions": [
+        "How could he bypass the internal chain lock?"
+      ]
+    },
+    {
+      "suspect_id": "S02",
+      "name": "Camille Laurent",
+      "role": "Train Attendant",
+      "motive": "Fired from previous boutique hotel for alleged jewelry theft.",
+      "statement": "She states she was restocking fresh linens in the service locker.",
+      "relevant_evidence": [
+        "Thin wire hanger with hook found in linen hamper.",
+        "Window of Compartment 4B was unlatched 2 inches."
+      ],
+      "supporting_evidence": [
+        "Linen hamper was indeed filled with folded sheets."
+      ],
+      "suspicious_evidence": [
+        "Wire tool can be used to slide internal door chain bolts from outside."
+      ],
+      "uncertainty": "Wire hanger could be ordinary laundry equipment.",
+      "open_questions": [
+        "Did she possess the physical dexterity to hook the chain?"
+      ]
+    },
+    {
+      "suspect_id": "S03",
+      "name": "Viktor Vance",
+      "role": "Private Antiquities Collector",
+      "motive": "Long-standing rivalry with the Baron; offered to buy the watch hours earlier.",
+      "statement": "He says he was in Compartment 4A reading with earplugs.",
+      "relevant_evidence": [
+        "Adjacent compartment shares ventilation grate with 4B.",
+        "Possesses antique lock-picking manual."
+      ],
+      "supporting_evidence": [
+        "Baron recalls hearing faint classical music from 4A."
+      ],
+      "suspicious_evidence": [
+        "Ventilation grate screws were loosened."
+      ],
+      "uncertainty": "Vibration on high-speed rail frequently loosens partition screws.",
+      "open_questions": [
+        "Could an object pass through the ventilation grate?"
+      ]
+    },
+    {
+      "suspect_id": "S04",
+      "name": "Greta Weiss",
+      "role": "Fellow Passenger (Compartment 4C)",
+      "motive": "Recently insured family heirloom watch collection for substantial sums.",
+      "statement": "She claims she fell asleep at 1:15 AM after drinking tea.",
+      "relevant_evidence": [
+        "Traces of sedative tea found in her cabin.",
+        "Her handbag had a hidden velvet-lined compartment."
+      ],
+      "supporting_evidence": [
+        "Doctor's note for sleeping pills."
+      ],
+      "suspicious_evidence": [
+        "Velvet lining matches watch dimensions."
+      ],
+      "uncertainty": "She had no master key to 4B.",
+      "open_questions": [
+        "How could she enter 4B without a key?"
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "witness_id": "W01",
+      "name": "Baron Von Hauer",
+      "role": "Victim",
+      "statement": "I chained the door and placed the watch on the mahogany stand at 1:35 AM.",
+      "supporting_information": [
+        "Watch case remained on the stand."
+      ],
+      "limitations": "Admitted to drinking two glasses of cognac."
+    },
+    {
+      "witness_id": "W02",
+      "name": "Hans Becker",
+      "role": "Dining Steward",
+      "statement": "The dining car clock runs on manual winding and was 18 minutes fast.",
+      "supporting_information": [
+        "Clock maintenance sticker dated 2 years ago."
+      ],
+      "limitations": "Did not notify passengers of time skew."
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E-A",
+      "title": "Clock Synchronization Analysis",
+      "description": "Dining car mechanical clock is 18 minutes ahead of electronic train GPS telemetry.",
+      "category": "Technical",
+      "source": "Rail engineer inspection",
+      "establishes": "Dining car timestamps must be corrected backward by 18 minutes.",
+      "does_not_establish": "Who moved between cars during the discrepancy.",
+      "related_suspects": [
+        "Klaus Meyer"
+      ],
+      "reliability_notes": "Synchronized with train black box."
+    },
+    {
+      "evidence_id": "E-B",
+      "title": "Wire Loop Tool in Hamper",
+      "description": "A copper wire bent into a precise slider loop found wrapped in clean towels.",
+      "category": "Physical Trace",
+      "source": "Service locker hamper",
+      "establishes": "A specialized tool capable of engaging/disengaging door chains existed in the attendant locker.",
+      "does_not_establish": "Fingerprints on the copper wire.",
+      "related_suspects": [
+        "Camille Laurent"
+      ],
+      "reliability_notes": "Retrieved by Swiss transport police."
+    },
+    {
+      "evidence_id": "E-C",
+      "title": "Ventilation Grate Thread",
+      "description": "Gold metallic thread snagged on the duct between 4A and 4B.",
+      "category": "Physical Trace",
+      "source": "Air duct inspection",
+      "establishes": "A gold object or cloth touched the air vent.",
+      "does_not_establish": "Whether the thread came from the watch lanyard or a garment.",
+      "related_suspects": [
+        "Viktor Vance"
+      ],
+      "reliability_notes": "Microscopic extraction."
+    },
+    {
+      "evidence_id": "E-D",
+      "title": "Compartment 4B Window Latch",
+      "description": "Exterior sash was unlatched and opened 2 inches; snow dust found on the inner sill.",
+      "category": "Physical Trace",
+      "source": "Crime scene inspection",
+      "establishes": "Window was unlatched while train traveled through mountain blizzard.",
+      "does_not_establish": "Whether an item was thrown out or taken in.",
+      "related_suspects": [],
+      "reliability_notes": "Fresh snow melted on radiator below."
+    },
+    {
+      "evidence_id": "E-E",
+      "title": "Master Key Log",
+      "description": "Brass conductor skeleton key was checked out to Klaus Meyer at shift start.",
+      "category": "Documentary",
+      "source": "Depot register",
+      "establishes": "Meyer had official custody of master keys.",
+      "does_not_establish": "That the key was used during the 1:50 AM power flicker.",
+      "related_suspects": [
+        "Klaus Meyer"
+      ],
+      "reliability_notes": "Signed ledger sheet."
+    }
+  ],
+  "redHerrings": [
+    "The clock discrepancy made Meyer appear to have an iron-clad alibi in the dining car, but time correction reveals a 22-minute gap.",
+    "The ventilation duct thread suggests Viktor fished the watch through the vent, but the vent opening is too narrow for the watch casing."
+  ],
+  "hiddenSolution": {
+    "culprit": "Camille Laurent",
+    "explanation": "Camille utilized a master service key borrowed from the attendant station to unlock 4B during the 1:50 AM power drop, used the crafted wire tool to slip the safety chain from the outside upon leaving, and concealed the watch in the double lining of the linen hamper to recover at the terminus.",
+    "decisiveEvidence": [
+      "E-B (Wire tool in hamper)",
+      "E-D (Window opened to simulate outside entry)",
+      "Chain manipulation tool marks"
+    ],
+    "uncertainties": [
+      "Whether she had an accomplice at Innsbruck station",
+      "Exact value appraisal of the stolen timepiece"
+    ],
+    "alternativeExplanation": "Conductor Klaus Meyer used his master key during the unmonitored window and framed Camille by dropping the wire in her hamper."
+  },
+  "missingEvidence": [
+    "Corridor CCTV during the pantograph outage",
+    "Full baggage car search"
+  ],
+  "rules": [
+    "Clock skew must be mathematically corrected before assessing alibis.",
+    "A locked-from-inside door can often be secured using specialized chain tools.",
+    "Motive does not prove execution."
+  ],
+  "estimatedTimeMinutes": 20
+}

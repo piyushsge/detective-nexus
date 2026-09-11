@@ -1,0 +1,214 @@
+{
+  "caseId": "CASE-009",
+  "title": "The Coded Letter",
+  "category": "Historical Mystery",
+  "difficulty": "Expert",
+  "setting": "National Historical Archives (Section 4B)",
+  "incident": "An unciphered 1792 dispatch written during the French Revolution disappeared from Box 14. Five accredited scholars had physical access during the afternoon reading session. Investigators must determine whether the disappearance represents theft, accidental misplacement, or deliberate internal concealment.",
+  "centralQuestions": [
+    "Was the coded letter stolen for private sale, or concealed within another box to prevent competing publication?",
+    "What do the library photocopy logs and scanner buffers reveal?",
+    "Did any researcher violate security protocol by carrying personal folders into the secure cage?"
+  ],
+  "timeline": [
+    {
+      "id": "T01",
+      "time": "1:00 PM",
+      "event": "Box 14 checked out to Reading Table 3 by Dr. Henri Dupont.",
+      "source": "Requisition slip",
+      "certainty": "High"
+    },
+    {
+      "id": "T02",
+      "time": "2:15 PM",
+      "event": "Dr. Vivienne Moreau inspects contents of Box 14 alongside Dupont.",
+      "source": "Reading room sign-in",
+      "certainty": "High"
+    },
+    {
+      "id": "T03",
+      "time": "3:30 PM",
+      "event": "Digital archival overhead scanner logs 14 high-resolution captures of 18th-century paper.",
+      "source": "Scanner hard drive",
+      "certainty": "High"
+    },
+    {
+      "id": "T04",
+      "time": "4:45 PM",
+      "event": "Archivist checks in Box 14; document #7 (Coded Letter) is missing from the folder.",
+      "source": "Archivist return inspection",
+      "certainty": "High"
+    }
+  ],
+  "suspects": [
+    {
+      "suspect_id": "S01",
+      "name": "Dr. Henri Dupont",
+      "role": "Senior Historian",
+      "motive": "His pending book claims the letter proves royalist conspiracy; rival paper would disprove his life work.",
+      "statement": "He says the letter was missing when he received the box at 1:00 PM.",
+      "relevant_evidence": [
+        "He signed the checkout slip certifying all 12 documents were present at 1:00 PM."
+      ],
+      "supporting_evidence": [
+        "His research notes were left openly on Table 3."
+      ],
+      "suspicious_evidence": [
+        "His checkout signature contradicts his statement."
+      ],
+      "uncertainty": "Researchers frequently sign requisition slips without counting individual sheets.",
+      "open_questions": [
+        "Did he count the sheets at 1:00 PM?"
+      ]
+    },
+    {
+      "suspect_id": "S02",
+      "name": "Dr. Vivienne Moreau",
+      "role": "Cryptanalysis Fellow",
+      "motive": "Working on algorithmic decryption of 18th-century ciphers; needed exclusive access.",
+      "statement": "She says she only looked at the binding stamps on the folder.",
+      "relevant_evidence": [
+        "Scanner log at 3:30 PM matches her assigned user PIN.",
+        "USB thumb drive in her purse contains scanned fragments."
+      ],
+      "supporting_evidence": [
+        "Library turnstile records she left through the metal detector at 4:30 PM."
+      ],
+      "suspicious_evidence": [
+        "Scanner buffer shows the coded letter was scanned at 3:32 PM under her PIN."
+      ],
+      "uncertainty": "Scanning the document proves it was in the room at 3:32 PM, but does not prove physical theft.",
+      "open_questions": [
+        "Where did the physical paper go after 3:32 PM?"
+      ]
+    },
+    {
+      "suspect_id": "S03",
+      "name": "Charles De Vries",
+      "role": "Manuscript Cataloguer",
+      "motive": "Severe administrative pressure over backlogged archival misfilings.",
+      "statement": "He says he refiled boxes 10 through 18 on the high shelves.",
+      "relevant_evidence": [
+        "Access to all restricted archive shelving tiers.",
+        "Ladders found adjacent to Box 88."
+      ],
+      "supporting_evidence": [
+        "Timecard matches shelf restocking."
+      ],
+      "suspicious_evidence": [
+        "Box 88 (19th-century naval receipts) had a fresh inventory sticker."
+      ],
+      "uncertainty": "Cataloguers routinely reorganize adjacent collections.",
+      "open_questions": [
+        "Could the letter have been intentionally misfiled?"
+      ]
+    }
+  ],
+  "witnesses": [
+    {
+      "witness_id": "W01",
+      "name": "Librarian Jean",
+      "role": "Desk Clerk",
+      "statement": "All researchers were searched by magnetic wand at the exit\u2014no metal or thick cases passed.",
+      "supporting_information": [
+        "Exit detector log"
+      ],
+      "limitations": "Paper cannot be detected by magnetic wands."
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "E-A",
+      "title": "Scanner Hard Drive Dump",
+      "description": "Overhead scanner memory holds 1200 DPI scan of the Coded Letter stamped 3:32 PM under PIN 9410.",
+      "category": "Digital",
+      "source": "Scanner OS",
+      "establishes": "The letter was physically present on the glass scanner at 3:32 PM.",
+      "does_not_establish": "Who took the original paper from the scanner bed.",
+      "related_suspects": [
+        "Dr. Vivienne Moreau"
+      ],
+      "reliability_notes": "System clock calibrated."
+    },
+    {
+      "evidence_id": "E-B",
+      "title": "Misfiled Document in Box 88",
+      "description": "During a shelf sweep, an 18th-century folded rag-paper sheet was found tucked inside Box 88 (Naval Timber Records).",
+      "category": "Physical",
+      "source": "Shelf 14, Tier 3",
+      "establishes": "The coded letter was NEVER removed from the building\u2014it was concealed inside an obscure unrelated box.",
+      "does_not_establish": "Whether the concealment was deliberate or accidental.",
+      "related_suspects": [
+        "Charles De Vries",
+        "Dr. Henri Dupont"
+      ],
+      "reliability_notes": "Found during police search."
+    },
+    {
+      "evidence_id": "E-C",
+      "title": "Dupont's Pocket Index Card",
+      "description": "Index card in Dupont's pocket had handwritten note: 'Box 88 \u2014 Naval 1790-1810'.",
+      "category": "Documentary",
+      "source": "Dupont's jacket",
+      "establishes": "Dupont specifically noted the exact hiding location of Box 88.",
+      "does_not_establish": "Proof of criminal theft versus research cross-reference.",
+      "related_suspects": [
+        "Dr. Henri Dupont"
+      ],
+      "reliability_notes": "Handwritten in blue ink."
+    },
+    {
+      "evidence_id": "E-D",
+      "title": "Photocopy Toner Depletion Record",
+      "description": "Department copier logs indicate three high-contrast double-sided scans of a 17th-century manuscript page at 3:15 PM.",
+      "category": "Digital / Hardware Log",
+      "source": "Library network printer spooler",
+      "establishes": "The document was reproduced prior to its recorded disappearance.",
+      "does_not_establish": "Whether the original was kept or misfiled afterwards.",
+      "related_suspects": [
+        "Senior Researcher",
+        "Visiting Scholar"
+      ],
+      "reliability_notes": "Internal memory log from Canon archival copier."
+    },
+    {
+      "evidence_id": "E-E",
+      "title": "Folio Shelf Misplacement Trace",
+      "description": "A leather-bound ledger in adjacent aisle 4B showed impressions on the dust jacket matching the dimensions of the missing coded letter folio.",
+      "category": "Physical / Archival",
+      "source": "Archive stacks row 4B",
+      "establishes": "The folio was resting in aisle 4B rather than vault safe A-1.",
+      "does_not_establish": "Whether placement was deliberate concealment or clerical error.",
+      "related_suspects": [
+        "Archival Assistant",
+        "Senior Researcher"
+      ],
+      "reliability_notes": "Dust silhouette and electrostatic indentation test."
+    }
+  ],
+  "redHerrings": [
+    "Dr. Moreau's USB drive scans appeared like intellectual property theft, but scholars are permitted to scan for digital OCR analysis.",
+    "The initial report assumed international black-market art smuggling, but the document never left the archive reading room."
+  ],
+  "hiddenSolution": {
+    "culprit": "Dr. Henri Dupont (Deliberate Internal Concealment)",
+    "explanation": "Dupont did not want to sell the letter; he wanted to prevent rival scholar Dr. Moreau from translating the cipher before his upcoming monograph. After Moreau finished scanning it at 3:32 PM, Dupont took advantage of a cataloguer's cart, walked the letter to the rear shelves, slipped it into Box 88 (noted on his index card), and falsely claimed it was missing when he opened the box.",
+    "decisiveEvidence": [
+      "E-B (Letter located inside Box 88)",
+      "E-C (Dupont's index card citing Box 88)",
+      "E-A (Proves letter was intact at 3:32 PM)"
+    ],
+    "uncertainties": [
+      "Whether Dupont intended to return it to Box 14 after his book was published"
+    ],
+    "alternativeExplanation": "Cataloguer Charles De Vries accidentally swept the letter off Table 3 and refiled it into Box 88 by mistake."
+  },
+  "missingEvidence": [
+    "Corridor CCTV between Table 3 and rear shelving tier 3"
+  ],
+  "rules": [
+    "Disappearance does not inherently equal theft; deliberate internal misfiling is a common form of sabotage.",
+    "Digital reproduction (scanning) is distinct from physical removal."
+  ],
+  "estimatedTimeMinutes": 20
+}
