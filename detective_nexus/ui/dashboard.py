@@ -2151,7 +2151,7 @@ def handle_simulate_courtroom_trial_ui(indicted_suspect: str):
 def build_detective_nexus_app() -> gr.Blocks:
     theme = get_forensic_theme()
 
-    with gr.Blocks(theme=theme, css=FORENSIC_CSS, title="DETECTIVE NEXUS — AI Forensic Workstation") as demo:
+    with gr.Blocks(title="DETECTIVE NEXUS — AI Forensic Workstation") as demo:
 
         # Injected Dynamic Theme CSS (Day / Night Mode)
         theme_style_html = gr.HTML(get_theme_style_css(is_dark_mode=True))
