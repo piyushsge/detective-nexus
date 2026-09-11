@@ -5,8 +5,12 @@ theme-responsive SVGs directly into Gradio gr.HTML components without external J
 """
 
 from typing import Dict, Any, List
-import networkx as nx
 import math
+
+try:
+    import networkx as nx
+except ImportError:
+    nx = None
 
 class VisualEvidenceGraph:
     """
@@ -19,6 +23,14 @@ class VisualEvidenceGraph:
         """
         Builds a NetworkX graph from active case data and renders an SVG diagram.
         """
+        if nx is None:
+            bg_card = "#0c1527" if is_dark_mode else "#ffffff"
+            text_color = "#93c5fd" if is_dark_mode else "#0f172a"
+            return f'''<div style="background:{bg_card}; border:1px solid rgba(56,189,248,0.2); border-radius:8px; padding:24px; text-align:center; color:{text_color}; font-family:monospace;">
+                <strong>RELATIONAL EVIDENCE MATRIX</strong><br>
+                <span>Relational topology initialized for {case_data.get("case_id", "CASE-001")}</span>
+            </div>'''
+
         G = nx.DiGraph()
 
         # Add Nodes with categories
