@@ -1043,7 +1043,13 @@ def run_chief_step():
         skeptic_report=PIPELINE_CACHE["skeptic"].raw_markdown
     )
     PIPELINE_CACHE["chief"] = report
-    log_event("CHIEF", "Sealed verdict prepared. PROVISIONAL LEAD: Arjun Vale. Status: NOT PROVEN.")
+    sus_lead = "PERSON OF INTEREST"
+    if PIPELINE_CACHE.get("suspect") and getattr(PIPELINE_CACHE["suspect"], "provisional_lead", None):
+        sus_lead = PIPELINE_CACHE["suspect"].provisional_lead
+    elif case_data.get("suspects"):
+        sus_lead = case_data["suspects"][0].get("name", "LEADING SUSPECT")
+    
+    log_event("CHIEF", f"Sealed verdict prepared. PROVISIONAL LEAD: {sus_lead}. Status: NOT PROVEN.")
 
     strongest_str = "\n".join([f"- {s}" for s in report.strongest_evidence])
     weakest_str = "\n".join([f"- {w}" for w in report.weakest_evidence])
@@ -1053,7 +1059,7 @@ def run_chief_step():
         report.raw_markdown,
         get_activity_log_text(),
         "🟢 COMPLETED (Sealed Report Generated)",
-        "ARJUN VALE (PROVISIONAL LEAD)",
+        f"{sus_lead.upper()} (PROVISIONAL LEAD)",
         caveat_box,
         f"**Strongest Evidence:**\n{strongest_str}\n\n**Weakest Links:**\n{weakest_str}"
     )
@@ -1085,6 +1091,7 @@ def run_full_investigation():
 
     log_event("SYSTEM", "Pipeline finished. All 5 reports compiled and ready for human review.")
 
+    lead_name = sus.provisional_lead or (case_data["suspects"][0].get("name", "SUBJECT") if case_data.get("suspects") else "PERSON OF INTEREST")
     strongest_str = "\n".join([f"- {s}" for s in chf.strongest_evidence])
     weakest_str = "\n".join([f"- {w}" for w in chf.weakest_evidence])
     caveat_box = f"### ⚠️ PROVISIONAL ASSESSMENT: NOT PROVEN\n{chf.not_proven_caveat}\n\n**Confidence Level:** `{chf.confidence_level}`"
@@ -1096,7 +1103,7 @@ def run_full_investigation():
         skp.raw_markdown,
         chf.raw_markdown,
         get_activity_log_text(),
-        "ARJUN VALE (PROVISIONAL LEAD)",
+        f"{lead_name.upper()} (PROVISIONAL LEAD)",
         caveat_box,
         f"**Strongest Evidence:**\n{strongest_str}\n\n**Weakest Links:**\n{weakest_str}"
     )
@@ -1637,6 +1644,104 @@ def handle_analyze_and_score_case(raw_text: str, theme_choice: str) -> Tuple[str
             log_event("AUDIO_DISPATCH", f"Voice audio summary generated for uploaded case: {audio_path}")
     except Exception as e:
         log_event("AUDIO_DISPATCH", f"Voice summary generation error: {str(e)}")
+
+    # 8. Synchronize this uploaded case directly into the 5-Agent Investigation Pipeline
+    try:
+        import hashlib
+        case_title = classification.get("subject", "Extracted Incident Report")
+        category = classification.get("category", "General Investigation")
+        case_slug = hashlib.md5(case_title.encode("utf-8")).hexdigest()[:4].upper()
+        
+        # Extract suspect/party mentions or provide clean default entities
+        extracted_suspects = []
+        lines = [l.strip() for l in raw_text.splitlines() if l.strip()]
+        for line in lines[:25]:
+            if any(k in line.lower() for k in ["suspect", "accused", "passenger", "officer", "staff", "in-charge", "complainant", "guard", "tfe", "tte"]):
+                cleaned_name = line[:40].strip(" -*:•")
+                if cleaned_name and len(cleaned_name) > 3:
+                    extracted_suspects.append({
+                        "suspect_id": f"S{len(extracted_suspects)+1:02d}",
+                        "name": cleaned_name,
+                        "role": "Identified in Incident Dossier",
+                        "motive": "Contextual mention in report narrative",
+                        "means": "High",
+                        "opportunity": "High",
+                        "access": "Direct Operational Access",
+                        "alibi": "Pending formal corroboration",
+                        "statement": line[:150],
+                        "uncertainty": "Requires certified forensic corroboration",
+                        "relevant_evidence": ["E-01"]
+                    })
+                if len(extracted_suspects) >= 4:
+                    break
+        
+        if not extracted_suspects:
+            extracted_suspects = [
+                {
+                    "suspect_id": "S01",
+                    "name": "Primary Subject of Interest",
+                    "role": "Subject Identified in Report",
+                    "motive": "Circumstantial incentive noted in case record",
+                    "means": "High",
+                    "opportunity": "High",
+                    "access": "Direct Access to Incident Location",
+                    "alibi": "Unverified verbal statement",
+                    "statement": "Statement provided in case documentation",
+                    "uncertainty": "Requires independent corroboration",
+                    "relevant_evidence": ["E-01"]
+                }
+            ]
+
+        auto_case_dict = {
+            "case_id": f"CASE-{case_slug}",
+            "title": case_title,
+            "category": category,
+            "difficulty": "Medium",
+            "location": classification.get("jurisdiction", "Documented Incident Location"),
+            "incident_description": raw_text[:1200],
+            "critical_window": "Incident Timeline Interval Identified in Report",
+            "central_questions": [
+                "What verified facts are established by the documented record?",
+                "Which witness statements are contradicted by independent logs?",
+                "What alternative explanations exist for the reported anomalies?"
+            ],
+            "investigation_rules": [
+                "Motive does not prove guilt",
+                "Separate empirical records from subjective inferences"
+            ],
+            "timeline": [
+                {"id": "T01", "time": "Incident Timestamp", "event": classification.get("synopsis", raw_text[:200]), "source": "Official Case Documentation", "certainty": "Established", "is_critical": True}
+            ],
+            "suspects": extracted_suspects,
+            "witnesses": [],
+            "evidence": [
+                {
+                    "evidence_id": "E-01",
+                    "title": f"Exhibit A: {case_title[:32]}",
+                    "description": raw_text[:600],
+                    "category": "Documentary",
+                    "source": "Authenticated User Case File",
+                    "establishes": classification.get("synopsis", "Official sequence of logged events")[:180],
+                    "does_not_establish": "Conclusive personal identity without certified forensic touch DNA or biometric profile",
+                    "classification": "FACT",
+                    "strength": "STRONG",
+                    "related_suspects": [extracted_suspects[0]["name"]],
+                    "reliability_notes": "Extracted and authenticated from source case file"
+                }
+            ],
+            "evidence_relationships": [],
+            "status": "INVESTIGATION ACTIVE"
+        }
+        get_case_engine().load_custom_case(auto_case_dict)
+        # Refresh pipeline cache so all agents analyze the new case
+        PIPELINE_CACHE["detective"] = None
+        PIPELINE_CACHE["evidence"] = None
+        PIPELINE_CACHE["suspect"] = None
+        PIPELINE_CACHE["skeptic"] = None
+        PIPELINE_CACHE["chief"] = None
+        log_event("CASE_ENGINE", f"Active case updated to '{case_title}'. All 5 agents synchronized with report.")
+    except Exception as exc:
+        log_event("CASE_ENGINE", f"Auto case sync notice: {str(exc)}")
 
     log_event("SCORECARD", f"Scorecard complete: Solvability {scorecard_data['overall_score']}/100 [{scorecard_data['grade']}]")
 

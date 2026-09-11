@@ -9,6 +9,36 @@
     "created_at": "2026-09-01 08:00:00",
     "case_history": [
       {
+        "record_id": "REC-1789144766-7",
+        "timestamp": "2026-09-11 22:09:26",
+        "case_title": "System for Lodging FIR for Train Theft, Robbery, or Dacoity",
+        "report_category": "Train Passenger Theft",
+        "overall_score": 15,
+        "grade": "GRADE D // INSUFFICIENT EVIDENCE",
+        "summary_snippet": "The provided dossier contains merely procedural instructions for lodging an FIR for theft, robbery, or dacoity on running trains and lacks any specific incident facts, victim statements, suspect details, or evidentiary material. Without an actual cas...",
+        "export_file_path": "C:/Users/Piyus/OneDrive/Desktop/Niet Workshop/AI_Mystery_Detective_Team/data/exports/FORENSIC_DOSSIER_SystemforLodgingFIRforTrainTheftRobberyorDacoity_20260911_220926.md"
+      },
+      {
+        "record_id": "REC-1789144500-6",
+        "timestamp": "2026-09-11 22:05:00",
+        "case_title": "System for Lodging FIR for Train Passenger Theft, Robbery, or Dacoity",
+        "report_category": "Train Passenger Theft",
+        "overall_score": 15,
+        "grade": "GRADE D // INSUFFICIENT EVIDENCE",
+        "summary_snippet": "The provided document contains only procedural instructions and a blank template for lodging a First Information Report (FIR) regarding incidents on running trains. It contains zero factual allegations, witness statements, suspect descriptions, or sp...",
+        "export_file_path": "C:/Users/Piyus/OneDrive/Desktop/Niet Workshop/AI_Mystery_Detective_Team/data/exports/FORENSIC_DOSSIER_SystemforLodgingFIRforTrainPassengerTheftRobberyorDacoity_20260911_220500.md"
+      },
+      {
+        "record_id": "REC-1789143985-5",
+        "timestamp": "2026-09-11 21:56:25",
+        "case_title": "System for Lodging of FIR in Case of Theft/Robbery/Dacoity in Trains",
+        "report_category": "Train Passenger Theft",
+        "overall_score": 15,
+        "grade": "GRADE D // INSUFFICIENT EVIDENCE",
+        "summary_snippet": "The provided dossier contains merely administrative instructions and blank procedural guidelines for lodging a First Information Report (FIR) regarding railway incidents. It completely lacks any substantive criminal event, factual evidence, suspect d...",
+        "export_file_path": "C:/Users/Piyus/OneDrive/Desktop/Niet Workshop/AI_Mystery_Detective_Team/data/exports/FORENSIC_DOSSIER_SystemforLodgingofFIRinCaseofTheftRobberyDacoityinTrains_20260911_215625.md"
+      },
+      {
         "record_id": "REC-1789141938-4",
         "timestamp": "2026-09-11 21:22:18",
         "case_title": "Topic Approval Form for Academic Assignments and Projects",

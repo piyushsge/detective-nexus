@@ -9,8 +9,9 @@ from detective_nexus.llm.prompts import SKEPTIC_PROMPT
 class SkepticAgent:
     """
     Skeptic Agent for Adversarial Quality Control.
-    Challenges the leading hypothesis (Arjun Vale), audits hidden assumptions,
+    Challenges the leading hypothesis, audits hidden assumptions,
     demands missing evidence, and defines falsification tests.
+    Operates seamlessly online with Gemini AI or autonomously via dynamic forensic synthesis.
     """
 
     def __init__(self):
@@ -46,9 +47,12 @@ SUSPECT REPORT CONTEXT:
         if not success or not response:
             return self._generate_fallback_report(case_data)
 
-        return self._parse_report(response)
+        parsed = self._parse_report(response, case_data)
+        if not parsed.assumptions_exposed:
+            return self._generate_fallback_report(case_data)
+        return parsed
 
-    def _parse_report(self, markdown: str) -> SkepticReport:
+    def _parse_report(self, markdown: str, case_data: Dict[str, Any] = None) -> SkepticReport:
         assumptions = self._extract_list_items(markdown, "Hidden Assumptions Exposed")
         weak_links = self._extract_list_items(markdown, "Evidentiary Weak Links")
         alt_theories = self._extract_list_items(markdown, "Viable Alternative Theories")
@@ -56,15 +60,35 @@ SUSPECT REPORT CONTEXT:
         falsification = self._extract_list_items(markdown, "Concrete Falsification Tests")
 
         rationale_match = re.search(r"##\s+7\.\s+Epistemic Warning & Confidence Reduction\s*\n(.*?)(?=##|\Z)", markdown, re.DOTALL)
-        rationale = rationale_match.group(1).strip() if rationale_match else "Confidence must remain moderate pending card handling verification."
+        rationale = rationale_match.group(1).strip() if rationale_match else "Confidence must remain MODERATE: circumstantial correlation does not establish legal culpability."
+
+        # Extract challenged theory or use leading suspect from case_data
+        suspects = case_data.get("suspects", []) if case_data else []
+        lead_name = suspects[0].get("name", "Leading Suspect") if suspects else "Primary Subject"
 
         return SkepticReport(
-            leading_theory_challenged="Arjun Vale is the perpetrator who personally stole the diamond using his card at 8:23 PM.",
-            assumptions_exposed=assumptions or ["Arjun personally held the card", "The folder carried at 8:25 PM contained the diamond", "Velvet fibers in folder originate exclusively from the vitrine cushion"],
-            weak_links=weak_links or ["Electronic locks detect plastic cards, not human fingerprints", "Corridor camera shows folder silhouette only, not interior contents"],
-            alternative_theories=alt_theories or ["An insider took Arjun's card from his jacket while he was occupied in the archive", "The diamond was removed prior to the blackout and the 8:23 PM swipe was a diversion"],
-            missing_evidence_demanded=missing or ["Forensic fingerprint swab of card casing", "Chemical spectrometry of fibers", "Interrogation of archive visitors"],
-            falsification_tests=falsification or ["If card swab shows third-party DNA, leading theory collapses", "If archive door camera shows another person exiting with card, Arjun is exonerated"],
+            leading_theory_challenged=f"Working hypothesis that {lead_name} is the sole perpetrator based on opportunity and access logs.",
+            assumptions_exposed=assumptions or [
+                "Assumption that presence or credential logging proves physical manual execution.",
+                "Assumption that circumstantial sequence establishes direct criminal causation.",
+                "Over-reliance on uncorroborated witness recollections."
+            ],
+            weak_links=weak_links or [
+                "Digital and hardware logs confirm credential events, NOT physical human identity.",
+                "Absence of definitive touch DNA or biometric trace on primary exhibits."
+            ],
+            alternative_theories=alt_theories or [
+                f"An unauthorized third party exploited security gaps to frame {lead_name}.",
+                "Procedural irregularity or unlogged access during unmonitored interval."
+            ],
+            missing_evidence_demanded=missing or [
+                "Certified forensic fingerprint or touch DNA analysis on physical touchpoints.",
+                "Cryptographic server log audit verifying timestamp synchronicity."
+            ],
+            falsification_tests=falsification or [
+                f"If touch DNA on primary exhibits identifies an external profile, the case against {lead_name} is refuted.",
+                "If independent telemetry corroborates alibi timing, primary hypothesis fails."
+            ],
             confidence_reduction_rationale=rationale,
             raw_markdown=markdown
         )
@@ -88,35 +112,45 @@ SUSPECT REPORT CONTEXT:
         return items
 
     def _generate_fallback_report(self, case_data: Dict[str, Any]) -> SkepticReport:
-        markdown = """# SKEPTIC REPORT
+        """
+        Synthesizes an adversarial quality-control challenge tailored to the active case
+        (100% offline resilient, never halts if Gemini is unavailable).
+        """
+        case_id = case_data.get("case_id", "CASE-001")
+        suspects = case_data.get("suspects", [])
+        evidence = case_data.get("evidence", [])
+        lead_name = suspects[0].get("name", "Leading Suspect") if suspects else "Primary Subject"
+
+        markdown = f"""# SKEPTIC REPORT // {case_id}
+**Adversarial Rigor & Defense Vulnerability Auditor** | **Detective Nexus AI Division**
 
 ## 1. Adversarial Challenge to Leading Theory
-The investigation has rapidly converged on **Arjun Vale** because of an electronic access record and fiber trace. This convergence displays classic confirmation bias. The hypothesis treats circumstantial proximity as legal certainty while brushing aside glaring evidential voids.
+The preliminary investigation has rapidly converged on **{lead_name}** based on opportunity windows and access records. This rapid convergence displays classic confirmation bias. Circumstantial proximity and logged credentials have been treated as conclusive proof of personal guilt while ignoring significant evidentiary gaps.
 
 ## 2. Hidden Assumptions Exposed
-1. **The Credential Fallacy**: The team assumes that because Arjun's card was swiped at 8:23 PM, Arjun himself swiped it. An access card identifies a piece of encoded plastic, NOT a human hand.
-2. **The Folder Assumption**: The team assumes the flat catalogue folder carried at 8:25 PM concealed the Aurora Diamond. The camera shows a flat paper folder; it does NOT show a diamond or bulge.
-3. **The Fiber Assumption**: The team assumes microscopic blue velvet fibers in the folder must come from the rotunda cushion. In a historical museum with dozens of velvet-lined cases, cross-contamination is rampant.
+1. **The Credential Fallacy**: The assumption that because credentials or access logs are recorded, the registered individual was physically operating them. A card, key, or token represents hardware, NOT biological human identity.
+2. **The Temporal Correlation Fallacy**: The assumption that presence near an incident during the critical window proves causation.
+3. **The Unverified Statement Fallacy**: Relying on uncorroborated verbal statements without certified corroborating telemetry.
 
 ## 3. Evidentiary Weak Links
-- **No Physical Identification at Vitrine**: During the 8:20–8:24 PM blackout, zero eyewitnesses or cameras observed the display case.
-- **Timing Contradiction**: Arjun's card swiped the display at 8:23:17 PM. At 8:25:02 PM, Arjun was filmed leaving the archive. That leaves less than 105 seconds to unlock the case, extract the diamond, close the lock, walk back to the archive, conceal the gem in a folder, and walk out into camera view.
-- **Inconclusive Fiber Analysis**: Microscopic visual resemblance is not chemical spectrometry.
+- **Zero Biometric Verification**: No authenticated touch DNA, fingerprint friction ridges, or facial recognition directly place the perpetrator's hand on the breach point.
+- **Unverified Chain of Custody**: Potential environmental cross-contamination or delayed logging in secondary records.
+- **Narrow Time Window Vulnerability**: The timeline leaves minimal margin for execution, concealment, and egress without being detected.
 
 ## 4. Viable Alternative Theories
-- **Theory A (The Stolen Credential Scenario)**: An accomplice or second actor slipped into Arjun's office while he was sorting specimens in the back of the archive, lifted his keycard from his hanging coat, executed the theft at 8:23 PM, and slipped it back or ditched it.
-- **Theory B (Pre-Blackout Extraction)**: The diamond was removed earlier during preparation, and the blackout swipe was intentionally staged using Arjun's card to create a false timeline anchor.
+- **Theory A (The Proxy Credential / Theft Scenario)**: An unauthorized third party obtained access tools or credentials while {lead_name} was occupied elsewhere, staging the incident to divert suspicion.
+- **Theory B (Pre-Incident Compromise)**: The primary incident occurred earlier than reported, and logged events during the critical window served as an intentional distraction.
 
 ## 5. Demanded Missing Evidence
-- Latent fingerprint or touch DNA analysis on the surface of Arjun's card.
-- Comprehensive chemical spectrometry comparing the dye composition of the folder fibers with the rotunda cushion.
-- Review of exterior corridor footage for unidentified persons near the archive doorway between 8:15 and 8:22 PM.
+- Forensic latent print and touch DNA swabbing on all primary physical exhibits.
+- Independent external security camera and digital access log verification.
+- Formal deposition and alibi verification of all secondary personnel present in the facility.
 
 ## 6. Concrete Falsification Tests
-- **Test 1**: If touch DNA analysis on the keycard identifies a non-Arjun profile, the primary hypothesis of sole actor execution is falsified.
-- **Test 2**: If dye spectrometry proves the folder fibers differ from the cushion batch, the primary physical link collapses.
+- **Test 1**: If touch DNA or fingerprint analysis on primary exhibits reveals an unknown third-party genotype, the primary accusation is falsified.
+- **Test 2**: If electronic time-synchronization audits prove clock drift between logging systems, the critical window sequence dissolves.
 
 ## 7. Epistemic Warning & Confidence Reduction
-Investigators must immediately downgrade certainty from 'HIGH' to 'MODERATE'. Equating electronic card usage with physical guilt violates foundational forensic standards. The case is NOT legally proven.
+Certainty must be restricted to **MODERATE / CIRCUMSTANTIAL**. Equating access logs with proof beyond a reasonable doubt violates fundamental forensic standards. The case is **NOT PROVEN**.
 """
-        return self._parse_report(markdown)
+        return self._parse_report(markdown, case_data)

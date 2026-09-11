@@ -10,6 +10,7 @@ class EvidenceAgent:
     """
     Forensic Evidence Specialist Agent.
     Separates facts from inferences, rates strength, audits limitations, and documents alternatives.
+    Operates seamlessly online with Gemini AI or autonomously via dynamic forensic synthesis.
     """
 
     def __init__(self):
@@ -36,7 +37,10 @@ DETECTIVE REPORT CONTEXT:
         if not success or not response:
             return self._generate_fallback_report(case_data)
 
-        return self._parse_report(response, case_data)
+        parsed = self._parse_report(response, case_data)
+        if not parsed.evidence_table:
+            return self._generate_fallback_report(case_data)
+        return parsed
 
     def _parse_report(self, markdown: str, case_data: Dict[str, Any]) -> EvidenceReport:
         strongest = self._extract_list_items(markdown, "Strongest Probative Evidence")
@@ -44,28 +48,30 @@ DETECTIVE REPORT CONTEXT:
         conflicts = self._extract_list_items(markdown, "Conflicting Evidence Audit")
         missing_tests = self._extract_list_items(markdown, "Required Forensic Verifications")
 
-        # Build structured items
+        # Build structured items dynamically from active case evidence
         items = []
         for ev in case_data.get("evidence", []):
-            eid = ev.get("evidence_id")
+            eid = ev.get("evidence_id", "E-1")
+            strength = ev.get("strength", "MODERATE")
+            conf = 0.90 if strength in ["VERY STRONG", "STRONG"] else (0.75 if strength == "MODERATE" else 0.50)
             items.append(EvidenceAnalysisItem(
                 evidence_id=eid,
-                observation=ev.get("description", ""),
+                observation=ev.get("description", ev.get("title", "")),
                 fact_vs_inference="FACT" if ev.get("classification") == "FACT" else "INFERENCE / UNCERTAIN",
-                strength=ev.get("strength", "MODERATE"),
-                relevance="HIGH" if eid in ["E-B", "E-D", "E-E"] else "CONTEXTUAL",
-                what_it_proves=ev.get("establishes", ""),
-                what_it_does_not_prove=str(ev.get("does_not_establish", "")),
-                alternative_explanation="Card accessed without authorization or fibers transferred from archive cataloguing." if eid == "E-B" else "Incidental environmental trace.",
-                confidence=0.90 if ev.get("strength") == "VERY STRONG" else 0.70
+                strength=strength,
+                relevance="HIGH" if strength in ["VERY STRONG", "STRONG"] else "CONTEXTUAL",
+                what_it_proves=ev.get("establishes", "Corroborates documented facts"),
+                what_it_does_not_prove=str(ev.get("does_not_establish", "Cannot prove culpability without biometric identification")),
+                alternative_explanation=f"Potential secondary explanation or circumstantial correlation for {eid}.",
+                confidence=conf
             ))
 
         return EvidenceReport(
             evidence_table=items,
-            strongest_clues=strongest or ["E-B: Cryptographic Display-Case Log at 8:23 PM", "E-E: Blue Velvet Fibers in Catalogue Folder"],
-            weakest_or_misleading=weakest or ["E-F: Muddy Shoeprint (Consistent with wet courtyard crossing)", "E-G: Insurance Policy (No suspect beneficiary)"],
-            conflicting_evidence=conflicts or ["E-B directly contradicts E-C (Lock log shows card swipe vs claim card remained in jacket)"],
-            missing_forensic_tests=missing_tests or ["Dye spectrometry comparing folder fibers with rotunda cushion", "Fingerprint / touch DNA swab of access card casing"],
+            strongest_clues=strongest or [f"Primary verified exhibit: {ev.get('title')}" for ev in case_data.get("evidence", [])[:2]],
+            weakest_or_misleading=weakest or ["Unverified verbal accounts without independent telemetry"],
+            conflicting_evidence=conflicts or ["Verbal testimony diverges from recorded timestamps"],
+            missing_forensic_tests=missing_tests or ["Latent biometric touch analysis", "Digital chain-of-custody verification"],
             raw_markdown=markdown
         )
 
@@ -88,90 +94,70 @@ DETECTIVE REPORT CONTEXT:
         return items
 
     def _generate_fallback_report(self, case_data: Dict[str, Any]) -> EvidenceReport:
-        markdown = """# EVIDENCE REPORT
+        """
+        Synthesizes a complete evidence analysis report tailored to the active case
+        (100% offline resilient, never halts if Gemini is unavailable).
+        """
+        case_id = case_data.get("case_id", "CASE-001")
+        evidence_list = case_data.get("evidence", [])
+
+        # Format evidence items
+        ev_sections = []
+        strongest = []
+        weakest = []
+
+        for e in evidence_list:
+            eid = e.get("evidence_id", "E")
+            title = e.get("title", f"Exhibit {eid}")
+            cls_type = e.get("classification", "FACT")
+            str_val = e.get("strength", "MODERATE")
+            src = e.get("source", "Case Documentation")
+            est = e.get("establishes", "Establishes documented occurrence.")
+            not_est = e.get("does_not_establish", "Does not conclusively prove identity.")
+            related = ", ".join(e.get("related_suspects", [])) or "All Parties"
+
+            if str_val in ["VERY STRONG", "STRONG"]:
+                strongest.append(f"**{eid} ({title})**: {est}")
+            else:
+                weakest.append(f"**{eid} ({title})**: {not_est}")
+
+            ev_sections.append(f"""### {eid}: {title}
+- **Classification:** {cls_type}
+- **Evidentiary Strength:** {str_val}
+- **Source & Chain of Custody:** {src}
+- **What It Establishes:** {est}
+- **What It Does NOT Establish:** {not_est}
+- **Forensic Interpretation:** Standard forensic item under formal review.
+- **Related Suspects:** {related}
+""")
+
+        if not strongest:
+            strongest.append("Primary documented occurrence logs")
+        if not weakest:
+            weakest.append("Uncorroborated third-party hearsay statements")
+
+        markdown = f"""# EVIDENCE REPORT // {case_id}
+**Forensic Evidence Specialist Analysis** | **Detective Nexus AI Division**
 
 ## 1. Executive Forensic Assessment
-The evidence dossier contains seven primary records spanning hardware access logs, physical traces, camera stills, and statements. The single strongest technical clue is Evidence E-B (the battery-backed electronic lock event at 8:23 PM), but it is subject to the fundamental limitation that electronic locks record credential use, not human physical identity.
+The evidentiary catalog contains {len(evidence_list)} registered exhibits. Each item has been audited to separate empirical physical/digital records from inferences and subjective claims. In accordance with forensic standards, credential utilization or physical proximity does not constitute definitive proof of culpability.
 
 ## 2. Evidence-by-Evidence Analysis
 
-### E-A: Electronic Lock Technical Specification
-- **Classification:** FACT
-- **Evidentiary Strength:** VERY STRONG
-- **Source & Chain of Custody:** Manufacturer technical audit
-- **What It Establishes:** Authorized keycards continue to be logged in memory during a power outage.
-- **What It Does NOT Establish:** Which individual held and swiped the card.
-- **Alternative Interpretation:** Standard hardware functionality; proves audit validity.
-- **Related Suspects:** Arjun Vale
-
-### E-B: Display Case Access Log (8:23 PM)
-- **Classification:** FACT
-- **Evidentiary Strength:** VERY STRONG
-- **Source & Chain of Custody:** Internal memory chip of the rotunda vitrine lock
-- **What It Establishes:** Arjun Vale's registered card opened the case at 8:23 PM.
-- **What It Does NOT Establish:** Arjun Vale was the physical operator.
-- **Alternative Interpretation:** Another person used or borrowed Arjun's card.
-- **Related Suspects:** Arjun Vale
-
-### E-C: Arjun Vale's Statement
-- **Classification:** INFERENCE / STATEMENT
-- **Evidentiary Strength:** WEAK
-- **Source & Chain of Custody:** Audio-recorded investigator interview
-- **What It Establishes:** Arjun asserts his card remained in his jacket inside the archive.
-- **What It Does NOT Establish:** That the card was actually untouched.
-- **Alternative Interpretation:** Self-exculpatory fabrication, OR genuine unawareness that an intruder stole the card.
-- **Related Suspects:** Arjun Vale
-
-### E-D: Corridor Camera Footage (8:25 PM)
-- **Classification:** FACT
-- **Evidentiary Strength:** STRONG
-- **Source & Chain of Custody:** CCTV Camera #4 hard-drive archive
-- **What It Establishes:** Arjun carried a flat catalogue folder out of the archive at 8:25 PM.
-- **What It Does NOT Establish:** That the diamond was inside the folder.
-- **Alternative Interpretation:** Routine archival transport of research folios.
-- **Related Suspects:** Arjun Vale
-
-### E-E: Blue Velvet Fibers in Folder
-- **Classification:** UNCERTAIN / PHYSICAL TRACE
-- **Evidentiary Strength:** MODERATE
-- **Source & Chain of Custody:** Crime Scene Tech vacuum sweep of folder
-- **What It Establishes:** Visual material match with the blue velvet display cushion.
-- **What It Does NOT Establish:** Chemical identity or origin without dye spectrometry.
-- **Alternative Interpretation:** Velvet fibers transferred during earlier museum exhibitions or display prep.
-- **Related Suspects:** Arjun Vale
-
-### E-F: Muddy Shoeprint Near Display
-- **Classification:** DISTRACTION
-- **Evidentiary Strength:** WEAK
-- **Source & Chain of Custody:** Gel lift from rotunda marble floor
-- **What It Establishes:** Size EU 39 boot deposited mud near the display.
-- **What It Does NOT Establish:** When the print was made or that Lena entered during the blackout.
-- **Alternative Interpretation:** Deposited during routine maintenance after crossing wet courtyard.
-- **Related Suspects:** Lena Ortiz
-
-### E-G: Museum Insurance Policy Schedule
-- **Classification:** DISTRACTION
-- **Evidentiary Strength:** WEAK
-- **Source & Chain of Custody:** Administrative records
-- **What It Establishes:** Policy beneficiary is the museum board of trustees.
-- **What It Does NOT Establish:** Direct financial incentive for any suspect.
-- **Alternative Interpretation:** Contextual institutional documentation.
-- **Related Suspects:** None
-
+""" + "\n".join(ev_sections) + f"""
 ## 3. Strongest Probative Evidence
-- **E-B (8:23 PM Lock Log)**: Directly anchors the physical opening of the vitrine to the blackout window.
-- **E-E (Velvet Fibers)**: Provides physical trace linking the folder to the display cushion material.
+""" + "\n".join([f"- {s}" for s in strongest]) + f"""
 
 ## 4. Weakest or Ambiguous Evidence
-- **E-F (Muddy Shoeprint)**: Severely compromised by the fact that Lena had a legitimate duty to inspect exterior doors during heavy rain.
-- **E-G (Insurance Policy)**: Fails to substantiate personal financial motive for individual suspects.
+""" + "\n".join([f"- {w}" for w in weakest]) + """
 
 ## 5. Conflicting Evidence Audit
-- **E-B vs. E-C Conflict**: The display lock records Arjun's card opening the case at 8:23 PM, directly contradicting his statement that his card remained inside his jacket.
+- Physical access logs and documentary records must be audited against witness statements.
+- Temporal proximity without verified biometric touch remains circumstantial.
 
 ## 6. Required Forensic Verifications
-1. Mass spectrometry of fibers from E-E vs rotunda cushion velvet.
-2. Forensic swabbing of Arjun's card for touch DNA / fingerprint residues.
-3. Audio/video recovery from archive entrance to determine if third parties entered while Arjun worked.
+1. Perform forensic latent print and touch DNA analysis on physical touchpoints.
+2. Conduct digital hash verification and timestamp synchronization on all electronic records.
+3. Secure complete secondary CCTV or access logs surrounding the opportunity interval.
 """
         return self._parse_report(markdown, case_data)
