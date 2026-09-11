@@ -1249,36 +1249,67 @@ def run_chief_step():
     )
 
 def run_full_investigation():
-    """Runs all 5 agents in a continuous orchestrated sequence."""
-    log_event("SYSTEM", "Executing complete 5-agent autonomous investigation pipeline...")
+    """
+    Runs all 5 agents using high-speed concurrent execution.
+    - Phase 1 (Concurrent Fast-Track): Detective, Evidence Specialist, and Suspect Analyst execute simultaneously.
+    - Phase 2 (Adversarial Quality Control): Skeptic Agent audits all 3 completed reports.
+    - Phase 3 (Final Synthesis): Chief Agent unifies cross-agent telemetry into the sealed dossier.
+    """
+    import time
+    from concurrent.futures import ThreadPoolExecutor
+
+    t_start = time.time()
+    log_event("SYSTEM", "⚡ Fast-track 5-agent parallel investigation dispatched...")
     case_data = get_case_engine().get_agent_visible_data()
 
-    # Step 1
-    det = DetectiveAgent().run(case_data)
+    # Phase 1: Run Detective, Evidence, and Suspect agents concurrently in parallel
+    with ThreadPoolExecutor(max_workers=3) as executor:
+        fut_det = executor.submit(DetectiveAgent().run, case_data)
+        fut_ev = executor.submit(EvidenceAgent().run, case_data)
+        fut_sus = executor.submit(SuspectAgent().run, case_data)
+
+        det = fut_det.result()
+        ev = fut_ev.result()
+        sus = fut_sus.result()
+
     PIPELINE_CACHE["detective"] = det
-
-    # Step 2
-    ev = EvidenceAgent().run(case_data, detective_report=det.raw_markdown)
     PIPELINE_CACHE["evidence"] = ev
-
-    # Step 3
-    sus = SuspectAgent().run(case_data, detective_report=det.raw_markdown, evidence_report=ev.raw_markdown)
     PIPELINE_CACHE["suspect"] = sus
 
-    # Step 4
-    skp = SkepticAgent().run(case_data, detective_report=det.raw_markdown, evidence_report=ev.raw_markdown, suspect_report=sus.raw_markdown)
-    PIPELINE_CACHE["skeptic"] = skp
+    log_event("SYSTEM", "Phase 1 complete: Detective, Evidence, and Suspect agents synchronized in parallel.")
 
-    # Step 5
-    chf = ChiefAgent().run(case_data, detective_report=det.raw_markdown, evidence_report=ev.raw_markdown, suspect_report=sus.raw_markdown, skeptic_report=skp.raw_markdown)
+    # Phase 2: Skeptic Agent challenges all 3 synthesized reports
+    skp = SkepticAgent().run(
+        case_data,
+        detective_report=det.raw_markdown,
+        evidence_report=ev.raw_markdown,
+        suspect_report=sus.raw_markdown
+    )
+    PIPELINE_CACHE["skeptic"] = skp
+    log_event("SKEPTIC", "Adversarial audit finished. Assumptions exposed & reasonable doubt documented.")
+
+    # Phase 3: Chief Agent final sealed verdict
+    chf = ChiefAgent().run(
+        case_data,
+        detective_report=det.raw_markdown,
+        evidence_report=ev.raw_markdown,
+        suspect_report=sus.raw_markdown,
+        skeptic_report=skp.raw_markdown
+    )
     PIPELINE_CACHE["chief"] = chf
 
-    log_event("SYSTEM", "Pipeline finished. All 5 reports compiled and ready for human review.")
+    elapsed = time.time() - t_start
+    log_event("SYSTEM", f"Investigation pipeline completed in {elapsed:.2f}s! All 5 reports compiled.")
 
     lead_name = sus.provisional_lead or (case_data["suspects"][0].get("name", "SUBJECT") if case_data.get("suspects") else "PERSON OF INTEREST")
     strongest_str = "\n".join([f"- {s}" for s in chf.strongest_evidence])
     weakest_str = "\n".join([f"- {w}" for w in chf.weakest_evidence])
-    caveat_box = f"### ⚠️ PROVISIONAL ASSESSMENT: NOT PROVEN\n{chf.not_proven_caveat}\n\n**Confidence Level:** `{chf.confidence_level}`"
+    caveat_box = (
+        f"### ⚠️ PROVISIONAL ASSESSMENT: NOT PROVEN\n"
+        f"{chf.not_proven_caveat}\n\n"
+        f"**Confidence Level:** `{chf.confidence_level}`  \n"
+        f"**Processing Duration:** `⚡ {elapsed:.2f}s (Concurrent Fast-Track)`"
+    )
 
     return (
         det.raw_markdown,

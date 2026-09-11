@@ -85,32 +85,46 @@ class AudioDebriefEngine:
     @classmethod
     def _synthesize_audio(cls, text: str, out_base: Path) -> Tuple[bool, str]:
         """
-        Synthesizes speech into an audio file.
-        Priority 1: Native Windows SAPI (instant, 100% offline, zero network errors).
-        Priority 2: Google TTS (gTTS) MP3.
-        Priority 3: Procedural sine wave WAV tone.
+        Synthesizes speech into an audio file with instant hash-based caching.
+        Priority 1: Check existing cached audio file (instant 0.00s latency).
+        Priority 2: Native Windows SAPI (instant, 100% offline).
+        Priority 3: Google TTS (gTTS) MP3.
+        Priority 4: Procedural sine wave WAV tone.
         """
+        import hashlib
+        AUDIO_DIR.mkdir(parents=True, exist_ok=True)
+        text_hash = hashlib.md5(text.strip().encode("utf-8")).hexdigest()[:12]
+        
+        # Check fast-cache on disk
+        cached_wav = AUDIO_DIR / f"{out_base.stem}_{text_hash}.wav"
+        cached_mp3 = AUDIO_DIR / f"{out_base.stem}_{text_hash}.mp3"
+        if cached_wav.exists() and cached_wav.stat().st_size > 500:
+            return True, str(cached_wav.resolve().as_posix())
+        if cached_mp3.exists() and cached_mp3.stat().st_size > 500:
+            return True, str(cached_mp3.resolve().as_posix())
+
+        target_wav = cached_wav
+        target_mp3 = cached_mp3
+
         # 1. Try Windows SAPI (instant, offline)
         try:
             import win32com.client
-            wav_path = out_base.with_suffix(".wav")
             speaker = win32com.client.Dispatch("SAPI.SpVoice")
             stream = win32com.client.Dispatch("SAPI.SpFileStream")
-            stream.Open(str(wav_path.resolve()), 3) # 3 = SSFMCreateForWrite
+            stream.Open(str(target_wav.resolve()), 3) # 3 = SSFMCreateForWrite
             speaker.AudioOutputStream = stream
             speaker.Speak(text)
             stream.Close()
-            return True, str(wav_path.resolve().as_posix())
+            return True, str(target_wav.resolve().as_posix())
         except Exception:
             pass
 
         # 2. Try gTTS (online MP3)
         try:
             from gtts import gTTS
-            mp3_path = out_base.with_suffix(".mp3")
             tts = gTTS(text=text, lang="en", tld="com", slow=False)
-            tts.save(str(mp3_path.resolve()))
-            return True, str(mp3_path.resolve().as_posix())
+            tts.save(str(target_mp3.resolve()))
+            return True, str(target_mp3.resolve().as_posix())
         except Exception:
             pass
 
@@ -119,15 +133,14 @@ class AudioDebriefEngine:
             import wave
             import math
             import struct
-            wav_path = out_base.with_suffix(".wav")
-            with wave.open(str(wav_path.resolve()), "w") as wav_file:
+            with wave.open(str(target_wav.resolve()), "w") as wav_file:
                 wav_file.setnchannels(1)
                 wav_file.setsampwidth(2)
                 wav_file.setframerate(44100)
                 for i in range(44100):
                     val = int(32767.0 * math.sin(2.0 * math.pi * 440.0 * (i / 44100.0)) * 0.1)
                     wav_file.writeframes(struct.pack("<h", val))
-            return True, str(wav_path.resolve().as_posix())
+            return True, str(target_wav.resolve().as_posix())
         except Exception as e3:
             return False, f"Audio synthesis error: {str(e3)}"
 
