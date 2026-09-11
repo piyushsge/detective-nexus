@@ -3,6 +3,7 @@ Detective Nexus: AI Mystery Investigation System
 Root executable launcher.
 """
 
+import os
 import sys
 from pathlib import Path
 
