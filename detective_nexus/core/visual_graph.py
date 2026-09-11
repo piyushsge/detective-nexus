@@ -54,18 +54,29 @@ class VisualEvidenceGraph:
         if "Arjun Vale" in suspects and "E-B" in evidence:
             G.add_edge("Arjun Vale", "E-B", label="CARD SWIPED")
             G.add_edge("E-B", location, label="OPENED VITRINE")
+            if "E-D" in evidence:
+                G.add_edge("Arjun Vale", "E-D", label="CARRIED AT 8:25")
+            if "E-D" in evidence and "E-E" in evidence:
+                G.add_edge("E-D", "E-E", label="CONTAINS TRACE")
+                G.add_edge("E-E", location, label="MATERIAL MATCH")
+            if "Lena Ortiz" in suspects and "E-F" in evidence:
+                G.add_edge("Lena Ortiz", "E-F", label="BOOT TREAD MATCH")
+        else:
+            # Dynamic linking for any uploaded, custom, or procedural case
+            for s in case_data.get("suspects", []):
+                s_name = s.get("name")
+                if s_name:
+                    G.add_edge(s_name, location, label="AT SCENE")
+                    for rel_e in s.get("relevant_evidence", []):
+                        if rel_e in G:
+                            G.add_edge(s_name, rel_e, label="LINKED")
 
-        if "Arjun Vale" in suspects and "E-D" in evidence:
-            G.add_edge("Arjun Vale", "E-D", label="CARRIED AT 8:25")
+            for e in case_data.get("evidence", []):
+                eid = e.get("evidence_id")
+                if eid and eid in G:
+                    G.add_edge(eid, location, label="RECOVERED")
 
-        if "E-D" in evidence and "E-E" in evidence:
-            G.add_edge("E-D", "E-E", label="CONTAINS TRACE")
-            G.add_edge("E-E", location, label="MATERIAL MATCH")
-
-        if "Lena Ortiz" in suspects and "E-F" in evidence:
-            G.add_edge("Lena Ortiz", "E-F", label="BOOT TREAD MATCH")
-
-        G.add_edge(window, location, label="BLACKOUT DURATION")
+        G.add_edge(window, location, label="INCIDENT WINDOW")
 
         # Layout computation using spring layout with deterministic seed
         pos = nx.spring_layout(G, seed=42, k=1.4, iterations=50)

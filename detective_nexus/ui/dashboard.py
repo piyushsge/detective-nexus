@@ -1351,7 +1351,14 @@ CHIEF REPORT:
         else:
             answer = f"Based on the official case file, the investigation centers on the 08:20-08:24 PM blackout. All conclusions remain provisional subject to physical touch DNA and fiber spectrometry verification."
 
-    chat_history.append((user_msg, answer))
+    if chat_history is None:
+        chat_history = []
+
+    if chat_history and isinstance(chat_history[0], tuple):
+        chat_history.append((user_msg, answer))
+    else:
+        chat_history.append({"role": "user", "content": user_msg})
+        chat_history.append({"role": "assistant", "content": answer})
     return "", chat_history
 
 # ==============================================================================
@@ -1812,7 +1819,15 @@ def handle_interrogate_turn(suspect_name: str, user_question: str, chat_history:
     if confront_clue and confront_clue != "None":
         disp_question = f"⚖️ [CONFRONTED WITH {confront_clue}]: {user_question}"
 
-    chat_history.append((disp_question, reply))
+    if chat_history is None:
+        chat_history = []
+
+    if chat_history and isinstance(chat_history[0], tuple):
+        chat_history.append((disp_question, reply))
+    else:
+        chat_history.append({"role": "user", "content": disp_question})
+        chat_history.append({"role": "assistant", "content": reply})
+
     log_event("INTERROGATION", f"Cross-examined {suspect_name}. Stress index: {telemetry.get('stress_score')}%")
     return "", chat_history, gauge_html
 
